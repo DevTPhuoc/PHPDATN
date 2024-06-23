@@ -1,0 +1,65 @@
+.update-button {
+    background-color: #FFD700; /* Màu vàng */
+    color: #010101; 
+    padding: 10px 15px; /* Kích thước padding */
+    border: none; /* Không có đường viền */
+    border-radius: 5px; /* Bo tròn góc */
+    cursor: pointer; /* Hiển thị icon tay khi di chuyển chuột */
+    margin-left: auto; /* Căn phải */
+    transition: background-color 0.3s; /* Thời gian chuyển đổi màu sắc */
+    display: inline-block;
+}
+
+/* Hiệu ứng hover khi di chuyển chuột vào nút */
+.update-button:hover {
+    background-color: #FFB800; /* Màu vàng nhạt */
+    color: yellow;
+}
+
+.delete-button {
+    background-color: red;
+    color: white;
+    padding: 10px 15px; /* Kích thước padding */
+    border: none; /* Không có đường viền */
+    border-radius: 5px; /* Bo tròn góc */
+    cursor: pointer; /* Hiển thị icon tay khi di chuyển chuột */
+    margin-left: auto; /* Căn phải */
+    transition: background-color 0.3s; /* Thời gian chuyển đổi màu sắc */
+  }
+
+  .delete-button:hover {
+    background-color: #ff9999; /* Màu nền đỏ nhạt khi hover */
+    color: red; /* Màu chữ khi hover */
+  }
+
+  .confirm-button {
+    background-color: rgb(52, 208, 52);
+    color: white;
+    padding: 10px 15px; /* Kích thước padding */
+    border: none; /* Không có đường viền */
+    border-radius: 5px; /* Bo tròn góc */
+    cursor: pointer; /* Hiển thị icon tay khi di chuyển chuột */
+    margin-left: auto; /* Căn phải */
+    transition: background-color 0.3s; /* Thời gian chuyển đổi màu sắc */
+  }
+
+  .confirm-button:hover {
+    background-color: #aae7c2; /* Màu nền đỏ nhạt khi hover */
+    color: rgba(0, 0, 0, 0.992); /* Màu chữ khi hover */
+  }
+
+  .confirm-delivery-button {
+    background-color: rgb(110, 68, 234);
+    color: white;
+    padding: 10px 15px; /* Kích thước padding */
+    border: none; /* Không có đường viền */
+    border-radius: 5px; /* Bo tròn góc */
+    cursor: pointer; /* Hiển thị icon tay khi di chuyển chuột */
+    margin-left: auto; /* Căn phải */
+    transition: background-color 0.3s; /* Thời gian chuyển đổi màu sắc */
+  }
+
+  .confirm-delivery-button:hover {
+    background-color: #a4c7ec; /* Màu nền đỏ nhạt khi hover */
+    color: rgba(0, 0, 0, 0.992); /* Màu chữ khi hover */
+  }
