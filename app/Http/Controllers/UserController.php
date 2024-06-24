@@ -13,5 +13,11 @@ class UserController extends Controller
     
         }
     }
+    public function  themMoi()
+    {
+        {
+            return view('user.add');
+        }
+    }
    
 }

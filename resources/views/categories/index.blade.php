@@ -13,7 +13,7 @@
     </div>
 
     <div class="flex items-center p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800"
-      onclick="window.location.href = '{{ route('Admin.add') }}';">
+      onclick="window.location.href = '{{ route('categories.add') }}';">
       <div class="p-3 mr-4 text-orange-500  rounded-full dark:text-orange-100 dark:bg-orange-500">
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14" height="50" width="50">
           <g id="add-circle--button-remove-cross-add-buttons-plus-circle-+-mathematics-math">
@@ -86,7 +86,7 @@
               <td class="px-4 py-3 text-xs">
                 <span
                   class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-full dark:bg-green-700 dark:text-green-100">
-                  Hoạt Động
+                  Không Hoạt Động
                 </span>
               </td>
             </tr>
@@ -123,8 +123,8 @@
               </td>
               <td class="px-4 py-3 text-xs">
                 <span
-                  class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-full dark:bg-green-700 dark:text-green-100">
-                  Hoạt Động
+                  class="px-2 py-1 font-semibold leading-tight text-orange-700 bg-orange-100 rounded-full dark:text-white dark:bg-orange-600">
+                  Pending
                 </span>
               </td>
             </tr>
@@ -163,7 +163,7 @@
               <td class="px-4 py-3 text-xs">
                 <span
                   class="px-2 py-1 font-semibold leading-tight text-red-700 bg-red-100 rounded-full dark:text-red-100 dark:bg-red-700">
-                  Không Hoạt Động
+                  Hoạt Động
                 </span>
               </td>
             </tr>

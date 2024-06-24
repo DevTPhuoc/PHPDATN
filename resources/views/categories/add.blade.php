@@ -24,50 +24,33 @@
       <!-- Backdrop -->
     
 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-    <h1 class="h2">THÊM MỚI USER </h1>
+    <h1 class="h2">THÊM MỚI LOẠI SẢN PHẨM </h1>
 </div>
 
 <form class="row g-3" method="POST" action="http://127.0.0.1:8000/products/start-add">
     <div class="col-12">
         <input type="hidden" name="_token" value="fQgAEk3NvJXKr882p4HXOburK2qztSc4elwcUvE3">        <div class="row">
             <div class="col-md-8">
-                <label for="ten" class="form-label">Tên đăng nhập</label>
-                <input type="text" name="account_name" class="form-control" id="ten" ">
+                <label for="ten" class="form-label">Mã Sản Phẩm</label>
+                <input type="text" name="id" class="form-control" id="manhacungcap" ">
             </div>
         </div>
         <div class="row">
             <div class="col-md-8">
-                <label for="gia_ban" class="form-label">Mật Khẩu</label>
-                <input type="text" name="password" class="form-control" id="gia_ban" ">
-            </div>
-        </div>
-       <div class="row">
-            <div class="col-md-8">
-                <label for="gia_ban" class="form-label">Họ và Tên</label>
-                <input type="text" name="fullname" class="form-control" id="gia_ban" ">
+                <label for="gia_ban" class="form-label">Tên Nhà Cung Cấp</label>
+                <input type="text" name="name" class="form-control" id="tennhacungcap" ">
             </div>
         </div>
         <div class="row">
             <div class="col-md-8">
-                <label for="gia_ban" class="form-label">Email</label>
-                <input type="text" name="email" class="form-control" id="gia_ban" ">
+                <label for="gia_ban" class="form-label">Tên Sản Phẩm</label>
+                <input type="text" name="name" class="form-control" id="tennhacungcap" ">
             </div>
         </div>
-        <div class="row">
-            <div class="col-md-8">
-                <label for="gia_ban" class="form-label">Số Điện Thoại</label>
-                <input type="text" name="phone" class="form-control" id="gia_ban" ">
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-8">
-                <label for="gia_ban" class="form-label">Địa Chỉ</label>
-                <input type="text" name="address" class="form-control" id="gia_ban" ">
-            </div>
-        </div>
+       
         <div class="row pt-3">
             <div class="col-md-12">
-                <button type="submit" class="btn btn-primary">Lưu</button>
+                <button type="submit" class="btn btn-primary">Thêm Mới</button>
             </div>
         </div>
     </div>

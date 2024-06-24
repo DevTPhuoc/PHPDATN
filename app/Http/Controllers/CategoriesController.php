@@ -4,19 +4,20 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class ProductController extends Controller
+class CategoriesController extends Controller
 {
     public function index()
     {
         {
-            return view('product.index');
+            return view('categories.index');
     
         }
     }
     public function  themMoi()
     {
         {
-            return view('product.add');
+            return view('categories.add');
         }
     }
+
 }

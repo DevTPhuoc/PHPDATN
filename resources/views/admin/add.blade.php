@@ -24,71 +24,47 @@
       <!-- Backdrop -->
     
 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-    <h1 class="h2">THÊM MỚI SẢN PHẨM</h1>
+    <h1 class="h2">THÊM MỚI ADMIN</h1>
 </div>
 
 <form class="row g-3" method="POST" action="http://127.0.0.1:8000/products/start-add">
     <div class="col-12">
         <input type="hidden" name="_token" value="fQgAEk3NvJXKr882p4HXOburK2qztSc4elwcUvE3">        <div class="row">
             <div class="col-md-8">
-                <label for="ten" class="form-label">Tên sản phẩm</label>
-                <input type="text" name="ten" class="form-control" id="ten" ">
+                <label for="ten" class="form-label">Tên đăng nhập</label>
+                <input type="text" name="account_name" class="form-control" id="ten" ">
             </div>
         </div>
         <div class="row">
             <div class="col-md-8">
-                <label for="gia_ban" class="form-label">Giá bán sản phẩm</label>
-                <input type="text" name="gia_ban" class="form-control" id="gia_ban" ">
+                <label for="gia_ban" class="form-label">Mật Khẩu</label>
+                <input type="text" name="password" class="form-control" id="gia_ban" ">
+            </div>
+        </div>
+       <div class="row">
+            <div class="col-md-8">
+                <label for="gia_ban" class="form-label">Họ và Tên</label>
+                <input type="text" name="fullname" class="form-control" id="gia_ban" ">
             </div>
         </div>
         <div class="row">
             <div class="col-md-8">
-                <label for="gia_nhap" class="form-label">Giá nhập sản phẩm</label>
-                <input type="text" name="gia_nhap" class="form-control" id="gia_nhap" ">
+                <label for="gia_ban" class="form-label">Email</label>
+                <input type="text" name="email" class="form-control" id="gia_ban" ">
             </div>
         </div>
         <div class="row">
             <div class="col-md-8">
-                <label for="loaiSP" class="form-label">Loại sản phẩm</label>
-                <select name="loai_id" class="form-select" aria-label="Default select example" id="loai_id">
-                    <option selected>Chọn loại sản phẩm</option>
-                                        <option value="4">ooo</option>
-                                        <option value="5">gi vay choi</option>
-                                        <option value="6">no size</option>
-                                        <option value="7">Áo khoác gió</option>
-                                        
-                </select>
+                <label for="gia_ban" class="form-label">Số Điện Thoại</label>
+                <input type="text" name="phone" class="form-control" id="gia_ban" ">
             </div>
         </div>
         <div class="row">
             <div class="col-md-8">
-                <label for="nha_cung_cap_id" class="form-label">Nhà cung cấp</label>
-                <select name="nha_cung_cap_id" class="form-select" aria-label="Default select example" id="nhaCungCap">
-                    <option selected>Chọn nhà cung cấp</option>
-                                        <option value="1">cosytinh</option>
-                                        <option value="2">HipPOhop</option>
-                                        
-                </select>
+                <label for="gia_ban" class="form-label">Địa Chỉ</label>
+                <input type="text" name="address" class="form-control" id="gia_ban" ">
             </div>
         </div>
-        <div class="row">
-            <div class="col-md-8">
-                <label for="khuyen_mai_id" class="form-label">Khuyến mãi</label>
-                <select name="khuyen_mai_id" class="form-select" aria-label="Default select example" id="khuyen_mai_id">
-                    <option selected value="0">Chọn khuyến mãi</option>
-                                        <option value="0">Không khuyễn mãi</option>
-                                        <option value="1">giam 10%</option>
-                                        
-                </select>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-8">
-                <label for="mo_ta" class="form-label">Mô tả sản phẩm</label>
-                <input type="text" name="mo_ta" class="form-control" id="mo_ta" ">
-            </div>
-        </div>
-            
         <div class="row pt-3">
             <div class="col-md-12">
                 <button type="submit" class="btn btn-primary">Lưu</button>
@@ -96,10 +72,9 @@
         </div>
     </div>
 </form>
-                </main>
-
-                       
-      </div>
+</main>
+             
+    </div>
     </div>
   
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js" defer=""></script>
