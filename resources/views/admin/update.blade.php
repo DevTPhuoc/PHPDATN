@@ -19,30 +19,50 @@
 
 @section('content')
 
-        <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
-                    <div style="position: absolute; left: 260px; top: 90px;" onclick="window.location.href = 'http://127.0.0.1:8000/types/detail/5';">
    
-    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8">
-      <path stroke-linecap="round" stroke-linejoin="round" d="m11.25 9-3 3m0 0 3 3m-3-3h7.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
-    </svg>
-    
-</div>
 <h1 style="font-size: 36px; margin-top: 50px;">CẬP NHẬT</h1>
-<form method="POST" action="http://127.0.0.1:8000/types/start-update/5">   
-        <div class="col-20">
-            <input type="hidden" name="_token" value="fQgAEk3NvJXKr882p4HXOburK2qztSc4elwcUvE3">            <div class="row">
-                <div class="col-md-8">
-                    <label for="ten" class="form-label">Tên loại sản phẩm</label>
-                    <input type="text" name="ten" class="form-control" id="ten" " value="gi vay choi">
-                </div>
-            </div>    
-            <div class="row pt-3">
-                <div class="col-md-12">
-                    <button type="submit" class="btn btn-primary">Lưu</button>
-                </div>
+
+<form class="row g-3" method="POST" action="{{ route('Admin.start-update', ['id' => $admin->id]) }}">
+    <div class="col-12">
+    @csrf
+        
+            <div class="col-md-8">
+                <label for="ten" class="form-label">Tên đăng nhập</label>
+                <input value= " {{$admin->account_name}}" type="text" name="account_name" class="form-control" id="account_name" >
             </div>
         </div>
-    </form>
+       
+       <div class="row">
+            <div class="col-md-8">
+                <label for="fullname" class="form-label">Họ và Tên</label>
+                <input value= " {{$admin->fullname}}" type="text" name="fullname" class="form-control" id="fullname" >
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-8">
+                <label for="email" class="form-label">Email</label>
+                <input value= " {{$admin->email}}" type="text" name="email" class="form-control" id="email" >
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-8">
+                <label for="phone" class="form-label">Số Điện Thoại</label>
+                <input value= " {{$admin->phone}}" type="text" name="phone" class="form-control" id="phone" >
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-8">
+                <label for="address" class="form-label">Địa Chỉ</label>
+                <input value= " {{$admin->address}}" type="text" name="address" class="form-control" id="address" >
+            </div>
+        </div>
+        <div class="row pt-3">
+            <div class="col-md-12">
+                <button type="submit" class="btn btn-primary">Lưu</button>
+            </div>
+        </div>
+    </div>
+</form>
                 </main>
 
                        

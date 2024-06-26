@@ -26,43 +26,45 @@
 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
     <h1 class="h2">THÊM MỚI ADMIN</h1>
 </div>
+       
 
-<form class="row g-3" method="POST" action="http://127.0.0.1:8000/products/start-add">
+<form class="row g-3" method="POST" action="{{ route('Admin.start-add') }}">
     <div class="col-12">
-        <input type="hidden" name="_token" value="fQgAEk3NvJXKr882p4HXOburK2qztSc4elwcUvE3">        <div class="row">
+    @csrf
+        
             <div class="col-md-8">
                 <label for="ten" class="form-label">Tên đăng nhập</label>
-                <input type="text" name="account_name" class="form-control" id="ten" ">
+                <input type="text" name="account_name" class="form-control" id="account_name" >
             </div>
         </div>
         <div class="row">
             <div class="col-md-8">
-                <label for="gia_ban" class="form-label">Mật Khẩu</label>
-                <input type="text" name="password" class="form-control" id="gia_ban" ">
+                <label for="password" class="form-label">Mật Khẩu</label>
+                <input type="text" name="password" class="form-control" id="password" >
             </div>
         </div>
        <div class="row">
             <div class="col-md-8">
-                <label for="gia_ban" class="form-label">Họ và Tên</label>
-                <input type="text" name="fullname" class="form-control" id="gia_ban" ">
+                <label for="fullname" class="form-label">Họ và Tên</label>
+                <input type="text" name="fullname" class="form-control" id="fullname" >
             </div>
         </div>
         <div class="row">
             <div class="col-md-8">
-                <label for="gia_ban" class="form-label">Email</label>
-                <input type="text" name="email" class="form-control" id="gia_ban" ">
+                <label for="email" class="form-label">Email</label>
+                <input type="text" name="email" class="form-control" id="email" >
             </div>
         </div>
         <div class="row">
             <div class="col-md-8">
-                <label for="gia_ban" class="form-label">Số Điện Thoại</label>
-                <input type="text" name="phone" class="form-control" id="gia_ban" ">
+                <label for="phone" class="form-label">Số Điện Thoại</label>
+                <input type="text" name="phone" class="form-control" id="phone" >
             </div>
         </div>
         <div class="row">
             <div class="col-md-8">
-                <label for="gia_ban" class="form-label">Địa Chỉ</label>
-                <input type="text" name="address" class="form-control" id="gia_ban" ">
+                <label for="address" class="form-label">Địa Chỉ</label>
+                <input type="text" name="address" class="form-control" id="address" >
             </div>
         </div>
         <div class="row pt-3">

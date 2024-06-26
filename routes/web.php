@@ -34,17 +34,17 @@ Route::prefix('/admin')->group(function () {
     Route::get('/add', [AdminController::class, 'themMoi'])
         ->name('Admin.add');
 
-    // Route::post('/start-add', [QuanLyTaiKhoanController::class, 'xuLyThemMoi'])
-    //     ->name('start-add');
+    Route::post('/start-add', [AdminController::class, 'xuLyThemMoi'])
+        ->name('Admin.start-add');
 
-    Route::get('/update', [AdminController::class, 'capNhat'])// nho la update id
+    Route::get('/update/{id}', [AdminController::class, 'capNhat'])// nho la update id
         ->name('Admin.update');
 
-    // Route::post('/start-update/{id}', [QuanLyTaiKhoanController::class, 'xuLyCapNhat'])
-    //     ->name('start-update');
+    Route::post('/start-update/{id}', [AdminController::class, 'xuLyCapNhat'])
+        ->name('Admin.start-update');
 
-    // Route::post('/delete/{id}', [QuanLyTaiKhoanController::class, 'xoa'])
-    //     ->name('delete-detail');
+    Route::get('/delete/{id}', [AdminController::class, 'xoa'])
+        ->name('delete-detail');
 });
 
 // QUẢN LÝ USER

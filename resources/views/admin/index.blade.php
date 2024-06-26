@@ -51,122 +51,59 @@
             </tr>
           </thead>
           <tbody class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800">
-            <tr class="text-gray-700 dark:text-gray-400"
-              onclick="window.location.href = '{{ route('Admin.update') }}';">
-              <td class="px-4 py-3">
-                <div class="flex items-center text-sm">
-                  <!-- Avatar with inset shadow -->
-                  <div class="relative hidden w-8 h-8 mr-3 rounded-full md:block">
-                    <img class="object-cover w-full h-full rounded-full"
-                      src="https://images.unsplash.com/flagged/photo-1570612861542-284f4c12e75f?ixlib=rb-1.2.1&amp;q=80&amp;fm=jpg&amp;crop=entropy&amp;cs=tinysrgb&amp;w=200&amp;fit=max&amp;ixid=eyJhcHBfaWQiOjE3Nzg0fQ"
-                      alt="" loading="lazy">
-                    <div class="absolute inset-0 rounded-full shadow-inner" aria-hidden="true"></div>
-                  </div>
-                  <div>
-                    <p class="font-semibold">Hans Burger</p>
-                    <p class="text-xs text-gray-600 dark:text-gray-400">
-                      10x Developer
-                    </p>
-                  </div>
-                </div>
-              </td>
-              <td class="px-4 py-3 text-sm">
-                $ 863.45
-              </td>
-              <td class="px-4 py-3 text-xs">
-                dantuncute
-                </span>
-              </td>
-              <td class="px-4 py-3 text-sm">
-                6/10/2020
-              </td>
-              <td class="px-4 py-3 text-sm">
-                chochutdi227@gmail.com
-              </td>
-              <td class="px-4 py-3 text-xs">
-                <span
-                  class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-full dark:bg-green-700 dark:text-green-100">
-                  Hoạt Động
-                </span>
-              </td>
-            </tr>
+          @foreach($dsAdmin as $admin)
 
-            <tr class="text-gray-700 dark:text-gray-400">
-              <td class="px-4 py-3">
-                <div class="flex items-center text-sm">
-                  <!-- Avatar with inset shadow -->
-                  <div class="relative hidden w-8 h-8 mr-3 rounded-full md:block">
-                    <img class="object-cover w-full h-full rounded-full"
-                      src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-0.3.5&amp;q=80&amp;fm=jpg&amp;crop=entropy&amp;cs=tinysrgb&amp;w=200&amp;facepad=3&amp;fit=facearea&amp;s=707b9c33066bf8808c934c8ab394dff6"
-                      alt="" loading="lazy">
-                    <div class="absolute inset-0 rounded-full shadow-inner" aria-hidden="true"></div>
-                  </div>
-                  <div>
-                    <p class="font-semibold">Jolina Angelie</p>
-                    <p class="text-xs text-gray-600 dark:text-gray-400">
-                      Unemployed
-                    </p>
-                  </div>
-                </div>
-              </td>
-              <td class="px-4 py-3 text-sm">
-                Tuan
-              </td>
-              <td class="px-4 py-3 text-sm">
-                acb123
-              </td>
-              <td class="px-4 py-3 text-sm">
-                6/10/2020
-              </td>
-              <td class="px-4 py-3 text-sm">
-                tuankupi@gmail.com
-              </td>
-              <td class="px-4 py-3 text-xs">
-                <span
-                  class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-full dark:bg-green-700 dark:text-green-100">
-                  Hoạt Động
-                </span>
-              </td>
-            </tr>
+          <tr class="text-gray-700 dark:text-gray-400"
+    onclick="window.location.href = '{{ route('Admin.update', ['id' => $admin->id]) }}';">
+    <td class="px-4 py-3">
+        <div class="flex items-center text-sm">
+            <!-- Avatar with inset shadow -->
+            <div class="relative hidden w-8 h-8 mr-3 rounded-full md:block">
+                <img class="object-cover w-full h-full rounded-full"
+                    src="https://images.unsplash.com/flagged/photo-1570612861542-284f4c12e75f?ixlib=rb-1.2.1&amp;q=80&amp;fm=jpg&amp;crop=entropy&amp;cs=tinysrgb&amp;w=200&amp;fit=max&amp;ixid=eyJhcHBfaWQiOjE3Nzg0fQ"
+                    alt="" loading="lazy">
+                <div class="absolute inset-0 rounded-full shadow-inner" aria-hidden="true"></div>
+            </div>
+            <div>
+                <p class="font-semibold"></p>
+                <p class="text-xs text-gray-600 dark:text-gray-400">
+                    {{$admin->id}}
+                </p>
+            </div>
+        </div>
+    </td>
+    <td class="px-4 py-3 text-sm">
+        {{$admin->account_name}}
+    </td>
+    <td class="px-4 py-3 text-xs">
+        {{$admin->password}}
+    </td>
+    <td class="px-4 py-3 text-sm">
+        {{$admin->created_at}}
+    </td>
+    <td class="px-4 py-3 text-sm">
+        {{$admin->email}}
+    </td>
+    <td class="px-4 py-3 text-xs">
+        <span class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-full dark:bg-green-700 dark:text-green-100">
+            {{$admin->phone}}
+        </span>
+    </td>
+    <td class="px-4 py-3 text-sm">
+        <form action="{{ route('delete-detail', ['id' => $admin->id]) }}" >
+         
+            <button type="submit" class="text-red-500 hover:text-red-700">
+                Delete
+            </button>
+        </form>
+    </td>
+</tr>
 
-            <tr class="text-gray-700 dark:text-gray-400">
-              <td class="px-4 py-3">
-                <div class="flex items-center text-sm">
-                  <!-- Avatar with inset shadow -->
-                  <div class="relative hidden w-8 h-8 mr-3 rounded-full md:block">
-                    <img class="object-cover w-full h-full rounded-full"
-                      src="https://images.unsplash.com/photo-1551069613-1904dbdcda11?ixlib=rb-1.2.1&amp;q=80&amp;fm=jpg&amp;crop=entropy&amp;cs=tinysrgb&amp;w=200&amp;fit=max&amp;ixid=eyJhcHBfaWQiOjE3Nzg0fQ"
-                      alt="" loading="lazy">
-                    <div class="absolute inset-0 rounded-full shadow-inner" aria-hidden="true"></div>
-                  </div>
-                  <div>
-                    <p class="font-semibold">Sarah Curry</p>
-                    <p class="text-xs text-gray-600 dark:text-gray-400">
-                      Designer
-                    </p>
-                  </div>
-                </div>
-              </td>
-              <td class="px-4 py-3 text-sm">
-                $ 86.00
-              </td>
-              <td class="px-4 py-3 text-sm">
-                phuocngu
-              </td>
-              <td class="px-4 py-3 text-sm">
-                6/10/2020
-              </td>
+            
+      
+            @endforeach 
 
-              <td class="px-4 py-3 text-sm">
-                phuoc123@gmail.com
-              </td>
-              <td class="px-4 py-3 text-xs">
-                <span
-                  class="px-2 py-1 font-semibold leading-tight text-red-700 bg-red-100 rounded-full dark:text-red-100 dark:bg-red-700">
-                  Không Hoạt Động
-                </span>
-              </td>
-            </tr>
+           
 
             <tr class="text-gray-700 dark:text-gray-400">
               <td class="px-4 py-3">
