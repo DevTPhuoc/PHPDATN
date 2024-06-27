@@ -59,28 +59,28 @@
                         </tr>
                     </thead>
                     <tbody class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800">
+                    @foreach($dsProduct as $sanPham)
                         <tr class="text-gray-700 dark:text-gray-400"
-                            onclick="window.location.href = ">
+                            onclick="window.location.href ='{{ route('product.start-add') }}'">
                             <td class="px-4 py-3">
                                 <div class="flex items-center text-sm">
-
                                     <div>
-                                        <p class="font-semibold">adhksaf124</p>
+                                        <p class="font-semibold"> {{$product->id}}</p>
 
                                     </div>
                                 </div>
                             </td>
                             <td class="px-4 py-3 text-sm">
-                                Trịnh Văn Tuấn
+                            {{$product->name}}
                             </td>
                             <td class="px-4 py-3 text-sm">
-                                Giày Nike Đẹp
+                                {{product->categories->name}}
                             </td>
                             <td class="px-4 py-3 text-sm">
-                                55
+                            {{$product->quantity}}
                             </td>
                             <td class="px-4 py-3 text-sm">
-                                2.500.000 VND
+                            {{$product->price}}
                             </td>
 
                             <td class="px-4 py-3 text-xs">
@@ -91,9 +91,12 @@
                             </td>
 
                         </tr>
+                        @endforeach 
 
                     </tbody>
+
                 </table>
+               
             </div>
         </div>
 </main>

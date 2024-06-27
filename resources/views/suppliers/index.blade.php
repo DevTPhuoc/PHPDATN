@@ -59,7 +59,7 @@
                     </thead>
                     <tbody class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800">
                         <tr class="text-gray-700 dark:text-gray-400"
-                            onclick="window.location.href = '{{ route('Admin.update') }}';">
+                            onclick="window.location.href = '{{ route('suppliers.index') }}';">
                             <td class="px-4 py-3">
                                 <div class="flex items-center text-sm">
                                    

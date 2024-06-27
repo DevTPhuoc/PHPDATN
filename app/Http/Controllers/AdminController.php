@@ -13,7 +13,6 @@ class AdminController extends Controller
             $dsAdmin = Admin::all();
             return view("admin.index",compact('dsAdmin'));
             
-    
         }
     }
     public function  themMoi()
@@ -21,11 +20,7 @@ class AdminController extends Controller
         {
             
             $dsAdmin = Admin::all();
-           
-    
             return view('admin.add',compact('dsAdmin'));
-        
-            
         }
     }
     public function xuLyThemMoi(Request $request)
