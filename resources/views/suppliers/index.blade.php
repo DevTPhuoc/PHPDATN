@@ -89,7 +89,7 @@
           </span>
           </td>
           <td class="px-4 py-3 text-sm">
-          <form action="{{ route('delete-detail', ['id' => $suppliers->id]) }}">
+          <form action="{{ route('delete-suppliers-detail', ['id' => $suppliers->id]) }}">
 
             <button type="submit" class="text-red-500 hover:text-red-700">
             Delete

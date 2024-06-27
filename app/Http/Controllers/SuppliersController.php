@@ -8,12 +8,20 @@ use App\Models\Suppliers;
 class SuppliersController extends Controller
 {
     public function index()
-    { 
+    {
         {
             $dsSuppliers = Suppliers::all();
-            return view('suppliers.index');
+            return view("suppliers.index",compact('dsSuppliers'));
+            
         }
     }
+    // public function index()
+    // { 
+    //     {
+    //         $dsSuppliers = Suppliers::all();
+    //         return view('suppliers.index');
+    //     }
+    // }
     public function themMoi()
     { 
         {
@@ -68,7 +76,7 @@ class SuppliersController extends Controller
         $suppliers = Suppliers::find($id);
         Suppliers::where('id', $suppliers->id)->delete();  //Xóa chi tiết sản phẩm liên quan         
         $suppliers->delete();
-        return redirect()->route('index')->with(['xoa' => "Xóa nhà cung câpt thành công"]);
+        return redirect()->route('suppliers.index')->with(['xoa' => "Xóa nhà cung câpt thành công"]);
     }
 
 }

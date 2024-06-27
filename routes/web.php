@@ -43,7 +43,7 @@ Route::prefix('/admin')->group(function () {
     Route::post('/start-update/{id}', [AdminController::class, 'xuLyCapNhat'])
         ->name('Admin.start-update');
 
-    Route::get('/delete/{id}', [AdminController::class, 'xoa'])
+    Route::GET('/delete/{id}', [AdminController::class, 'xoa'])
         ->name('delete-detail');
 });
 
@@ -62,31 +62,31 @@ Route::prefix('/user')->group(function () {
     Route::post('/start-update/{id}', [UserController::class, 'xuLyCapNhat'])
         ->name('user.start-update');
 
-    Route::post('/delete/{id}', [UserController::class, 'xoa'])
+    Route::GET('/delete/{id}', [UserController::class, 'xoa'])
         ->name('delete-detail');
 });
 
 // QUẢN LÝ NHÀ CUNG CẤP
 
-Route::prefix('/suppliers')->group(function () {
-    Route::get('/index', [SuppliersController::class, 'index'])
-        ->name('suppliers.index');
+// Route::prefix('/suppliers')->group(function () {
+//     Route::get('/index', [SuppliersController::class, 'index'])
+//         ->name('index');
 
-    Route::get('/add', [SuppliersController::class, 'Themmoi'])
-        ->name('suppliers.add');
+//     Route::get('/add', [SuppliersController::class, 'Themmoi'])
+//         ->name('suppliers.add');
 
-    Route::post('/start-add', [SuppliersController::class, 'xuLyThemMoi'])
-        ->name('suppliers.start-add');
+//     Route::post('/start-add', [SuppliersController::class, 'xuLyThemMoi'])
+//         ->name('suppliers.start-add');
 
-    Route::get('/update/{id}', [SuppliersController::class, 'capNhat'])// nho la update id
-        ->name('suppliers.update');
+//     Route::get('/update/{id}', [SuppliersController::class, 'capNhat'])// nho la update id
+//         ->name('suppliers.update');
 
-    Route::post('/start-update/{id}', [SuppliersController::class, 'xuLyCapNhat'])
-        ->name('suppliers.start-update');
+//     Route::post('/start-update/{id}', [SuppliersController::class, 'xuLyCapNhat'])
+//         ->name('suppliers.start-update');
 
-    Route::get('/delete/{id}', [SuppliersController::class, 'xoa'])
-        ->name('delete-detail');
-});
+//     Route::get('/delete/{id}', [SuppliersController::class, 'xoa'])
+//         ->name('suppliers.index');
+// });
 
 // QUẢN LÝ ĐƠN HÀNG
 Route::prefix('/order')->name('order.')->group(function () {
