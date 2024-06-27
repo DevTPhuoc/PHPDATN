@@ -43,13 +43,9 @@ Route::prefix('/admin')->group(function () {
     Route::post('/start-update/{id}', [AdminController::class, 'xuLyCapNhat'])
         ->name('Admin.start-update');
 
-<<<<<<< HEAD
-    Route::GET('/delete/{id}', [AdminController::class, 'xoa'])
-        ->name('delete-detail');
-=======
     Route::get('/delete/{id}', [AdminController::class, 'xoa'])
         ->name('delete-detaila');
->>>>>>> 64466e7a94b520ad563a37ed45c83ae26b12dd3a
+
 });
 
 // QUẢN LÝ USER
@@ -67,13 +63,9 @@ Route::prefix('/user')->group(function () {
     Route::post('/start-update/{id}', [UserController::class, 'xuLyCapNhat'])
         ->name('user.start-update');
 
-<<<<<<< HEAD
-    Route::GET('/delete/{id}', [UserController::class, 'xoa'])
-        ->name('delete-detail');
-=======
     Route::post('/delete/{id}', [UserController::class, 'xoa'])
         ->name('delete-detailu');
->>>>>>> 64466e7a94b520ad563a37ed45c83ae26b12dd3a
+
 });
 
 // QUẢN LÝ NHÀ CUNG CẤP
