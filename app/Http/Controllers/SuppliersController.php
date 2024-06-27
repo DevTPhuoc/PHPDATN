@@ -11,8 +11,12 @@ class SuppliersController extends Controller
     {
         {
             $dsSuppliers = Suppliers::all();
+<<<<<<< HEAD
             return view("suppliers.index",compact('dsSuppliers'));
             
+=======
+            return view('suppliers.index',compact('dsSuppliers'));
+>>>>>>> 64466e7a94b520ad563a37ed45c83ae26b12dd3a
         }
     }
     // public function index()
@@ -26,7 +30,7 @@ class SuppliersController extends Controller
     { 
         {
             $dsSuppliers = Suppliers::all();
-            return view('suppliers.add');
+            return view('suppliers.add',compact('dsSuppliers'));
         }
     }
     public function xuLyThemMoi(Request $request)
@@ -47,11 +51,11 @@ class SuppliersController extends Controller
     { {
             $suppliers = Suppliers::find($id);
 
-            if (empty($admin)) {
-                return redirect()->back()->withErrors(['loiCapNhap' => "Admin khoong ton tai"]);
+            if (empty($suppliers)) {
+                return redirect()->back()->withErrors(['loiCapNhap' => "Nhà Cung Cấp Không Tồn Tại"]);
             }
 
-            return view('admin.update', compact('admin'));
+            return view('suppliers.update', compact('suppliers'));
         }
     }
     public function xuLyCapNhat(Request $request, $id)

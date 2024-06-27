@@ -25,14 +25,14 @@ class ProductController extends Controller
     {
         {
             $dsProduct = Product::all();
-            return view('product.index');
+            return view('product.index',compact('dsProduct'));
         }
     }
     public function themMoi()
     {
        {
             $dsProduct = Product::all();
-            return view('product.add');
+            return view('product.add',compact('dsProduct'));
        }
     }
     public function xuLyThemMoi(Request $request){

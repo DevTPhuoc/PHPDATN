@@ -24,50 +24,47 @@
       <!-- Backdrop -->
     
 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-    <h1 class="h2">THÊM MỚI NHÀ CUNG CẤP </h1>
+    <h1 class="h2">THÊM MỚI NHÀ CUNG CẤP</h1>
 </div>
+       
 
-<form class="row g-3" method="POST" action="{{ route('suppliers.start-add') }}">
+<form class="row g-3" method="POST" action="{{ route('suppliers.starts-adds') }}">
     <div class="col-12">
-        <input type="hidden" name="_token" value="fQgAEk3NvJXKr882p4HXOburK2qztSc4elwcUvE3">        <div class="row">
+    @csrf
+        
             <div class="col-md-8">
-                <label for="ten" class="form-label">Mã Nhà Cung Cấp</label>
-                <input type="text" name="id" class="form-control" id="manhacungcap" ">
+                <label for="ten" class="form-label">Tên Nhà Cung Cấp</label>
+                <input type="text" name="name" class="form-control" id="name" >
             </div>
         </div>
         <div class="row">
             <div class="col-md-8">
-                <label for="gia_ban" class="form-label">Tên Nhà Cung Cấp</label>
-                <input type="text" name="name" class="form-control" id="tennhacungcap" ">
+                <label for="password" class="form-label">Email</label>
+                <input type="text" name="email" class="form-control" id="email" >
             </div>
         </div>
        <div class="row">
             <div class="col-md-8">
-                <label for="gia_ban" class="form-label">Email</label>
-                <input type="text" name="email" class="form-control" id=email" ">
+                <label for="fullname" class="form-label">Phone</label>
+                <input type="text" name="phone" class="form-control" id="phone" >
             </div>
         </div>
         <div class="row">
             <div class="col-md-8">
-                <label for="gia_ban" class="form-label">Số Điên Thoại</label>
-                <input type="text" name="phone" class="form-control" id="sodienthoai" ">
+                <label for="email" class="form-label">Địa Chỉ</label>
+                <input type="text" name="address" class="form-control" id="address" >
             </div>
         </div>
         <div class="row">
             <div class="col-md-8">
-                <label for="gia_ban" class="form-label">Địa Chỉ</label>
-                <input type="text" name="trangthai" class="form-control" id="trangthai" ">
+                <label for="phone" class="form-label">Trạng Thái</label>
+                <input type="text" name="status" class="form-control" id="status" >
             </div>
         </div>
-        <div class="row">
-            <div class="col-md-8">
-                <label for="gia_ban" class="form-label">Trạng Thái</label>
-                <input type="text" name="address" class="form-control" id="diachi" ">
-            </div>
-        </div>
+        
         <div class="row pt-3">
             <div class="col-md-12">
-                <button type="submit" class="btn btn-primary">Thêm Mới</button>
+                <button type="submit" class="btn btn-primary">Lưu</button>
             </div>
         </div>
     </div>

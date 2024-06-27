@@ -43,8 +43,13 @@ Route::prefix('/admin')->group(function () {
     Route::post('/start-update/{id}', [AdminController::class, 'xuLyCapNhat'])
         ->name('Admin.start-update');
 
+<<<<<<< HEAD
     Route::GET('/delete/{id}', [AdminController::class, 'xoa'])
         ->name('delete-detail');
+=======
+    Route::get('/delete/{id}', [AdminController::class, 'xoa'])
+        ->name('delete-detaila');
+>>>>>>> 64466e7a94b520ad563a37ed45c83ae26b12dd3a
 });
 
 // QUẢN LÝ USER
@@ -62,8 +67,13 @@ Route::prefix('/user')->group(function () {
     Route::post('/start-update/{id}', [UserController::class, 'xuLyCapNhat'])
         ->name('user.start-update');
 
+<<<<<<< HEAD
     Route::GET('/delete/{id}', [UserController::class, 'xoa'])
         ->name('delete-detail');
+=======
+    Route::post('/delete/{id}', [UserController::class, 'xoa'])
+        ->name('delete-detailu');
+>>>>>>> 64466e7a94b520ad563a37ed45c83ae26b12dd3a
 });
 
 // QUẢN LÝ NHÀ CUNG CẤP
@@ -75,8 +85,13 @@ Route::prefix('/user')->group(function () {
 //     Route::get('/add', [SuppliersController::class, 'Themmoi'])
 //         ->name('suppliers.add');
 
+<<<<<<< HEAD
 //     Route::post('/start-add', [SuppliersController::class, 'xuLyThemMoi'])
 //         ->name('suppliers.start-add');
+=======
+    Route::post('/start-add', [SuppliersController::class, 'xuLyThemMoi'])
+        ->name('suppliers.starts-adds');
+>>>>>>> 64466e7a94b520ad563a37ed45c83ae26b12dd3a
 
 //     Route::get('/update/{id}', [SuppliersController::class, 'capNhat'])// nho la update id
 //         ->name('suppliers.update');
@@ -84,9 +99,15 @@ Route::prefix('/user')->group(function () {
 //     Route::post('/start-update/{id}', [SuppliersController::class, 'xuLyCapNhat'])
 //         ->name('suppliers.start-update');
 
+<<<<<<< HEAD
 //     Route::get('/delete/{id}', [SuppliersController::class, 'xoa'])
 //         ->name('suppliers.index');
 // });
+=======
+    Route::get('/delete/{id}', [SuppliersController::class, 'xoa'])
+        ->name('delete-details');
+});
+>>>>>>> 64466e7a94b520ad563a37ed45c83ae26b12dd3a
 
 // QUẢN LÝ ĐƠN HÀNG
 Route::prefix('/order')->name('order.')->group(function () {
