@@ -65,41 +65,30 @@ Route::prefix('/user')->group(function () {
 
     Route::post('/delete/{id}', [UserController::class, 'xoa'])
         ->name('delete-detailu');
-
+       
 });
 
 // QUẢN LÝ NHÀ CUNG CẤP
 
-// Route::prefix('/suppliers')->group(function () {
-//     Route::get('/index', [SuppliersController::class, 'index'])
-//         ->name('index');
+Route::prefix('/suppliers')->group(function () {
+  Route::get('/index', [SuppliersController::class, 'index'])
+      ->name('index');
 
-//     Route::get('/add', [SuppliersController::class, 'Themmoi'])
-//         ->name('suppliers.add');
+   Route::get('/add', [SuppliersController::class, 'Themmoi'])
+         ->name('suppliers.add');
 
-<<<<<<< HEAD
-//     Route::post('/start-add', [SuppliersController::class, 'xuLyThemMoi'])
-//         ->name('suppliers.start-add');
-=======
     Route::post('/start-add', [SuppliersController::class, 'xuLyThemMoi'])
         ->name('suppliers.starts-adds');
->>>>>>> 64466e7a94b520ad563a37ed45c83ae26b12dd3a
 
-//     Route::get('/update/{id}', [SuppliersController::class, 'capNhat'])// nho la update id
+//    Route::get('/update/{id}', [SuppliersController::class, 'capNhat'])// nho la update id
 //         ->name('suppliers.update');
 
 //     Route::post('/start-update/{id}', [SuppliersController::class, 'xuLyCapNhat'])
 //         ->name('suppliers.start-update');
 
-<<<<<<< HEAD
-//     Route::get('/delete/{id}', [SuppliersController::class, 'xoa'])
-//         ->name('suppliers.index');
-// });
-=======
     Route::get('/delete/{id}', [SuppliersController::class, 'xoa'])
         ->name('delete-details');
 });
->>>>>>> 64466e7a94b520ad563a37ed45c83ae26b12dd3a
 
 // QUẢN LÝ ĐƠN HÀNG
 Route::prefix('/order')->name('order.')->group(function () {
