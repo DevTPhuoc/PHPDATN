@@ -33,7 +33,7 @@ class UserController extends Controller
             $user->email = $request->email;
             $user->phone = $request->phone;
             $user->address = $request->address;
-              
+            $user->address = $request->address;
             $user->save();
            
             return redirect()->route('index')->with(['themMoi'=>"Thêm mới thành công"]);

@@ -18,7 +18,7 @@ class AdminController extends Controller
     public function  themMoi()
     {
         {
-            
+        
             $dsAdmin = Admin::all();
             return view('admin.add',compact('dsAdmin'));
         }

@@ -73,21 +73,21 @@
           </div>
           </td>
           <td class="px-4 py-3 text-sm">
-          {{$admin->account_name}}
+               {{$admin->account_name}}
           </td>
           <td class="px-4 py-3 text-xs">
-          {{$admin->password}}
+                {{$admin->password}}
           </td>
           <td class="px-4 py-3 text-sm">
-          {{$admin->created_at}}
+                {{$admin->created_at}}
           </td>
           <td class="px-4 py-3 text-sm">
-          {{$admin->email}}
+                {{$admin->email}}
           </td>
           <td class="px-4 py-3 text-xs">
           <span
             class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-full dark:bg-green-700 dark:text-green-100">
-            {{$admin->phone}}
+               {{$admin->phone}}
           </span>
           </td>
           <td class="px-4 py-3 text-sm">
@@ -99,24 +99,11 @@
           </form>
           </td>
         </tr>
-
-
-
       @endforeach 
-
-
-
             <tr class="text-gray-700 dark:text-gray-400">
               <td class="px-4 py-3">
-                <div class="flex items-center text-sm">
-
-
-
-                </div>
+                
       </div>
-
-
-
     </div>
 </main>
 

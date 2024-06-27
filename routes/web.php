@@ -71,8 +71,21 @@ Route::prefix('/user')->group(function () {
 Route::prefix('/suppliers')->group(function () {
     Route::get('/index', [SuppliersController::class, 'index'])
         ->name('suppliers.index');
+
     Route::get('/add', [SuppliersController::class, 'Themmoi'])
         ->name('suppliers.add');
+
+    Route::post('/start-add', [SuppliersController::class, 'xuLyThemMoi'])
+        ->name('suppliers.start-add');
+
+    Route::get('/update/{id}', [SuppliersController::class, 'capNhat'])// nho la update id
+        ->name('suppliers.update');
+
+    Route::post('/start-update/{id}', [SuppliersController::class, 'xuLyCapNhat'])
+        ->name('suppliers.start-update');
+
+    Route::get('/delete/{id}', [SuppliersController::class, 'xoa'])
+        ->name('delete-detail');
 });
 
 // QUẢN LÝ ĐƠN HÀNG

@@ -27,7 +27,7 @@
     <h1 class="h2">THÊM MỚI NHÀ CUNG CẤP </h1>
 </div>
 
-<form class="row g-3" method="POST" action="http://127.0.0.1:8000/products/start-add">
+<form class="row g-3" method="POST" action="{{ route('suppliers.start-add') }}">
     <div class="col-12">
         <input type="hidden" name="_token" value="fQgAEk3NvJXKr882p4HXOburK2qztSc4elwcUvE3">        <div class="row">
             <div class="col-md-8">
@@ -55,13 +55,13 @@
         </div>
         <div class="row">
             <div class="col-md-8">
-                <label for="gia_ban" class="form-label">Trạng Thái</label>
+                <label for="gia_ban" class="form-label">Địa Chỉ</label>
                 <input type="text" name="trangthai" class="form-control" id="trangthai" ">
             </div>
         </div>
         <div class="row">
             <div class="col-md-8">
-                <label for="gia_ban" class="form-label">Địa Chỉ</label>
+                <label for="gia_ban" class="form-label">Trạng Thái</label>
                 <input type="text" name="address" class="form-control" id="diachi" ">
             </div>
         </div>

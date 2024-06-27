@@ -59,7 +59,7 @@
                         </tr>
                     </thead>
                     <tbody class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800">
-                    @foreach($dsProduct as $sanPham)
+                   
                         <tr class="text-gray-700 dark:text-gray-400"
                             onclick="window.location.href ='{{ route('product.start-add') }}'">
                             <td class="px-4 py-3">
@@ -91,7 +91,7 @@
                             </td>
 
                         </tr>
-                        @endforeach 
+                    
 
                     </tbody>
 
