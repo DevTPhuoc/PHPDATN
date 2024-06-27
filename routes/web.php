@@ -44,7 +44,7 @@ Route::prefix('/admin')->group(function () {
         ->name('Admin.start-update');
 
     Route::get('/delete/{id}', [AdminController::class, 'xoa'])
-        ->name('delete-detail');
+        ->name('delete-detaila');
 });
 
 // QUẢN LÝ USER
@@ -63,7 +63,7 @@ Route::prefix('/user')->group(function () {
         ->name('user.start-update');
 
     Route::post('/delete/{id}', [UserController::class, 'xoa'])
-        ->name('delete-detail');
+        ->name('delete-detailu');
 });
 
 // QUẢN LÝ NHÀ CUNG CẤP
@@ -76,7 +76,7 @@ Route::prefix('/suppliers')->group(function () {
         ->name('suppliers.add');
 
     Route::post('/start-add', [SuppliersController::class, 'xuLyThemMoi'])
-        ->name('suppliers.start-add');
+        ->name('suppliers.starts-adds');
 
     Route::get('/update/{id}', [SuppliersController::class, 'capNhat'])// nho la update id
         ->name('suppliers.update');
@@ -85,7 +85,7 @@ Route::prefix('/suppliers')->group(function () {
         ->name('suppliers.start-update');
 
     Route::get('/delete/{id}', [SuppliersController::class, 'xoa'])
-        ->name('delete-detail');
+        ->name('delete-details');
 });
 
 // QUẢN LÝ ĐƠN HÀNG

@@ -28,7 +28,7 @@
         
             <div class="col-md-8">
                 <label for="ten" class="form-label">Mã Nhà Cung Cấp</label>
-                <input value= " {{$suppliers->ID}}" type="text" name="account_name" class="form-control" id="id" >
+                <input value= " {{$suppliers->id}}" type="text" name="account_name" class="form-control" id="id" >
             </div>
         </div>
        

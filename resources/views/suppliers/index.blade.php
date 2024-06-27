@@ -43,10 +43,10 @@
             <tr
               class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800">
               <th class="px-4 py-3">ID</th>
-              <th class="px-4 py-3">Tên Đăng Nhập</th>
-              <th class="px-4 py-3">Mật Khẩu</th>
-              <th class="px-4 py-3">Ngày Tạo</th>
+              <th class="px-4 py-3">Tên Nhà Cung Cấp</th>
               <th class="px-4 py-3">Email</th>
+              <th class="px-4 py-3">Số Điện Thoại</th>
+              <th class="px-4 py-3">Địa Chỉ</th>
               <th class="px-4 py-3">Trạng Thái</th>
             </tr>
           </thead>
@@ -55,6 +55,7 @@
 
         <tr class="text-gray-700 dark:text-gray-400"
           onclick="window.location.href = '{{ route('suppliers.update', ['id' => $suppliers->id]) }}';">
+          @csrf
           <td class="px-4 py-3">
           <div class="flex items-center text-sm">
             <!-- Avatar with inset shadow -->
@@ -81,7 +82,9 @@
           <td class="px-4 py-3 text-sm">
                 {{$suppliers->phone}}
           </td>
-          
+          <td class="px-4 py-3 text-sm">
+                {{$suppliers->address}}
+          </td>
           <td class="px-4 py-3 text-xs">
           <span
             class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-full dark:bg-green-700 dark:text-green-100">
@@ -89,7 +92,7 @@
           </span>
           </td>
           <td class="px-4 py-3 text-sm">
-          <form action="{{ route('delete-detail', ['id' => $suppliers->id]) }}">
+          <form action="{{ route('delete-details', ['id' => $suppliers->id]) }}">
 
             <button type="submit" class="text-red-500 hover:text-red-700">
             Delete

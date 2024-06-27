@@ -11,14 +11,14 @@ class SuppliersController extends Controller
     { 
         {
             $dsSuppliers = Suppliers::all();
-            return view('suppliers.index');
+            return view('suppliers.index',compact('dsSuppliers'));
         }
     }
     public function themMoi()
     { 
         {
             $dsSuppliers = Suppliers::all();
-            return view('suppliers.add');
+            return view('suppliers.add',compact('dsSuppliers'));
         }
     }
     public function xuLyThemMoi(Request $request)
@@ -39,11 +39,11 @@ class SuppliersController extends Controller
     { {
             $suppliers = Suppliers::find($id);
 
-            if (empty($admin)) {
-                return redirect()->back()->withErrors(['loiCapNhap' => "Admin khoong ton tai"]);
+            if (empty($suppliers)) {
+                return redirect()->back()->withErrors(['loiCapNhap' => "Nhà Cung Cấp Không Tồn Tại"]);
             }
 
-            return view('admin.update', compact('admin'));
+            return view('suppliers.update', compact('suppliers'));
         }
     }
     public function xuLyCapNhat(Request $request, $id)
