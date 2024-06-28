@@ -28,7 +28,7 @@ Route::get('/', function () {
 // QUẢN LÝ ADMIN
 Route::prefix('/admin')->group(function () {
     Route::get('/index', [AdminController::class, 'index'])
-        ->name('index');
+        ->name('Admin.index');
 
 
     Route::get('/add', [AdminController::class, 'themMoi'])
@@ -52,10 +52,9 @@ Route::prefix('/admin')->group(function () {
 Route::prefix('/user')->group(function () {
     Route::get('/index', [UserController::class, 'index'])
         ->name('user.index');
-    Route::get('/add', [UserController::class, 'themMoi'])
-        ->name('user.add');
-    Route::post('/start-add', [UserController::class, 'xuLyThemMoi'])
-        ->name('user.start-add');
+    Route::GET('/add', [UserController::class, 'themMoi'])->name('user.add');
+
+    Route::post('/start-add', [UserController::class, 'xuLyThemMoi'])->name('user.start-add');
 
     Route::get('/update/{id}', [UserController::class, 'capNhat'])
         ->name('user.update');
@@ -63,7 +62,7 @@ Route::prefix('/user')->group(function () {
     Route::post('/start-update/{id}', [UserController::class, 'xuLyCapNhat'])
         ->name('user.start-update');
 
-    Route::post('/delete/{id}', [UserController::class, 'xoa'])
+    Route::GET('/delete/{id}', [UserController::class, 'xoa'])
         ->name('delete-detailu');
        
 });
@@ -72,7 +71,7 @@ Route::prefix('/user')->group(function () {
 
 Route::prefix('/suppliers')->group(function () {
   Route::get('/index', [SuppliersController::class, 'index'])
-      ->name('index');
+      ->name('suppliers.index');
 
    Route::get('/add', [SuppliersController::class, 'Themmoi'])
          ->name('suppliers.add');
@@ -80,11 +79,11 @@ Route::prefix('/suppliers')->group(function () {
     Route::post('/start-add', [SuppliersController::class, 'xuLyThemMoi'])
         ->name('suppliers.starts-adds');
 
-//    Route::get('/update/{id}', [SuppliersController::class, 'capNhat'])// nho la update id
-//         ->name('suppliers.update');
+   Route::get('/update/{id}', [SuppliersController::class, 'capNhat'])// nho la update id
+        ->name('suppliers.update');
 
-//     Route::post('/start-update/{id}', [SuppliersController::class, 'xuLyCapNhat'])
-//         ->name('suppliers.start-update');
+    Route::post('/start-update/{id}', [SuppliersController::class, 'xuLyCapNhat'])
+        ->name('suppliers.start-update');
 
     Route::get('/delete/{id}', [SuppliersController::class, 'xoa'])
         ->name('delete-details');

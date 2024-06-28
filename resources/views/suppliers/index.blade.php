@@ -54,7 +54,7 @@
             @foreach($dsSuppliers as $suppliers)
 
         <tr class="text-gray-700 dark:text-gray-400"
-          onclick="window.location.href = '{{ route('suppliers.update', ['id' => $suppliers->id]) }}';">
+          onclick="window.location.href =  '{{ route('suppliers.update', ['id' => $suppliers->id]) }}';">
           @csrf
           <td class="px-4 py-3">
           <div class="flex items-center text-sm">
@@ -92,11 +92,9 @@
           </span>
           </td>
           <td class="px-4 py-3 text-sm">
-<<<<<<< HEAD
-          <form action="{{ route('delete-suppliers-detail', ['id' => $suppliers->id]) }}">
-=======
+
           <form action="{{ route('delete-details', ['id' => $suppliers->id]) }}">
->>>>>>> 64466e7a94b520ad563a37ed45c83ae26b12dd3a
+
 
             <button type="submit" class="text-red-500 hover:text-red-700">
             Delete

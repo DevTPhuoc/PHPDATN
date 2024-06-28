@@ -22,7 +22,9 @@
    
 <h1 style="font-size: 36px; margin-top: 50px;">CẬP NHẬT</h1>
 
-<form class="row g-3" method="POST" action="{{ route('user.start-update', ['id' => $user->id]) }}">
+<form class="row g-3" method="POST" action="{{ route('user.start-update', ['id' => $user->id]) }}
+
+">
     <div class="col-12">
     @csrf
         

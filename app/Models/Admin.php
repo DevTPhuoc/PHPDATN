@@ -8,5 +8,5 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 class Admin extends Model
 {
     use HasFactory;
-    protected $table = "users";
+    protected $table = "Admins";
 }

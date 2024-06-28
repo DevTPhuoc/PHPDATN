@@ -11,7 +11,7 @@ class AdminController extends Controller
     {
         {
             $dsAdmin = Admin::all();
-            return view("admin.index",compact('dsAdmin'));
+            return view("Admin.index",compact('dsAdmin'));
             
         }
     }
@@ -36,7 +36,7 @@ class AdminController extends Controller
               
             $admin->save();
            
-            return redirect()->route('index')->with(['themMoi'=>"Thêm mới thành công"]);
+            return redirect()->route('Admin.index')->with(['themMoi'=>"Thêm mới thành công"]);
         }
     }
     public function  capNhat($id)
@@ -66,12 +66,22 @@ class AdminController extends Controller
         return redirect()-> action([AdminController::class, 'index'],['id'=>$admin->id])->with(['capNhap'=>"Cập nhật Admin thanh cong"]);
     }
 
-    public function xoa(Request $request,$id){
-
-        $admin = Admin::find($id); 
-        Admin::where('id', $admin->id)->delete();  //Xóa chi tiết sản phẩm liên quan         
-        $admin -> delete();
-        return redirect()->route('index')->with(['xoa'=>"xoa Admin thanh cong"]);
-    } 
+    public function xoa(Request $request, $id)
+    {
+        $admin = Admin::find($id);
+    
+        if ($admin !== null) {
+            // Xóa chi tiết sản phẩm liên quan
+            Admin::where('id', $admin->id)->delete();
+    
+            // Xóa admin
+            $admin->delete();
+    
+            return redirect()->route('Admin.index')->with(['xoa' => "Xóa Admin thành công"]);
+        } else {
+            // Xử lý khi không tìm thấy admin
+            return redirect()->route('Admin.index')->with(['error' => "Admin không tồn tại"]);
+        }
+    }
 
 }

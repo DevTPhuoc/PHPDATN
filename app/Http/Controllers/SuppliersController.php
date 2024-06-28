@@ -11,12 +11,8 @@ class SuppliersController extends Controller
     {
         {
             $dsSuppliers = Suppliers::all();
-<<<<<<< HEAD
-            return view("suppliers.index",compact('dsSuppliers'));
-            
-=======
             return view('suppliers.index',compact('dsSuppliers'));
->>>>>>> 64466e7a94b520ad563a37ed45c83ae26b12dd3a
+
         }
     }
     // public function index()
@@ -44,7 +40,7 @@ class SuppliersController extends Controller
             $suppliers->address = $request->address;
             $suppliers->status = $request->status;
             $suppliers->save();
-            return redirect()->route('index')->with(['themMoi' => "Thêm mới thành công"]);
+            return redirect()->route('suppliers.index')->with(['themMoi' => "Thêm mới thành công"]);
         }
     }
     public function capNhat($id)
