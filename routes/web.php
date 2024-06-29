@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProductController;
-
+use App\Http\Controllers\LoginController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,15 +21,18 @@ use App\Http\Controllers\ProductController;
 */
 
 Route::get('/', function () {
-    // return view('login');
     return view('master');
 });
-
+Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
+Route::post('login', [LoginController::class, 'login']);
+Route::get('logout', [LoginController::class, 'logout'])->name('logout');
 // QUẢN LÝ ADMIN
 Route::prefix('/admin')->group(function () {
     Route::get('/index', [AdminController::class, 'index'])
         ->name('Admin.index');
 
+    // Route::post('/email', [AdminController::class, 'submitForm'])
+    //     ->name('Admin.emmail');
 
     Route::get('/add', [AdminController::class, 'themMoi'])
         ->name('Admin.add');
@@ -64,22 +67,22 @@ Route::prefix('/user')->group(function () {
 
     Route::GET('/delete/{id}', [UserController::class, 'xoa'])
         ->name('delete-detailu');
-       
+
 });
 
 // QUẢN LÝ NHÀ CUNG CẤP
 
 Route::prefix('/suppliers')->group(function () {
-  Route::get('/index', [SuppliersController::class, 'index'])
-      ->name('suppliers.index');
+    Route::get('/index', [SuppliersController::class, 'index'])
+        ->name('suppliers.index');
 
-   Route::get('/add', [SuppliersController::class, 'Themmoi'])
-         ->name('suppliers.add');
+    Route::get('/add', [SuppliersController::class, 'Themmoi'])
+        ->name('suppliers.add');
 
     Route::post('/start-add', [SuppliersController::class, 'xuLyThemMoi'])
         ->name('suppliers.starts-adds');
 
-   Route::get('/update/{id}', [SuppliersController::class, 'capNhat'])// nho la update id
+    Route::get('/update/{id}', [SuppliersController::class, 'capNhat'])// nho la update id
         ->name('suppliers.update');
 
     Route::post('/start-update/{id}', [SuppliersController::class, 'xuLyCapNhat'])
@@ -91,10 +94,48 @@ Route::prefix('/suppliers')->group(function () {
 
 // QUẢN LÝ ĐƠN HÀNG
 Route::prefix('/order')->name('order.')->group(function () {
-    Route::get('/index', [OrderController::class, 'index'])
+    Route::get('/index', [OrderController::class, 'danhSach'])
         ->name('index');
-    Route::get('/add', [OrderController::class, 'themMoi'])
-        ->name('add');
+
+    Route::get('/index-month', [OrderController::class, 'danhSachTrongThang'])
+        ->name('index-month');
+
+    Route::get('/detail/{id}', [OrderController::class, 'chiTiet'])
+        ->name('detail');
+
+    Route::get('/update/{id}', [OrderController::class, 'capNhat'])
+        ->name('update');
+
+    Route::post('/update/{id}', [OrderController::class, 'xuLyCapNhat'])
+        ->name('start-update');
+
+    Route::get('/update/{id}', [OrderController::class, 'capNhatChiTiet'])
+        ->name('update');
+
+    Route::post('/start-update-detail/{id}', [OrderController::class, 'xuLyCapNhatChiTiet'])
+        ->name('start-update-detail');
+
+    Route::get('/delete-detail/{id}', [OrderController::class, 'xoaChiTiet'])
+        ->name('delete-detail');
+
+    Route::get('/confirm/{id}', [OrderController::class, 'xacNhan'])
+        ->name('confirm');
+
+    Route::get('/confirm-delivery/{id}', [OrderController::class, 'giaoHang'])
+        ->name('confirm-delivery');
+
+    Route::get('/confirm-success/{id}', [OrderController::class, 'hoanThanh'])
+        ->name('confirm-success');
+
+    Route::get('/cancel/{id}', [OrderController::class, 'huy'])
+        ->name('cancel');
+
+    Route::get('/pay/{id}', [OrderController::class, 'thanhToan'])
+        ->name('pay');
+
+    Route::get('/index/seach', [OrderController::class, 'timKiem'])
+        ->name('search');
+
 });
 
 // QUẢN LÝ SẢN PHẨM

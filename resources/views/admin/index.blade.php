@@ -47,6 +47,7 @@
               <th class="px-4 py-3">Mật Khẩu</th>
               <th class="px-4 py-3">Ngày Tạo</th>
               <th class="px-4 py-3">Email</th>
+              <th class="px-4 py-3">Số Điện Thoại</th>
               <th class="px-4 py-3">Trạng Thái</th>
             </tr>
           </thead>
@@ -84,11 +85,13 @@
           <td class="px-4 py-3 text-sm">
                 {{$admin->email}}
           </td>
+          <td class="px-4 py-3 text-sm">
+                {{$admin->phone}}
+          </td>
           <td class="px-4 py-3 text-xs">
-          <span
-            class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-full dark:bg-green-700 dark:text-green-100">
-               {{$admin->phone}}
-          </span>
+          <span class="text-md  px-2 py-1 font-semibold{{ $admin->role == 1 ? 'leading-tight text-green-700 bg-green-100 rounded-full dark:bg-green-700 dark:text-green-100' : 'leading-tight text-red-700 bg-red-100 rounded-full dark:bg-red-700 dark:text-red-100' }}">
+                                {{ $admin->role == 1 ? 'Hoạt Động' : 'Không Hoạt Động' }}
+                            </span>
           </td>
           <td class="px-4 py-3 text-sm">
           <form action="{{ route('delete-detaila', ['id' => $admin->id]) }}">

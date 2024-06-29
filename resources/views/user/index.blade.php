@@ -44,9 +44,11 @@
               class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800">
               <th class="px-4 py-3">ID</th>
               <th class="px-4 py-3">Tên Đăng Nhập</th>
-              <th class="px-4 py-3">Mật Khẩu</th>
+              <!-- <th class="px-4 py-3">Mật Khẩu</th> -->
               <th class="px-4 py-3">Ngày Tạo</th>
               <th class="px-4 py-3">Email</th>
+              <th class="px-4 py-3">Số Điện Thoại</th>
+              <th class="px-4 py-3">Địa Chỉ</th>
               <th class="px-4 py-3">Trạng Thái</th>
             </tr>
           </thead>
@@ -75,19 +77,25 @@
           <td class="px-4 py-3 text-sm">
           {{$user->account_name}}
           </td>
-          <td class="px-4 py-3 text-xs">
+          <!-- <td class="px-4 py-3 text-xs">
           {{$user->password}}
-          </td>
+          </td> -->
           <td class="px-4 py-3 text-sm">
           {{$user->created_at}}
           </td>
           <td class="px-4 py-3 text-sm">
           {{$user->email}}
           </td>
+          <td class="px-4 py-3 text-sm">
+          {{$user->phone}}
+          </td>
+          <td class="px-4 py-3 text-sm">
+          {{$user->address}}
+          </td>
           <td class="px-4 py-3 text-xs">
           <span
             class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-full dark:bg-green-700 dark:text-green-100">
-            {{$user->phone}}
+            {{$user->role}}
           </span>
           </td>
           <td class="px-4 py-3 text-sm">

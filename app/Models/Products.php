@@ -26,4 +26,9 @@ class Products extends Model
     {
         return $this->hasMany(ProductDetai::class, 'san_pham_id');
     }
+    // public function promotion()
+    // {
+    //     return $this->belongsTo(Promotion::class, 'promotion_product_id');
+    // }
+
 }

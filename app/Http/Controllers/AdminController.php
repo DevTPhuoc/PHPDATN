@@ -23,6 +23,18 @@ class AdminController extends Controller
             return view('admin.add',compact('dsAdmin'));
         }
     }
+    public function submitForm(Request $request)
+    {
+        $request->validate([
+            'email' => 'required|email',
+        ], [
+            'email.required' => 'Email là bắt buộc.',
+            'email.email' => 'Email phải chứa ký tự @.',
+        ]);
+
+        // Xử lý logic khi email hợp lệ
+        return "Email hợp lệ!";
+    }
     public function xuLyThemMoi(Request $request)
     {
         {
