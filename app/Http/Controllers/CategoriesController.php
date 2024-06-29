@@ -10,7 +10,7 @@ class CategoriesController extends Controller
     public function index()
     {
         {
-            $dsCategories =categories::all();
+            $dsCategories =Categories::all();
             return view('categories.index',compact('dsCategories')); 
         }
     }

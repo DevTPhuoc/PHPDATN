@@ -27,47 +27,74 @@
     <h1 class="h2">THÊM SẢN PHẨM MỚI </h1>
 </div>
 
-<form class="row g-3" method="POST" action="http://127.0.0.1:8000/products/start-add">
+<form class="row g-3" method="POST" action="{{ route('product.start-add') }}">
     <div class="col-12">
-        <input type="hidden" name="_token" value="fQgAEk3NvJXKr882p4HXOburK2qztSc4elwcUvE3">        <div class="row">
+        @csrf
+        <div class="row">
             <div class="col-md-8">
-                <label for="ten" class="form-label">Mã Sản Phẩm</label>
-                <input type="text" name="masanpham" class="form-control" id="masanpham" ">
+                <label for="name" class="form-label">Tên sản phẩm</label>
+                <input type="text" name="name" class="form-control" id="name" >
             </div>
         </div>
         <div class="row">
             <div class="col-md-8">
-                <label for="gia_ban" class="form-label">Tên Sản Phẩm</label>
-                <input type="text" name="name_product" class="form-control" id="tensanpham" ">
+                <label for="price" class="form-label">Giá bán sản phẩm</label>
+                <input type="text" name="price" class="form-control" id="price" ">
             </div>
         </div>
-       <div class="row">
+        <!-- <div class="row">
             <div class="col-md-8">
-                <label for="gia_ban" class="form-label">Số Lượng</label>
-                <input type="text" name="quantity" class="form-control" id=soluong" ">
+                <label for="gia_nhap" class="form-label">Giá nhập sản phẩm</label>
+                <input type="text" name="gia_nhap" class="form-control" id="gia_nhap" ">
+            </div>
+        </div> -->
+        <div class="row">
+            <div class="col-md-8">
+                <label for="categories_product_id" class="form-label">Loại sản phẩm</label>
+                <select name="categories_product_id" class="form-select" aria-label="Default select example" id="categories_product_id">
+                    <option selected>Chọn loại sản phẩm</option>
+                    @foreach($dsLoaiSP as $loaiSP)
+                    <option value="{{ $loaiSP->id }}">{{ $loaiSP->name }}</option>
+                    @endforeach
+                    
+                </select>
+            </div>
+        </div>
+      
+        <div class="row">
+            <div class="col-md-8">
+                <label for="suppliers_product_id" class="form-label">Nhà cung cấp</label>
+                <select name="suppliers_product_id" class="form-select" aria-label="Default select example" id="suppliers_product_id">
+                    <option selected>Chọn nhà cung cấp</option>
+                    @foreach($dsNhaCungCap as $nhaCungCap)
+                    <option value="{{ $nhaCungCap->id }}">{{ $nhaCungCap->name }}</option>
+                    @endforeach
+                    
+                </select>
             </div>
         </div>
         <div class="row">
             <div class="col-md-8">
-                <label for="gia_ban" class="form-label">Giá Bán Sản Phẩm</label>
-                <input type="text" name="price" class="form-control" id="giabansanpham" ">
+                <label for="dsKhuyenMai" class="form-label">Khuyến mãi</label>
+                <select name="dsKhuyenMai" class="form-select" aria-label="Default select example" id="dsKhuyenMai">
+                    <option selected value="0">Chọn khuyến mãi</option>
+                    @foreach($dsKhuyenMai as $khuyenMai)
+                    <option value="{{ $khuyenMai->id }}">{{ $khuyenMai->ten }}</option>
+                    @endforeach
+                    
+                </select>
             </div>
         </div>
         <div class="row">
             <div class="col-md-8">
-                <label for="gia_ban" class="form-label">Mã Khuyến Mãi</label>
-                <input type="text" name="promato" class="form-control" id="makhuyenmai" ">
+                <label for="mo_ta" class="form-label">Mô tả sản phẩm</label>
+                <input type="text" name="mo_ta" class="form-control" id="mo_ta" ">
             </div>
         </div>
-        <div class="row">
-            <div class="col-md-8">
-                <label for="gia_ban" class="form-label">Địa Chỉ</label>
-                <input type="text" name="address" class="form-control" id="diachi" ">
-            </div>
-        </div>
-        <div class="row pt-3">  
+            
+        <div class="row pt-3">
             <div class="col-md-12">
-                <button type="submit" class="btn btn-primary">Thêm Sản Phẩm</button>
+                <button type="submit" class="btn btn-primary">Lưu</button>
             </div>
         </div>
     </div>

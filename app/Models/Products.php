@@ -17,5 +17,13 @@ class Products extends Model
     public function promotion()
     {
         return $this->belongsTo(Promotion::class, 'promotion_product_id');
+        
+    }
+    public function categories() {
+        return $this->belongsTo(Categories::class, 'categories_product_id');
+    }
+    public function product_detail()
+    {
+        return $this->hasMany(ProductDetai::class, 'san_pham_id');
     }
 }

@@ -98,36 +98,36 @@ Route::prefix('/order')->name('order.')->group(function () {
 });
 
 // QUẢN LÝ SẢN PHẨM
-Route::prefix('/product')->name('product.')->group(function () {
+Route::prefix('/product')->group(function () {
     Route::get('/index', [ProductController::class, 'index'])
-        ->name('index');
+        ->name('product.index');
 
     Route::get('/detail/{id}', [ProductController::class, 'chiTiet'])
-        ->name('detail');
+        ->name('product.detail');
 
     Route::get('/add', [ProductController::class, 'themMoi'])
-        ->name('add');
+        ->name('product.add');
 
     Route::post('/start-add', [ProductController::class, 'xuLyThemMoi'])
-        ->name('start-add');
+        ->name('product.start-add');
 
     Route::get('/update/{id}', [ProductController::class, 'capNhat'])
-        ->name('update');
+        ->name('product.update');
 
     Route::post('/start-update/{id}', [ProductController::class, 'xuLyCapNhat'])
-        ->name('start-update');
+        ->name('product.start-update');
 
     Route::get('/delete/{id}', [ProductController::class, 'xoa'])
-        ->name('delete');
+        ->name('product.delete');
 
     Route::get('/index/seach', [ProductController::class, 'timKiem'])
-        ->name('search');
+        ->name('product.search');
 
     Route::get('/index/stock', [ProductController::class, 'sanPhamCon'])
-        ->name('index-stock');
+        ->name('product.index-stock');
 
     Route::get('/index/sold-out', [ProductController::class, 'sanPhamHet'])
-        ->name('index-sold-out');
+        ->name('product.index-sold-out');
 });
 // QUẢN LÝ LOẠI SẢN PHẨM
 Route::prefix('/categories')->name('categories.')->group(function () {

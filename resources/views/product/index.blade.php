@@ -36,8 +36,9 @@
             </div>
 
             <div>
-                <p class="mb-2 text-sm font-medium text-gray-600 dark:text-gray-400">
+                <p class="mb-2 text-sm font-medium text-gray-600 dark:text-gray-400" >
                     Add new product
+                    
                 </p>
 
             </div>
@@ -50,38 +51,46 @@
                     <thead>
                         <tr
                             class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800">
-                            <th class="px-5 py-3">Mã sản phẩm </th>
+                          
                             <th class="px-5 py-3">Tên sản phẩm</th>
                             <th class="px-5 py-3">Loại sản phẩm</th>
                             <th class="px-5 py-3">Số lượng hiện có</th>
                             <th class="px-5 py-3">Giá Bán </th>
+                            <th class="px-5 py-3">Nhà cung cấp </th>
+                            <th class="px-5 py-3">Khuyến mãi </th>
                             <th class="px-5 py-3">Trạng Thái </th>
                         </tr>
                     </thead>
                     <tbody class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800">
-                    @foreach($dsProduct as $sanpham)
+                    @foreach($dsProducts as $product)
 
                         <tr class="text-gray-700 dark:text-gray-400"
-                            onclick="window.location.href ='{{ route('product.start-add') }}'">
-                            <td class="px-4 py-3">
-                                <div class="flex items-center text-sm">
-                                    <div>
-                                        <p class="font-semibold"> {{$product->id}}</p>
-
-                                    </div>
-                                </div>
-                            </td>
+                        onclick="window.location.href =  '{{ route('product.detail', ['id' => $product->id]) }}';">
                             <td class="px-4 py-3 text-sm">
                             {{$product->name}}
                             </td>
                             <td class="px-4 py-3 text-sm">
-                                {{product->categories->name}}
+
+                            {{$product->categories->name}}
+
+                            </td>
+                         
+      
                             </td>
                             <td class="px-4 py-3 text-sm">
                             {{$product->quantity}}
                             </td>
+                           
                             <td class="px-4 py-3 text-sm">
                             {{$product->price}}
+                            </td>
+                            <td class="px-4 py-3 text-sm">
+                              {{  $product->suppliers_product_id }}
+                          
+                          
+                            </td>
+                            <td class="px-4 py-3 text-sm">
+                            {{$product->promotion_product_id}}
                             </td>
 
                             <td class="px-4 py-3 text-xs">

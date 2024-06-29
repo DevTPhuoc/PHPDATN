@@ -3,90 +3,91 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Product;
+use App\Models\Products;
 use App\Models\Categories;
-use APP\Models\Suppliers;
+use App\Models\Suppliers;
+use App\Models\ProductDetail;
+use App\Models\Promotion;
 class ProductController extends Controller
 {
-    // public function index()
-    // {
-    //     // {
-    //     //     return view('product.index');
+    public function index(){
+        $dsProducts = Products::all();
     
-    //     // }
-    // }
-    // public function  themMoi()
-    // {
-    //     {
-    //         return view('product.add');
-    //     }
-    // }
-    public function index()
-    {
-        {
-            $dsProduct = Product::all();
-            return view('product.index',compact('dsProduct'));
-        }
+        $tongProducts = Products::count();
+        
+      echo ($dsProducts [0]);
+        // $conHang = Products::where('trang_thai', 1)->count();
+        // $hetHang = Products::where('trang_thai', 2)->count();
+        return view('product.index',compact('tongProducts','dsProducts'));
     }
-    public function themMoi()
-    {
-       {
-            $dsProduct = Product::all();
-            return view('product.add',compact('dsProduct'));
-       }
+    // public function chiTiet(Request $request,$id){
+
+    //     $Products = Products::find($id);
+    //     $dsChiTietSP = ProductDetail::where('san_pham_id',$id)
+    //                                 ->orderBy('size_id')
+    //                                 ->get();
+    //     $tongSoLuong = $dsChiTietSP->sum('so_luong');
+    //     return view('products.detail',compact('Products','dsChiTietSP','tongSoLuong'));
+    // }
+  
+    public function themMoi(){
+        $dsLoaiSP = Categories::all();
+        $dsNhaCungCap = Suppliers::all();
+        $dsKhuyenMai = Promotion::all();
+        return view('product.add',compact('dsLoaiSP','dsNhaCungCap','dsKhuyenMai'));
     }
     public function xuLyThemMoi(Request $request){
         
-        $sanPham = new Product();
-        $sanPham->categories_product_id = $request->categories_product_id;
-        $sanPham->name = $request->name;
-        $sanPham->price = $request->price;
-        $sanPham->sex_product_id = $request->sex_product_id;
-        $sanPham->image_product_id = $request->image_product_id;
-        $sanPham->color = $request->color;
-        $sanPham->size = $request->size;
-        $sanPham->description = $request->description;
-        $sanPham->suppliers_product_id = $request->suppliers_product_id;
-        $sanPham->quantity = $request->quantity;
-        $sanPham->promotion_product_id=$request->promation_product_id;     
-        $sanPham->save();
-        return redirect()->action([ProductController::class, 'danhSach'])->with(['themMoi'=>"Thêm mới thành công"]);
+        $Products = new Products();
+        $Products->categories_product_id = $request->categories_product_id;
+       
+         
+        $Products->name = $request->name;
+        $Products->price = $request->price;
+
+     
+        $Products->description = $request->description;
+        $Products->suppliers_product_id = $request->suppliers_product_id;
+        $Products->quantity = $request->quantity;
+        $Products->promotion_product_id=$request->promation_product_id;     
+        $Products->save();
+        return redirect()->action([ProductController::class, 'index'])->with(['themMoi'=>"Thêm mới thành công"]);
     }
     public function capNhat($id){
-        $sanPham = Product::find($id);
+        $Products = Product::find($id);
         // $dsLoaiSP = Categories::all();
         // $dsNhaCungCap = Suppliers::all();
-        if(empty($sanPham)){
+        if(empty($Products)){
             return redirect()->back()->withErrors(['loiCapNhap'=>"Sản phẩm không tồn tại"]);
         }
-        return view('product.update',compact('sanPham'));
+        return view('product.update',compact('Products'));
     }
 
     public function xuLyCapNhat(Request $request,$id){
-        $sanPham = Product::find($id);
-        if(empty($sanPham)){
+        $Products = Product::find($id);
+        if(empty($Products)){
             return redirect()->back()->withErrors(['loiCapNhap'=>"Sản phẩm không tồn tại"]);
         }
-        $sanPham->categories_product_id = $request->categories_product_id;
-        $sanPham->name = $request->name;
-        $sanPham->price = $request->price;
-        $sanPham->sex_product_id = $request->sex_product_id;
-        $sanPham->image_product_id = $request->image_product_id;
-        $sanPham->color = $request->color;
-        $sanPham->size = $request->size;
-        $sanPham->description = $request->description;
-        $sanPham->suppliers_product_id = $request->suppliers_product_id;
-        $sanPham->quantity = $request->quantity;
-        $sanPham->promotion_product_id=$request->promation_product_id;     
-        $sanPham->save();
-        return redirect()-> action([ProductController::class, 'chiTiet'],['id'=>$sanPham->id])->with(['capNhap'=>"Cập nhật sản phẩm thành công"]);
+        $Products->categories_product_id = $request->categories_product_id;
+        $Products->name = $request->name;
+        $Products->price = $request->price;
+        $Products->sex_product_id = $request->sex_product_id;
+        $Products->image_product_id = $request->image_product_id;
+        $Products->color = $request->color;
+        $Products->size = $request->size;
+        $Products->description = $request->description;
+        $Products->suppliers_product_id = $request->suppliers_product_id;
+        $Products->quantity = $request->quantity;
+        $Products->promotion_product_id=$request->promation_product_id;     
+        $Products->save();
+        return redirect()-> action([ProductController::class, 'chiTiet'],['id'=>$Products->id])->with(['capNhap'=>"Cập nhật sản phẩm thành công"]);
     }
 
     public function xoa(Request $request,$id){
 
-        $sanPham = Product::find($id);  
-        Product::where('id', $sanPham->id)->delete();  //Xóa chi tiết sản phẩm liên quan         
-        $sanPham -> delete();
+        $Products = Product::find($id);  
+        Product::where('id', $Products->id)->delete();  //Xóa chi tiết sản phẩm liên quan         
+        $Products -> delete();
         return redirect()->action([ProductController::class, 'danhSach']);
     }   
     public function timKiem(Request $request)
@@ -94,44 +95,44 @@ class ProductController extends Controller
         $keyword = $request->input('keyword');
 
         if (!empty($keyword)) {
-            $dsSanPham=Product::where('name', 'LIKE', '%' . $keyword . '%')
+            $dsProducts=Product::where('name', 'LIKE', '%' . $keyword . '%')
                             ->orWhere('id', $keyword)
                             ->paginate(20);                                  
         }
-        $tongSanPham = Product::count();
+        $tongProducts = Product::count();
         $conHang =Product::where('role', 1)->count();
         $hetHang = Product::where('role', 2)->count();
-        return view('product.index',compact('tongSanPham','conHang','hetHang','dsSanPham'));
+        return view('product.index',compact('tongProducts','conHang','hetHang','dsProducts'));
     }
 
-    public function sanPhamCon(Request $request)
+    public function ProductsCon(Request $request)
     {       
-        $dsSanPham=Product::where('role', 1)
+        $dsProducts=Product::where('role', 1)
                             ->paginate(20);                                  
-        $tongSanPham = Product::count();
+        $tongProducts = Product::count();
         $conHang = Product::where('role', 1)->count();
         $hetHang = Product::where('role', 2)->count();
-        return view('product.index',compact('tongSanPham','conHang','hetHang','dsSanPham'));
+        return view('product.index',compact('tongProducts','conHang','hetHang','dsProducts'));
     }
 
-    public function sanPhamHet(Request $request)
+    public function ProductsHet(Request $request)
     {       
-        $dsSanPham=Product::where('role', 2)
+        $dsProducts=Product::where('role', 2)
                             ->paginate(20);                                  
-        $tongSanPham =Product::count();
+        $tongProducts =Product::count();
         $conHang = Product::where('role', 1)->count();
         $hetHang = Product::where('role', 2)->count();
-        return view('product.index',compact('tongSanPham','conHang','hetHang','dsSanPham'));
+        return view('product.index',compact('tongProducts','conHang','hetHang','dsProducts'));
     }
 
      public function chiTiet(Request $request,$id){
 
-        $sanPham = Product::find($id);
-        $dsChiTietSP = Product::where('id',$id)
+        $Products = Products::find($id);
+        $dsChiTietSP = Products::where('id',$id)
                                     ->orderBy('size')
                                     ->get();
         $tongSoLuong = $dsChiTietSP->sum('quantity');
-        // $dsAnhSanPham = $sanPham->anh_san_pham;
-        return view('product.detail',compact('sanPham','dsChiTietSP','tongSoLuong',));
+        // $dsAnhProducts = $Products->anh_san_pham;
+        return view('product.detail',compact('Products','dsChiTietSP','tongSoLuong',));
     }
 }
