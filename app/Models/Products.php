@@ -14,8 +14,8 @@ class Products extends Model
     {
         return $this->belongsTo(Suppliers::class, 'suppliers_product_id	');
     }
-    public function promotion()
-    {
-        return $this->belongsTo(Promotion::class, 'promotion_product_id');
-    }
+    // public function promotion()
+    // {
+    //     return $this->belongsTo(Promotion::class, 'promotion_product_id');
+    // }
 }

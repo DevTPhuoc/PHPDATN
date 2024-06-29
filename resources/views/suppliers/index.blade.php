@@ -85,14 +85,14 @@
           <td class="px-4 py-3 text-sm">
                 {{$suppliers->address}}
           </td>
-          <td class="px-4 py-3 text-xs">
-          <span
-            class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-full dark:bg-green-700 dark:text-green-100">
-               {{$suppliers->status}}
-          </span>
-          </td>
           <td class="px-4 py-3 text-sm">
-
+                            <span class="text-md  px-2 py-1 font-semibold{{ $suppliers->status == 1 ? 'leading-tight text-green-700 bg-green-100 rounded-full dark:bg-green-700 dark:text-green-100' : 'leading-tight text-red-700 bg-red-100 rounded-full dark:bg-red-700 dark:text-red-100' }}">
+                                {{ $suppliers->status == 1 ? 'Hoạt Động' : 'Không Hoạt Động' }}
+                            </span>
+                        </td>
+          
+          <td class="px-4 py-3 text-sm">
+          
           <form action="{{ route('delete-details', ['id' => $suppliers->id]) }}">
 
 

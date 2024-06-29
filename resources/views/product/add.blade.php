@@ -22,7 +22,15 @@
     @section('content')
       <!-- Mobile sidebar -->
       <!-- Backdrop -->
-    
+   
+      <div style="position: absolute; left: 260px; top: 90px;"
+    onclick="window.location.href = '{{ route('product.index') }}';">
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+        class="w-8 h-8">
+        <path stroke-linecap="round" stroke-linejoin="round"
+            d="m11.25 9-3 3m0 0 3 3m-3-3h7.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+    </svg>
+</div>
 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
     <h1 class="h2">THÊM SẢN PHẨM MỚI </h1>
 </div>

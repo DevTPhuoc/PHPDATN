@@ -27,7 +27,6 @@
     <h1 class="h2">THÊM MỚI ADMIN</h1>
 </div>
        
-
 <form class="row g-3" method="POST" action="{{ route('Admin.start-add') }}">
     <div class="col-12">
     @csrf
@@ -73,6 +72,21 @@
             </div>
         </div>
     </div>
+    <!-- <script>
+        document.getElementById('submit').addEventListener('click', function(event) {
+            const email = document.getElementById('email').value;
+            const error = document.getElementById('error');
+
+            if (!email.includes('@')) {
+                error.style.display = 'block';
+                event.preventDefault(); // Ngăn chặn form submit
+            } else {
+                error.style.display = 'none';
+                // Thực hiện submit form nếu email hợp lệ
+                // Bạn có thể thêm mã để submit form tại đây
+            }
+        });
+    </script> -->
 </form>
 </main>
              
