@@ -38,7 +38,7 @@
                   </thead>
                   <tbody class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800">
                     @foreach($dsCategories as $categories)
-                    <tr class="text-center text-gray-700 dark:text-gray-400" onclick="window.location.href = '';">
+                    <tr class="text-center text-gray-700 dark:text-gray-400" onclick="window.location.href = '{{ route('categories.detail',['id'=>$categories->id]) }}';">
                       <td class="px-4 py-3 text-sm">
                         {{$categories->id}}
                       </td>

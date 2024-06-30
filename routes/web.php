@@ -178,9 +178,23 @@ Route::prefix('/product')->group(function () {
 Route::prefix('/categories')->name('categories.')->group(function () {
     Route::get('/index', [CategoriesController::class, 'index'])
         ->name('index');
+
     Route::get('/add', [CategoriesController::class, 'themMoi'])
         ->name('add');
-    Route::post('/start-add', [CategoriesController::class, 'xuLyThemMoi'])
+
+    Route::get('/detail/{id}', [CategoriesController::class, 'chiTiet'])
+        ->name('detail');
+
+    Route::post('/add', [CategoriesController::class, 'xuLyThemMoi'])
         ->name('start-add');
+
+    Route::get('/update/{id}', [CategoriesController::class, 'capNhat'])
+        ->name('update');
+
+    Route::post('/start-update/{id}', [CategoriesController::class, 'xuLyCapNhat'])
+        ->name('start-update');
+
+    Route::get('delete/{id}', [CategoriesController::class, 'xoa'])
+        ->name('delete-detailcate');
 });
 

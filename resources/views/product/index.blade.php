@@ -71,7 +71,7 @@
                             </td>
                             <td class="px-4 py-3 text-sm">
 
-                            {{$product->categories_product_id}}
+                            {{$product->categories->name}}
 
                             </td>
                          

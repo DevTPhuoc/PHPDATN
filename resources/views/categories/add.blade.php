@@ -18,7 +18,7 @@
         @csrf
         <div class="row">
             <div class="col-md-8">
-                <label for="name" class="form-label">Tên loai sản phẩm</label>
+                <label for="name" class="form-label">Tên Loại Sản Phẩm</label>
                 <input type="text" name="name" class="form-control" id="name ">
             </div>
         </div>
