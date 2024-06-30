@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Suppliers;
 
 class Products extends Model
 {
@@ -12,11 +13,11 @@ class Products extends Model
 
     public function suppliers()
     {
-        return $this->belongsTo(Suppliers::class, 'suppliers_product_id	');
+        return $this->belongsTo(Suppliers::class, 'suppliers_id','id');
     }
     public function promotion()
     {
-        return $this->belongsTo(Promotion::class, 'promotion_product_id');
+        return $this->belongsTo(Promotion::class, 'promotions_id','id');
         
     }
     public function categories() {

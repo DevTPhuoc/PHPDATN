@@ -11,13 +11,10 @@ use App\Models\Promotion;
 class ProductController extends Controller
 {
     public function index(){
-        $dsProducts = Products::all();
+        $dsProducts = Products::with('suppliers')->get();
     
         $tongProducts = Products::count();
-        
-      echo ($dsProducts [0]);
-        // $conHang = Products::where('trang_thai', 1)->count();
-        // $hetHang = Products::where('trang_thai', 2)->count();
+    
         return view('product.index',compact('tongProducts','dsProducts'));
     }
     // public function chiTiet(Request $request,$id){
