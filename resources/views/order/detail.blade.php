@@ -127,7 +127,7 @@
               </button> ||
               @elseif ($donHang->role == 2)
               <button type="button" class="confirm-button">
-                <a href="{{ route('order.confirm-success', ['id' => $donHang->id]) }}" class="nav-link active">Xác nhận giao hàng thành công</a>
+                <a href="{{ route('order.confirm-success', ['id' => $donHang->id]) }}" class="nav-link active">Xác nhận đơn hàng</a>
               </button> ||
               @endif
               @if ($donHang->role != -1)
