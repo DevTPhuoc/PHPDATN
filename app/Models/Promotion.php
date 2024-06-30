@@ -9,4 +9,7 @@ class Promotion extends Model
 {
     use HasFactory;
     protected $table = "promotion";
+    public function products() {
+        return $this->hasMany(Product::class);
+    }
 }

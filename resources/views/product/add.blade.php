@@ -71,8 +71,8 @@
       
         <div class="row">
             <div class="col-md-8">
-                <label for="suppliers_product_id" class="form-label">Nhà cung cấp</label>
-                <select name="suppliers_product_id" class="form-select" aria-label="Default select example" id="suppliers_product_id">
+                <label for="suppliers_id" class="form-label">Nhà cung cấp</label>
+                <select name="suppliers_id" class="form-select" aria-label="Default select example" id="suppliers_id">
                     <option selected>Chọn nhà cung cấp</option>
                     @foreach($dsNhaCungCap as $nhaCungCap)
                     <option value="{{ $nhaCungCap->id }}">{{ $nhaCungCap->name }}</option>
@@ -83,11 +83,11 @@
         </div>
         <div class="row">
             <div class="col-md-8">
-                <label for="dsKhuyenMai" class="form-label">Khuyến mãi</label>
-                <select name="dsKhuyenMai" class="form-select" aria-label="Default select example" id="dsKhuyenMai">
+                <label for="promotions_id" class="form-label">Khuyến mãi</label>
+                <select name="promotions_id" class="form-select" aria-label="Default select example" id="promotions_id">
                     <option selected value="0">Chọn khuyến mãi</option>
                     @foreach($dsKhuyenMai as $khuyenMai)
-                    <option value="{{ $khuyenMai->id }}">{{ $khuyenMai->ten }}</option>
+                    <option value="{{ $khuyenMai->id }}">{{ $khuyenMai->code_promotion }}</option>
                     @endforeach
                     
                 </select>

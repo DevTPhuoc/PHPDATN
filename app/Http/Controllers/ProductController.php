@@ -44,9 +44,9 @@ class ProductController extends Controller
 
      
         $Products->description = $request->description;
-        $Products->suppliers_product_id = $request->suppliers_product_id;
+        $Products->suppliers_id  = $request->suppliers_id ;
         $Products->quantity = $request->quantity;
-        $Products->promotion_product_id=$request->promation_product_id;     
+        $Products->promotions_id =$request->promotions_id ;     
         $Products->save();
         return redirect()->action([ProductController::class, 'index'])->with(['themMoi'=>"Thêm mới thành công"]);
     }
