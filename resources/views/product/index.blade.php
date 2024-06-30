@@ -85,12 +85,12 @@
                             {{$product->price}}
                             </td>
                             <td class="px-4 py-3 text-sm">
-                              {{  $product->suppliers_product_id }}
+                              {{  $product->suppliers->name }}
                           
                           
                             </td>
                             <td class="px-4 py-3 text-sm">
-                            {{$product->promotion_product_id}}
+                            {{$product->promotion->code_promotion}}
                             </td>
 
                             <td class="px-4 py-3 text-xs">

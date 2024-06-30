@@ -11,16 +11,15 @@ use App\Models\Promotion;
 
 class ProductController extends Controller
 {
-    public function index()
-    {
-        $dsProducts = Products::all();
 
+
+    public function index(){
+        $dsProducts = Products::with('suppliers')->get();
+    
         $tongProducts = Products::count();
+    
+        return view('product.index',compact('tongProducts','dsProducts'));
 
-        //   echo ($dsProducts [0]);
-        // $conHang = Products::where('trang_thai', 1)->count();
-        // $hetHang = Products::where('trang_thai', 2)->count();
-        return view('product.index', compact('tongProducts', 'dsProducts'));
     }
     // public function chiTiet(Request $request,$id){
 
@@ -47,9 +46,11 @@ class ProductController extends Controller
         $Products->name = $request->name;
         $Products->price = $request->price;
         $Products->description = $request->description;
-        $Products->suppliers_product_id = $request->suppliers_id;
+
+
+        $Products->suppliers_id  = $request->suppliers_id ;
         $Products->quantity = $request->quantity;
-        $Products->promotion_product_id = $request->promation_id;
+        $Products->promotions_id =$request->promotions_id ;     
         $Products->save();
         return redirect()->action([ProductController::class, 'index'])->with(['themMoi' => "Thêm mới thành công"]);
     }
