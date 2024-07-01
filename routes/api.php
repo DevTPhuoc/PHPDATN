@@ -2,6 +2,8 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\APIProductDetailController;
+use App\Http\Controllers\APIProductController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,3 +23,8 @@ Route::get('/san-pham-theo-nha-cung-cap/{id}',[APISanPhamController::class,'sanP
 Route::get('/san-pham',[APISanPhamController::class,'dsSanPham']);
 
 
+Route::get('/san-pham-theo-loai/{id}',[APIProductDetailController::class,'sanPhamTheoLoai']);
+
+Route::get('/san-pham-theo-nha-cung-cap/{id}',[APIProductController::class,'sanPhamTheoNhaCungCap']);
+Route::get('/thong-tin-san-pham/{id}',[APIProductController::class,'thongTinSanPham']);
+Route::get('/san-pham',[APIProductController::class,'dsSanPham']);

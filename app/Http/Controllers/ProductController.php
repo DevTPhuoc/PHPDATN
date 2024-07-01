@@ -8,14 +8,18 @@ use App\Models\Categories;
 use App\Models\Suppliers;
 use App\Models\ProductDetail;
 use App\Models\Promotion;
+
 class ProductController extends Controller
 {
+
+
     public function index(){
         $dsProducts = Products::with('suppliers')->get();
     
         $tongProducts = Products::count();
     
         return view('product.index',compact('tongProducts','dsProducts'));
+
     }
     // public function chiTiet(Request $request,$id){
 
@@ -26,44 +30,46 @@ class ProductController extends Controller
     //     $tongSoLuong = $dsChiTietSP->sum('so_luong');
     //     return view('products.detail',compact('Products','dsChiTietSP','tongSoLuong'));
     // }
-  
-    public function themMoi(){
+
+    public function themMoi()
+    {
         $dsLoaiSP = Categories::all();
         $dsNhaCungCap = Suppliers::all();
         $dsKhuyenMai = Promotion::all();
-        return view('product.add',compact('dsLoaiSP','dsNhaCungCap','dsKhuyenMai'));
+        return view('product.add', compact('dsLoaiSP', 'dsNhaCungCap', 'dsKhuyenMai'));
     }
-    public function xuLyThemMoi(Request $request){
-        
+    public function xuLyThemMoi(Request $request)
+    {
+
         $Products = new Products();
         $Products->categories_product_id = $request->categories_product_id;
-       
-         
         $Products->name = $request->name;
         $Products->price = $request->price;
-
-     
         $Products->description = $request->description;
+
+
         $Products->suppliers_id  = $request->suppliers_id ;
         $Products->quantity = $request->quantity;
         $Products->promotions_id =$request->promotions_id ;     
         $Products->save();
-        return redirect()->action([ProductController::class, 'index'])->with(['themMoi'=>"Thêm mới thành công"]);
+        return redirect()->action([ProductController::class, 'index'])->with(['themMoi' => "Thêm mới thành công"]);
     }
-    public function capNhat($id){
-        $Products = Product::find($id);
+    public function capNhat($id)
+    {
+        $Products = Products::find($id);
         // $dsLoaiSP = Categories::all();
         // $dsNhaCungCap = Suppliers::all();
-        if(empty($Products)){
-            return redirect()->back()->withErrors(['loiCapNhap'=>"Sản phẩm không tồn tại"]);
+        if (empty($Products)) {
+            return redirect()->back()->withErrors(['loiCapNhap' => "Sản phẩm không tồn tại"]);
         }
-        return view('product.update',compact('Products'));
+        return view('product.update', compact('Products'));
     }
 
-    public function xuLyCapNhat(Request $request,$id){
-        $Products = Product::find($id);
-        if(empty($Products)){
-            return redirect()->back()->withErrors(['loiCapNhap'=>"Sản phẩm không tồn tại"]);
+    public function xuLyCapNhat(Request $request, $id)
+    {
+        $Products = Products::find($id);
+        if (empty($Products)) {
+            return redirect()->back()->withErrors(['loiCapNhap' => "Sản phẩm không tồn tại"]);
         }
         $Products->categories_product_id = $request->categories_product_id;
         $Products->name = $request->name;
@@ -73,65 +79,68 @@ class ProductController extends Controller
         $Products->color = $request->color;
         $Products->size = $request->size;
         $Products->description = $request->description;
-        $Products->suppliers_product_id = $request->suppliers_product_id;
+        $Products->suppliers_product_id = $request->suppliers_id;
         $Products->quantity = $request->quantity;
-        $Products->promotion_product_id=$request->promation_product_id;     
+        $Products->promotion_product_id = $request->promation_id;
         $Products->save();
-        return redirect()-> action([ProductController::class, 'chiTiet'],['id'=>$Products->id])->with(['capNhap'=>"Cập nhật sản phẩm thành công"]);
+        return redirect()->action([ProductController::class, 'chiTiet'], ['id' => $Products->id])->with(['capNhap' => "Cập nhật sản phẩm thành công"]);
     }
 
-    public function xoa(Request $request,$id){
+    public function xoa(Request $request, $id)
+    {
 
-        $Products = Product::find($id);  
-        Product::where('id', $Products->id)->delete();  //Xóa chi tiết sản phẩm liên quan         
-        $Products -> delete();
+        $Products = Products::find($id);
+        Products::where('id', $Products->id)->delete();  //Xóa chi tiết sản phẩm liên quan         
+        $Products->delete();
         return redirect()->action([ProductController::class, 'danhSach']);
-    }   
+    }
     public function timKiem(Request $request)
     {
         $keyword = $request->input('keyword');
 
         if (!empty($keyword)) {
-            $dsProducts=Product::where('name', 'LIKE', '%' . $keyword . '%')
-                            ->orWhere('id', $keyword)
-                            ->paginate(20);                                  
+            $dsProducts = Products::where('name', 'LIKE', '%' . $keyword . '%')
+                ->orWhere('id', $keyword)
+                ->paginate(20);
         }
-        $tongProducts = Product::count();
-        $conHang =Product::where('role', 1)->count();
-        $hetHang = Product::where('role', 2)->count();
-        return view('product.index',compact('tongProducts','conHang','hetHang','dsProducts'));
+        $tongProducts = Products::count();
+        $conHang = Products::where('role', 1)->count();
+        $hetHang = Products::where('role', 2)->count();
+        return view('product.index', compact('tongProducts', 'conHang', 'hetHang', 'dsProducts'));
     }
 
     public function ProductsCon(Request $request)
-    {       
-        $dsProducts=Product::where('role', 1)
-                            ->paginate(20);                                  
-        $tongProducts = Product::count();
-        $conHang = Product::where('role', 1)->count();
-        $hetHang = Product::where('role', 2)->count();
-        return view('product.index',compact('tongProducts','conHang','hetHang','dsProducts'));
+    {
+        $dsProducts = Products::where('role', 1)
+            ->paginate(20);
+        $tongProducts = Products::count();
+        $conHang = Products::where('role', 1)->count();
+        $hetHang = Products::where('role', 2)->count();
+        return view('product.index', compact('tongProducts', 'conHang', 'hetHang', 'dsProducts'));
     }
 
     public function ProductsHet(Request $request)
-    {       
-        $dsProducts=Product::where('role', 2)
-                            ->paginate(20);                                  
-        $tongProducts =Product::count();
-        $conHang = Product::where('role', 1)->count();
-        $hetHang = Product::where('role', 2)->count();
-        return view('product.index',compact('tongProducts','conHang','hetHang','dsProducts'));
+    {
+        $dsProducts = Products::where('role', 2)
+            ->paginate(20);
+        $tongProducts = Products::count();
+        $conHang = Products::where('role', 1)->count();
+        $hetHang = Products::where('role', 2)->count();
+        return view('product.index', compact('tongProducts', 'conHang', 'hetHang', 'dsProducts'));
     }
 
-     public function chiTiet(Request $request,$id){
+    public function chiTiet(Request $request, $id)
+    {
 
         $Products = Products::find($id);
         $dsNhaCungCap = Suppliers::all();
         $dsKhuyenMai = Promotion::all();
-        $dsChiTietSP = Products::where('id',$id)
-                                    ->orderBy('size')
-                                    ->get();
+     
+        $dsChiTietSP = Products::where('id', $id)
+            ->orderBy('size')
+            ->get();
         $tongSoLuong = $dsChiTietSP->sum('quantity');
         // $dsAnhProducts = $Products->anh_san_pham;
-        return view('product.detail',compact('Products','dsChiTietSP','tongSoLuong',));
+        return view('product.detail', compact('Products', 'dsChiTietSP', 'tongSoLuong', ));
     }
 }
