@@ -125,6 +125,8 @@ class ProductController extends Controller
      public function chiTiet(Request $request,$id){
 
         $Products = Products::find($id);
+        $dsNhaCungCap = Suppliers::all();
+        $dsKhuyenMai = Promotion::all();
         $dsChiTietSP = Products::where('id',$id)
                                     ->orderBy('size')
                                     ->get();
