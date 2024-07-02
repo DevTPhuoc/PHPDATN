@@ -10,31 +10,21 @@ class LoginController extends Controller
 {
     public function showLoginForm()
     {
-        return view('login');
+        if (Auth::check()) {
+            // Người dùng đã được chứng thực
+            return redirect('/home');
+        }
+        return view('/login');
     }
-
-    public function login(Request $request)
-    {
-        // Validate the form data
-        $request->validate([
-            'account_name' => 'required|string',
-            'password' => 'required|string|min:6',
-        ]);
-
-        // Attempt to log the user in
-        $credentials = $request->only('account_name', 'password');
-
-        if (Auth::attempt(['account_name' => $credentials['account_name'], 'password' => $credentials['password']], $request->remember)) {
-            // If successful, then redirect to their intended location
-            return redirect()->intended(route('/'));
+    public function login(Request $request){
+        $credentials = $request->only('account_name','password');
+        
+        if (Auth::guard('web')->attempt($credentials)) {
+            return redirect('/home');
         }
 
-        // If unsuccessful, then redirect back to the login with the form data
-        return redirect()->back()->withInput($request->only('account_name', 'remember'))->withErrors([
-            'account_name' => 'The provided credentials do not match our records.',
-        ]);
+        return redirect('/login')->with('error', 'Tên đăng nhập hoặc mật khẩu không đúng.');
     }
-
     public function logout()
     {
         Auth::logout();

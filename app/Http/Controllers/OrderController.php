@@ -147,27 +147,28 @@ class OrderController extends Controller
         return view('order.index', compact('dsDonHang', 'tongDonHangTrongThang'));
     }
 
-    public function huy(Request $request, $id)
-    {
-        $donHang = Order::find($id);
-        $size = Size::find($id);
-        $color= Color::find($id);
-        $donHang->role = -1;
+    // public function huy(Request $request, $id)
+    // {
+    //     $donHang = Order::find($id);
+    //     $donHang = Order::find($id);
+    //     $size = Size::find($id);
+    //     $color= Color::find($id);
+    //     $donHang->role = -1;
 
-        $dsCTDonHang = $donHang->size;
-        $dsCTDonHang = $donHang->colors;
-        foreach ($dsCTDonHang as $ctDonHang) {
-            $ctSanPham = OrderDetail::where('order_id', $ctDonHang->order_id)
-                ->where('price', $ctDonHang->price)
-                ->where('quantity', $ctDonHang->quantity)
-                ->first();
-            $ctSanPham->total += $ctDonHang->total;
-            $ctSanPham->save();
-            $sanPham = Product::find($ctDonHang->categories_product_id);
-            $sanPham->quantity += $ctDonHang->quantity;
-            $sanPham->save();
-        }
-        $donHang->save();
-        return redirect()->action([OrderController::class, 'danhSach']);
-    }
+    //     $dsCTDonHang = $donHang->size;
+    //     $dsCTDonHang = $donHang->colors;
+    //     foreach ($dsCTDonHang as $ctDonHang) {
+    //         $ctSanPham = OrderDetail::where('order_id', $ctDonHang->order_id)
+    //             ->where('price', $ctDonHang->price)
+    //             ->where('quantity', $ctDonHang->quantity)
+    //             ->first();
+    //         $ctSanPham->total += $ctDonHang->total;
+    //         $ctSanPham->save();
+    //         $sanPham = Products::find($ctDonHang->categories_product_id);
+    //         $sanPham->quantity += $ctDonHang->quantity;
+    //         $sanPham->save();
+    //     }
+    //     $donHang->save();
+    //     return redirect()->action([OrderController::class, 'danhSach']);
+    // }
 }
