@@ -89,10 +89,16 @@
             <h2 class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200">
                 
             </h2>
+<<<<<<< HEAD
            
             <!-- New Table -->
            
             <div class="w-full overflow-hidden rounded-lg shadow-xs mt-10">
+=======
+             New Table
+           
+             <div class="w-full overflow-hidden rounded-lg shadow-xs mt-10">
+>>>>>>> 291bdf62712690f9e8065b21483e94e984545f5f
               <div class="w-full overflow-x-auto">
                 <table class="w-full whitespace-no-wrap item-center">
                   <thead>
@@ -172,7 +178,12 @@
                   </tbody>
                 </table>
               </div>
+<<<<<<< HEAD
             </div>
+=======
+              
+            </div> 
+>>>>>>> 291bdf62712690f9e8065b21483e94e984545f5f
           </div>
   </main>
 @endsection

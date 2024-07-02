@@ -136,8 +136,8 @@ class ProductController extends Controller
     {
 
         $Products = Products::find($id);
-        $dsChiTietSP = Products::where('size_id', $id)
-            ->orderBy('size_id')
+        $dsChiTietSP = Products::where('id', $id)
+            ->orderBy('size')
             ->get();
        
         $tongSoLuong = $dsChiTietSP->sum('quantity');
