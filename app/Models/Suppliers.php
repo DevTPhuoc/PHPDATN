@@ -10,6 +10,6 @@ class Suppliers extends Model
     use HasFactory;
     protected $table = "suppliers";
     public function products() {
-        return $this->hasMany(Product::class);
+        return $this->hasMany(Products::class);
     }
 }

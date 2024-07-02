@@ -9,4 +9,7 @@ class Size extends Model
 {
     use HasFactory;
     protected $table = "size";
+    public function products() {
+        return $this->hasMany(Products::class);
+    }
 }

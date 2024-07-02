@@ -13,6 +13,7 @@ class Categories extends Model
     use HasFactory;
     protected $table = "categories";
     public function products() {
-        return $this->hasMany(Products::class, 'id');
+
+        return $this->hasMany(Products::class);
     }
 }

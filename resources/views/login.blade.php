@@ -37,25 +37,17 @@
           </div>
           <div class="flex items-center justify-center p-6 sm:p-12 md:w-1/2">
             <div class="w-full">
-              <form action="{{ route('login') }}" method="post" >
+              <form action="/login" method="post" >
                 @csrf
                 <h1
                 class="mb-4 text-xl font-semibold text-gray-700 dark:text-gray-200">
                 Login
               </h1>
-              @if ($errors->any())
-            <div class="alert alert-danger">
-                <ul>
-                    @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-            </div>
-        @endif
+              
               <label class="block text-sm">
                 <span class="text-gray-700 dark:text-gray-400">Username</span>
                 <input class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
-                  name="acoout_name"
+                  name="account_name"
                   placeholder="Admin"
                 />
               </label>
@@ -83,22 +75,7 @@
 
               
 
-              <p class="mt-4">
-                <a
-                  class="text-sm font-medium text-purple-600 dark:text-purple-400 hover:underline"
-                  href="./forgot-password.html"
-                >
-                  Forgot your password?
-                </a>
-              </p>
-              <p class="mt-1">
-                <a
-                  class="text-sm font-medium text-purple-600 dark:text-purple-400 hover:underline"
-                  href="./create-account.html"
-                >
-                  Create account
-                </a>
-              </p>
+             
             </div>
           </div>
         </div>

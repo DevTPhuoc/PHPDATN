@@ -22,40 +22,35 @@
    
 <h1 style="font-size: 36px; margin-top: 50px;">CẬP NHẬT</h1>
 
-<form class="row g-3" method="POST" action="{{ route('Admin.start-update', ['id' => $admin->id]) }}">
+<form class="row g-3" method="POST" action="{{ route('product.start-update', ['id' => $Products->id]) }}">
     <div class="col-12">
     @csrf
         
             <div class="col-md-8">
                 <label for="ten" class="form-label">Tên đăng nhập</label>
-                <input value= " {{$admin->account_name}}" type="text" name="account_name" class="form-control" id="account_name" >
+                <input value= " " type="text" name="name" class="form-control" id="account_name" >
             </div>
         </div>
        
        <div class="row">
             <div class="col-md-8">
                 <label for="fullname" class="form-label">Họ và Tên</label>
-                <input value= " {{$admin->fullname}}" type="text" name="fullname" class="form-control" id="fullname" >
+                <input value= " {{$Products->name}}" type="text" name="name" class="form-control" id="fullname" >
             </div>
         </div>
         <div class="row">
             <div class="col-md-8">
                 <label for="email" class="form-label">Email</label>
-                <input value= " {{$admin->email}}" type="text" name="email" class="form-control" id="email" >
+                <input value= " {{$Products->price}}" type="text" name="price" class="form-control" id="email" >
             </div>
         </div>
         <div class="row">
             <div class="col-md-8">
                 <label for="phone" class="form-label">Số Điện Thoại</label>
-                <input value= " {{$admin->phone}}" type="text" name="phone" class="form-control" id="phone" >
+                <input value= " {{$Products->selling_price}}" type="text" name="selling_price" class="form-control" id="phone" >
             </div>
         </div>
-        <div class="row">
-            <div class="col-md-8">
-                <label for="address" class="form-label">Địa Chỉ</label>
-                <input value= " {{$admin->address}}" type="text" name="address" class="form-control" id="address" >
-            </div>
-        </div>
+        
         <div class="row pt-3">
             <div class="col-md-12">
                 <button type="submit" class="btn btn-primary">Lưu</button>

@@ -8,6 +8,8 @@ use App\Models\Categories;
 use App\Models\Suppliers;
 use App\Models\ProductDetail;
 use App\Models\Promotion;
+use App\Models\Size;
+use App\Models\Color;
 
 class ProductController extends Controller
 {
@@ -76,12 +78,13 @@ class ProductController extends Controller
         $Products->price = $request->price;
         $Products->sex_product_id = $request->sex_product_id;
         $Products->image_product_id = $request->image_product_id;
-        $Products->color = $request->color;
-        $Products->size = $request->size;
+        $Products->color_product_id = $request->color_product_id;
+        $Products->size_id = $request->size_id;
+        $Products->selling_price=$request->selling_price;
         $Products->description = $request->description;
         $Products->suppliers_product_id = $request->suppliers_id;
         $Products->quantity = $request->quantity;
-        $Products->promotion_product_id = $request->promation_id;
+        $Products->promotion_id = $request->promation_id;
         $Products->save();
         return redirect()->action([ProductController::class, 'chiTiet'], ['id' => $Products->id])->with(['capNhap' => "Cập nhật sản phẩm thành công"]);
     }
@@ -133,12 +136,10 @@ class ProductController extends Controller
     {
 
         $Products = Products::find($id);
-        $dsNhaCungCap = Suppliers::all();
-        $dsKhuyenMai = Promotion::all();
-     
         $dsChiTietSP = Products::where('id', $id)
             ->orderBy('size')
             ->get();
+       
         $tongSoLuong = $dsChiTietSP->sum('quantity');
         // $dsAnhProducts = $Products->anh_san_pham;
         return view('product.detail', compact('Products', 'dsChiTietSP', 'tongSoLuong', ));

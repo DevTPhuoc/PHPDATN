@@ -8,7 +8,8 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\LoginController;
-
+use App\Models\Admin;
+use PgSql\Lob;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -20,12 +21,17 @@ use App\Http\Controllers\LoginController;
 |
 */
 
-Route::get('/', function () {
-    return view('master');
-});
-Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
-Route::post('login', [LoginController::class, 'login']);
-Route::get('logout', [LoginController::class, 'logout'])->name('logout');
+    Route::get('/', function () {
+        return view('login');
+
+    });
+    Route::get('/home', function () {
+        return view('master');
+    })->name('home');
+
+    Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
+    Route::post('login', [LoginController::class, 'login']);
+    Route::get('logout', [LoginController::class, 'logout'])->name('logout');
 
 // Route::get('/', function () {
 //     return view('/');

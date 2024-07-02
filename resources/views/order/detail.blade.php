@@ -109,8 +109,21 @@
                       <th class="px-4 py-3">Số lượng</th>
                       <th></th>
                     </tr>
-                  </thead>
-                    
+                    <tbody class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800">
+                    <tr class="text-center text-gray-700 dark:text-gray-400" >
+                      <td class="px-4 py-3 text-sm">
+                       abc
+                      </td>
+                      <td class="px-4 py-3">   
+                            abc      
+                      </td>
+                      <td class="px-4 py-3"> 
+                              abc              
+                      </td>
+                      <td class="px-4 py-3"> 
+                              abc              
+                      </td>
+                    </tr>      
                   </tbody>
                 </table>
               </div>
