@@ -19,45 +19,65 @@
 
 @section('content')
 
-   
+<main class="h-full overflow-y-auto">
+  <div class="container px-6 mx-auto grid">
+    <h2 class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200">
+    </h2>
+    <div style="position: absolute; left: 260px; top: 90px;"
+    onclick="window.location.href = '{{ route('product.detail', ['id' => $product->id]) }}';">
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+        class="w-8 h-8">
+        <path stroke-linecap="round" stroke-linejoin="round"
+            d="m11.25 9-3 3m0 0 3 3m-3-3h7.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+    </svg>
+</div>
 <h1 style="font-size: 36px; margin-top: 50px;">CẬP NHẬT</h1>
-
-<form class="row g-3" method="POST" action="{{ route('product.start-update', ['id' => $Products->id]) }}">
-    <div class="col-12">
+<form class="row g-3" method="POST" action="{{ route('product.start-update', ['id' => $product->id]) }}">
     @csrf
         
-            <div class="col-md-8">
-                <label for="ten" class="form-label">Tên đăng nhập</label>
-                <input value= " " type="text" name="name" class="form-control" id="account_name" >
-            </div>
+    <div class="col-12">
+        <div class="col-md-8">
+            <label for="name" class="form-label">Tên Sản Phẩm</label>
+            <input value="{{ $product->name }}" type="text" name="name" class="form-control" id="name">
         </div>
-       
-       <div class="row">
-            <div class="col-md-8">
-                <label for="fullname" class="form-label">Họ và Tên</label>
-                <input value= " {{$Products->name}}" type="text" name="name" class="form-control" id="fullname" >
-            </div>
+    </div>
+   
+    <div class="row">
+        <div class="col-md-8">
+            <label for="price" class="form-label">Giá Bán</label>
+            <input value="{{ $product->price }}" type="text" name="price" class="form-control" id="price">
         </div>
-        <div class="row">
-            <div class="col-md-8">
-                <label for="email" class="form-label">Email</label>
-                <input value= " {{$Products->price}}" type="text" name="price" class="form-control" id="email" >
-            </div>
+    </div>
+    
+    <div class="row">
+        <div class="col-md-8">
+            <label for="categories_product_id" class="form-label">Loại sản phẩm</label>
+            <select name="categories_product_id" class="form-select" aria-label="Default select example" id="categories_product_id">
+                @foreach($categories as $loaiSP)
+                <option value="{{ $loaiSP->id }}" {{ $product->categories_product_id == $loaiSP->id ? 'selected' : '' }}>{{ $loaiSP->name }}</option>
+                @endforeach
+            </select>
         </div>
-        <div class="row">
-            <div class="col-md-8">
-                <label for="phone" class="form-label">Số Điện Thoại</label>
-                <input value= " {{$Products->selling_price}}" type="text" name="selling_price" class="form-control" id="phone" >
-            </div>
+    </div>
+  
+    <div class="row">
+        <div class="col-md-8">
+            <label for="suppliers_id" class="form-label">Nhà cung cấp</label>
+            <select name="suppliers_id" class="form-select" aria-label="Default select example" id="suppliers_id">
+                @foreach($suppliers as $nhaCungCap)
+                <option value="{{ $nhaCungCap->id }}" {{ $product->suppliers_product_id == $nhaCungCap->id ? 'selected' : '' }}>{{ $nhaCungCap->name }}</option>
+                @endforeach
+            </select>
         </div>
-        
-        <div class="row pt-3">
-            <div class="col-md-12">
-                <button type="submit" class="btn btn-primary">Lưu</button>
-            </div>
+    </div>
+    
+    <div class="row pt-3">
+        <div class="col-md-12">
+            <button type="submit" class="btn btn-primary">Lưu</button>
         </div>
     </div>
 </form>
+
                 </main>
 
                        

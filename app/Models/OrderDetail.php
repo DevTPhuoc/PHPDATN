@@ -10,19 +10,20 @@ class OrderDetail extends Model
     use HasFactory;
     protected $table = "ordersdetail";
 
-    public function ordersdetail()
+    public function product()
     {
-        return $this->belongsTo(Product::class, 'product_order_detail_id');
+        return $this->belongsTo(Products::class, 'product_order_detail_id');
     }
+
     public function order()
     {
-        return $this->belongsTo(Size::class, 'name');
+        return $this->belongsTo(Order::class, 'order_id');
     }
 
     public function color()
     {
         return $this->belongsTo(Color::class, 'name');
     }
-
-    
+        
+   
 }

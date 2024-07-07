@@ -50,12 +50,19 @@
                 <input type="text" name="price" class="form-control" id="price" ">
             </div>
         </div>
-        <!-- <div class="row">
-            <div class="col-md-8">
-                <label for="gia_nhap" class="form-label">Giá nhập sản phẩm</label>
-                <input type="text" name="gia_nhap" class="form-control" id="gia_nhap" ">
-            </div>
-        </div> -->
+        <div class="row">
+            <div class="btn-toolbar mb-2 mb-md-0">
+                 <div class="btn-group me-2">
+                 <form method="POST" action="" enctype="multipart/form-data">
+                 @csrf
+                 <label for="price" class="form-label">Thêm Hình Ảnh</label>
+                <input type="file" name="images[]" multiple>
+                 <button type="submit">Upload</button>
+            </form>
+        </div>
+    </div>
+       
+       
         <div class="row">
             <div class="col-md-8">
                 <label for="categories_product_id" class="form-label">Loại sản phẩm</label>
@@ -81,6 +88,32 @@
                 </select>
             </div>
         </div>
+        <!-- <div class="row">
+            <div class="col-md-8">
+                <label for="size_id" class="form-label">Size sản phẩm</label>
+                 <select name="size_id" class="form-select" aria-label="Default select example" id="size_id">
+                    <option selected>Chọn size sản phẩm</option>
+                     @foreach($dsSize as $size)
+                     <option value="{{ $size->id }}">{{ $size->name }}</option>
+                     @endforeach
+            </select>
+        </div>
+        <div class="row">
+            <div class="col-md-8">
+                 <label for="color_id" class="form-label">Màu sản phẩm</label>
+                 <select name="color_id" class="form-select" aria-label="Default select example" id="color_id">
+                <option selected>Chọn màu sản phẩm</option>
+                      @foreach($dsMauSac as $mauSac)
+                     <option value="{{ $mauSac->id }}">{{ $mauSac->name }}</option>
+                  @endforeach
+                 </select>
+            </div>
+        </div> -->
+
+
+
+
+
         <div class="row">
             <div class="col-md-8">
                 <label for="promotions_id" class="form-label">Khuyến mãi</label>

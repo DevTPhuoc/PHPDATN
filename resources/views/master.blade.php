@@ -98,15 +98,15 @@
                 <span class="ml-4">Quản Lý Đơn Hàng</span>
               </a>
             </li>
-            <li class="relative px-6 py-3">
-              <a class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200" href="">
+            <!-- <li class="relative px-6 py-3">
+              <a class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200" href="{{route('statistical.index')}}">
                 <svg class="w-5 h-5" aria-hidden="true" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
                   <path d="M11 3.055A9.001 9.001 0 1020.945 13H11V3.055z"></path>
                   <path d="M20.488 9H15V3.512A9.025 9.025 0 0120.488 9z"></path>
                 </svg>
                 <span class="ml-4">Thống Kê</span>
               </a>
-            </li>
+            </li> -->
             
           </div>
       </aside>
@@ -155,10 +155,29 @@
                 </svg>
                 <span>Log out</span>
               </a>
-              
+              <!-- <li class="relative">
+                <button
+                  class="align-middle rounded-full focus:shadow-outline-purple focus:outline-none"
+                  @click="toggleProfileMenu"
+                  @keydown.escape="closeProfileMenu"
+                  aria-label="Account"
+                  aria-haspopup="true"
+                >
+                  <img
+                    class="object-cover w-8 h-8 rounded-full"
+                    src="https://images.unsplash.com/photo-1502378735452-bc7d86632805?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=200&fit=max&s=aa3a807e1bbdfd4364d1f449eaa96d82"
+                    alt=""
+                    aria-hidden="true"
+                  />
+                </button>
+              </li> -->
             </ul>
           </div>
         </header>
+
+            
+
+        
         <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
                     @yield('content')
                 </main>
@@ -176,6 +195,13 @@
     <script src="{{ asset('assets/js/focus-trap.js') }}" ></script>
     <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer=""></script>
     
+    <script>
+    // Đóng alert khi nhấn vào nút đóng
+    var alertList = document.querySelectorAll('.alert');
+    alertList.forEach(function (alert) {
+        new bootstrap.Alert(alert);
+    });
+</script>
 
 </body></html>
 

@@ -68,5 +68,18 @@ class CategoriesController extends Controller
         $categories -> delete();
         return redirect()->action([CategoriesController::class, 'danhSach']);
     }
+    public function timKiem(Request $request)
+    {
+        $keyword = $request->input('keyword');
+
+        if (!empty($keyword)) {
+            $dsLoaiSP = Categories::where('name', 'LIKE', '%' . $keyword . '%')
+                ->paginate(20);
+        } else {
+            $dsDonHang = Categories::paginate(20); // Nếu không có từ khóa, lấy tất cả đơn hàng
+        }
+
+        return view('categories.index', compact('dsLoaiSP'));
+    }
 
 }

@@ -11,23 +11,24 @@
   
 <h1 style="font-size: 36px; margin-top: 50px;">CẬP NHẬT</h1>
 <form method="POST" action="{{ route('order.start-update', ['id' => $donHang->id]) }}">   
-        <div class="col-20">
-            @csrf
-            <div class="row">
+    @csrf
+    <div class="col-20">
+        <div class="row">
             <div class="col-md-8">
-                <label for="status" class="form-label">Địa Chỉ Nhận Hàng</label>
-                <input value= " {{$donHang->shippingAddress}}" type="text" name="shippingAddress" class="form-control" id="shippingAddress" >
+                <label for="address" class="form-label">Địa Chỉ Nhận Hàng</label>
+                <input value="{{ $donHang->user->address }}" type="text" name="address" class="form-control" id="address">
             </div>
             <div class="col-md-8">
-                <label for="status" class="form-label">Số Điện Thoại</label>
-                <input value= " {{$donHang->phone}}" type="text" name="phone" class="form-control" id="phone" >
+                <label for="phone" class="form-label">Số Điện Thoại</label>
+                <input value="{{ $donHang->user->phone }}" type="text" name="phone" class="form-control" id="phone">
             </div>
         </div>         
+    </div>
+    <div class="row pt-3">
+        <div class="col-md-12">
+            <button type="submit" class="btn btn-primary">Lưu</button>
         </div>
-        <div class="row pt-3">
-            <div class="col-md-12">
-                <button type="submit" class="btn btn-primary">Lưu</button>
-            </div>
-        </div>
-    </form>
+    </div>
+</form>
+
 @endsection
