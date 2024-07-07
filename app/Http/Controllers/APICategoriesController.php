@@ -11,26 +11,28 @@ class APICategoriesController extends Controller
 {
     public function sanPhamTheoLoai(Request $request, $id)
     { 
-        $loaiSP = Categories::with('products')->find($id);
-         if(empty($loaiSP))
-         { return response()->json([
-             'success'=>false, 
-             'data'=>"Loại sản phẩm này không tồn tại" 
-            ]); }
+        $loaiSP = Products::with('categories')->find($id);
+        if(empty($loaiSP))
+        { return response()->json([
+            'success'=>false, 
+            'data'=>"Loại sản phẩm này không tồn tại" 
+           ]); }
 
-          return response()->json([ 
-            'success'=>true, 
-            'data'=>$loaiSP 
-        ]); 
+         return response()->json([ 
+           'success'=>true, 
+           'data'=>$loaiSP 
+       ]); 
+     
         }
-    public function dsLoaiSanPham(){
-        $dsLoaiSP = Categories::with('products')->get();
+        public function dsLoaiSanPham(){
+            $dsLoaiSP = Categories::All();
         
-        return response()->json([
-            'success' => true,
-            'data' => $dsLoaiSP
-        ]);
-    }
+            return response()->json([
+                'success' => true,
+                'data' => $dsLoaiSP
+            ]);
+    
+        }
     // public function chiTietLoaiSP($id){
     //     $loaiSP = LoaiSP::with('san_pham')->find($id);
 
