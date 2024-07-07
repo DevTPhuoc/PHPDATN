@@ -18,6 +18,23 @@
   @extends('master')
 
 @section('content')
+<!-- Trong view của form -->
+@if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
+
+<!-- Hoặc hiển thị từng lỗi cho từng trường -->
+<div>
+    @error('name')
+        <div class="alert alert-danger">{{ $message }}</div>
+    @enderror
+</div>
 <div style="position: absolute; left: 260px; top: 90px;"
     onclick="window.location.href = '{{ route('suppliers.index') }}';">
     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
@@ -31,51 +48,49 @@
 
 <form class="row g-3" method="POST" action="{{ route('suppliers.start-update', ['id' => $suppliers->id]) }}">
     <div class="col-12">
-    @csrf
-        
-            <div class="col-md-8">
-                <label for="ten" class="form-label">Mã Nhà Cung Cấp</label>
-                <input value= " {{$suppliers->id}}" type="text" name="account_name" class="form-control" id="id" >
-            </div>
+        @csrf
+        <div class="col-md-8">
+            <label for="id" class="form-label">Mã Nhà Cung Cấp</label>
+            <input value="{{ $suppliers->id }}" type="text" name="id" class="form-control" id="id" readonly>
         </div>
-       
-       <div class="row">
-            <div class="col-md-8">
-                <label for="fullname" class="form-label">Họ và Tên</label>
-                <input value= " {{$suppliers->name}}" type="text" name="name" class="form-control" id="name" >
-            </div>
+    </div>
+    <div class="row">
+        <div class="col-md-8">
+            <label for="name" class="form-label">Tên Nhà Cung Cấp</label>
+            <input value="{{ $suppliers->name }}" type="text" name="name" class="form-control" id="name">
         </div>
-        <div class="row">
-            <div class="col-md-8">
-                <label for="email" class="form-label">Email</label>
-                <input value= " {{$suppliers->email}}" type="text" name="email" class="form-control" id="email" >
-            </div>
+    </div>
+    <div class="row">
+        <div class="col-md-8">
+            <label for="email" class="form-label">Email</label>
+            <input value="{{ $suppliers->email }}" type="text" name="email" class="form-control" id="email">
         </div>
-        <div class="row">
-            <div class="col-md-8">
-                <label for="phone" class="form-label">Số Điện Thoại</label>
-                <input value= " {{$suppliers->phone}}" type="text" name="phone" class="form-control" id="phone" >
-            </div>
+    </div>
+    <div class="row">
+        <div class="col-md-8">
+            <label for="phone" class="form-label">Số Điện Thoại</label>
+            <input value="{{ $suppliers->phone }}" type="text" name="phone" class="form-control" id="phone">
         </div>
-        <div class="row">
-            <div class="col-md-8">
-                <label for="address" class="form-label">Địa Chỉ</label>
-                <input value= " {{$suppliers->address}}" type="text" name="address" class="form-control" id="address" >
-            </div>
+    </div>
+    <div class="row">
+        <div class="col-md-8">
+            <label for="address" class="form-label">Địa Chỉ</label>
+            <input value="{{ $suppliers->address }}" type="text" name="address" class="form-control" id="address">
         </div>
-        <div class="row">
-            <div class="col-md-8">
-                <label for="status" class="form-label">Trạng Thái</label>
-                <input value= " {{$suppliers->status}}" type="text" name="status" class="form-control" id="status" >
-            </div>
+    </div>
+    <div class="row">
+        <div class="col-md-8">
+            <label for="status" class="form-label">Trạng Thái</label>
+            <input value="{{ $suppliers->status }}" type="text" name="status" class="form-control" id="status">
         </div>
-        <div class="row pt-3">
-            <div class="col-md-12">
-                <button type="submit" class="btn btn-primary">Lưu</button>
-            </div>
+    </div>
+    <div class="row pt-3">
+        <div class="col-md-12">
+            <button type="submit" class="btn btn-primary">Lưu</button>
         </div>
     </div>
 </form>
+
                 </main>
 
                        

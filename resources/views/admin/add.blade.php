@@ -33,37 +33,55 @@
         
             <div class="col-md-8">
                 <label for="ten" class="form-label">Tên đăng nhập</label>
-                <input type="text" name="account_name" class="form-control" id="account_name" >
+                <input type="text" name="account_name" class="form-control" id="account_name" value="{{ old('account_name') }}">
+            @if ($errors->has('account_name'))
+                <div class="alert alert-danger">{{ $errors->first('account_name') }}</div>
+            @endif
             </div>
         </div>
         <div class="row">
             <div class="col-md-8">
                 <label for="password" class="form-label">Mật Khẩu</label>
-                <input type="text" name="password" class="form-control" id="password" >
+                <input type="password" name="password" class="form-control" id="password" value="{{ old('password') }}">
+            @if ($errors->has('password'))
+                <div class="alert alert-danger">{{ $errors->first('password') }}</div>
+            @endif
             </div>
         </div>
        <div class="row">
             <div class="col-md-8">
                 <label for="fullname" class="form-label">Họ và Tên</label>
-                <input type="text" name="fullname" class="form-control" id="fullname" >
+                <input type="text" name="fullname" class="form-control" id="fullname" value="{{ old('fullname') }}">
+            @if ($errors->has('fullname'))
+                <div class="alert alert-danger">{{ $errors->first('fullname') }}</div>
+            @endif
             </div>
         </div>
         <div class="row">
-            <div class="col-md-8">
-                <label for="email" class="form-label">Email</label>
-                <input type="text" name="email" class="form-control" id="email" >
-            </div>
+        <div class="col-md-8">
+            <label for="email" class="form-label">Email</label>
+            <input type="text" name="email" class="form-control" id="email" value="{{ old('email') }}">
+            @if ($errors->has('email'))
+                <div class="alert alert-danger">{{ $errors->first('email') }}</div>
+            @endif
         </div>
-        <div class="row">
-            <div class="col-md-8">
-                <label for="phone" class="form-label">Số Điện Thoại</label>
-                <input type="text" name="phone" class="form-control" id="phone" >
-            </div>
+    </div>
+    <div class="row">
+        <div class="col-md-8">
+            <label for="phone" class="form-label">Số Điện Thoại</label>
+            <input type="text" name="phone" class="form-control" id="phone" value="{{ old('phone') }}">
+            @if ($errors->has('phone'))
+                <div class="alert alert-danger">{{ $errors->first('phone') }}</div>
+            @endif
         </div>
+    </div>
         <div class="row">
             <div class="col-md-8">
                 <label for="address" class="form-label">Địa Chỉ</label>
-                <input type="text" name="address" class="form-control" id="address" >
+                <input type="text" name="address" class="form-control" id="address" value="{{ old('address') }}">
+            @if ($errors->has('address'))
+                <div class="alert alert-danger">{{ $errors->first('address') }}</div>
+            @endif
             </div>
         </div>
         <div class="row pt-3">

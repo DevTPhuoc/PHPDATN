@@ -42,30 +42,42 @@
         
             <div class="col-md-8">
                 <label for="ten" class="form-label">Tên Nhà Cung Cấp</label>
-                <input type="text" name="name" class="form-control" id="name" >
+                <input type="text" name="name" class="form-control" id="name" value="{{ old('name') }}">
+        @error('name')
+            <div class="alert alert-danger">{{ $message }}</div>
+        @enderror
             </div>
         </div>
         <div class="row">
-            <div class="col-md-8">
-                <label for="password" class="form-label">Email</label>
-                <input type="text" name="email" class="form-control" id="email" >
-            </div>
-        </div>
+    <div class="col-md-8">
+        <label for="email" class="form-label">Email</label>
+        <input type="text" name="email" class="form-control" id="email" value="{{ old('email') }}">
+        @error('email')
+            <div class="alert alert-danger">{{ $message }}</div>
+        @enderror
+    </div>
+</div>
        <div class="row">
             <div class="col-md-8">
-                <label for="fullname" class="form-label">Phone</label>
-                <input type="text" name="phone" class="form-control" id="phone" >
+                <label for="phone" class="form-label">Phone</label>
+                <input type="text" name="phone" class="form-control" id="phone" value="{{ old('phone') }}">
+        @error('phone')
+            <div class="alert alert-danger">{{ $message }}</div>
+        @enderror
             </div>
         </div>
         <div class="row">
             <div class="col-md-8">
-                <label for="email" class="form-label">Địa Chỉ</label>
-                <input type="text" name="address" class="form-control" id="address" >
+                <label for="address" class="form-label">Địa Chỉ</label>
+                <input type="text" name="address" class="form-control" id="address" value="{{ old('address') }}">
+        @error('address')
+            <div class="alert alert-danger">{{ $message }}</div>
+        @enderror
             </div>
         </div>
         <div class="row">
             <div class="col-md-8">
-                <label for="phone" class="form-label">Trạng Thái</label>
+                <label for="status" class="form-label">Trạng Thái</label>
                 <input type="text" name="status" class="form-control" id="status" >
             </div>
         </div>

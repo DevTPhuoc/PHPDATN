@@ -48,4 +48,8 @@ class User extends Authenticatable
 
     use HasFactory;
     protected $table = "users";
+    public function orders()
+    {
+        return $this->hasMany(Order::class, 'user_order_id');
+    }
 }

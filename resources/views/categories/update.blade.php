@@ -14,8 +14,8 @@
             @csrf
             <div class="row">
                 <div class="col-md-8">
-                    <label for="ten" class="form-label">Tên loại sản phẩm</label>
-                    <input type="text" name="ten" class="form-control" id="ten" " value="{{$categories->name}}">
+                    <label for="name" class="form-label">Tên loại sản phẩm</label>
+                    <input type="text" name="name" class="form-control" id="name" " value="{{$categories->name}}">
                 </div>
             </div>    
             <div class="row pt-3">

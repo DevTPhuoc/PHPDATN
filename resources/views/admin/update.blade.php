@@ -40,17 +40,23 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-md-8">
-                <label for="email" class="form-label">Email</label>
-                <input value= " {{$admin->email}}" type="text" name="email" class="form-control" id="email" >
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-8">
-                <label for="phone" class="form-label">Số Điện Thoại</label>
-                <input value= " {{$admin->phone}}" type="text" name="phone" class="form-control" id="phone" >
-            </div>
-        </div>
+    <div class="col-md-8">
+        <label for="email" class="form-label">Email</label>
+        <input value="{{ old('email', $admin->email) }}" type="text" name="email" class="form-control" id="email">
+        @if ($errors->has('email'))
+            <div class="alert alert-danger">{{ $errors->first('email') }}</div>
+        @endif
+    </div>
+</div>
+    <div class="row">
+    <div class="col-md-8">
+        <label for="phone" class="form-label">Phone</label>
+        <input value="{{ old('phone', $admin->phone) }}" type="text" name="phone" class="form-control" id="phone">
+        @if ($errors->has('phone'))
+            <div class="alert alert-danger">{{ $errors->first('phone') }}</div>
+        @endif
+    </div>
+</div>
         <div class="row">
             <div class="col-md-8">
                 <label for="address" class="form-label">Địa Chỉ</label>

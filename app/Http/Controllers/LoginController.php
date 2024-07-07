@@ -7,27 +7,31 @@ use App\Models\Admin;
 use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
-{
-    public function showLoginForm()
+{ public function showLoginForm()
     {
-        if (Auth::check()) {
-            // Người dùng đã được chứng thực
-            return redirect('/home');
+        // Kiểm tra nếu đã đăng nhập
+        if (Auth::guard('admins')->check()) {
+            return redirect()->route('home');
         }
-        return view('/login');
+        return view('login');
     }
-    public function login(Request $request){
-        $credentials = $request->only('account_name','password');
-        
-        if (Auth::guard('web')->attempt($credentials)) {
-            return redirect('/home');
+
+    public function loginHandle(Request $request)
+    {
+        $credentials = $request->only('email', 'password');
+
+        if (Auth::guard('admins')->attempt($credentials)) {
+            // Xác thực thành công
+            return redirect()->route('home');
         }
 
-        return redirect('/login')->with('error', 'Tên đăng nhập hoặc mật khẩu không đúng.');
+        return redirect()->route('login')->withErrors(['email' => 'Thông tin đăng nhập không chính xác']);
     }
+
     public function logout()
     {
-        Auth::logout();
-        return redirect('/login');
+        Auth::guard('admins')->logout();
+        return redirect()->route('login');
     }
+    
 }

@@ -25,16 +25,20 @@ class Products extends Model
     }
     public function size()
     {
-        return $this->belongsTo(Size::class, 'size_id','id');
+        return $this->belongsTo(Size::class, 'size_id');
     }
     public function colors()
     {
         return $this->belongsTo(Color::class, 'color_product_id','id');
     }
-    // public function product_detail()
-    // {
-    //     return $this->hasMany(ProductsDetai::class, 'san_pham_id');
-    // }
+    public function productDetails()
+    {
+        return $this->hasMany(ProductDetail::class, 'product_id');
+    }
+    public function images()
+    {
+        return $this->hasMany(Image::class, 'product_id', 'id');
+    }
     
 
 }
