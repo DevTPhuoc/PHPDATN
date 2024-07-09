@@ -41,7 +41,7 @@
                       <th class="px-4 py-3">TÊN</th>
                       <th class="px-4 py-3">GIÁ</th>
                       <th class="px-4 py-3">NHÀ CUNG CẤP</th>
-                      <th class="px-4 py-3">TRẠNG THÁI</th>
+                      <!-- <th class="px-4 py-3">TRẠNG THÁI</th> -->
                       <th class="px-4 py-3">XÓA</th>
                     </tr>
                   </thead>
@@ -65,7 +65,7 @@
                       <td class="px-4 py-3 text-sm">
                         {{$Products->suppliers->name}}
                       </td>
-                      <td class="px-4 py-3 text-xs"> 
+                      <!-- <td class="px-4 py-3 text-xs"> 
                         @if($Products->promotions_id == 1 )
                         {{-- Còn hàng --}}
                             <span class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-full dark:bg-green-700 dark:text-green-100">
@@ -83,7 +83,7 @@
                             </span>
                         @endif            
                         
-                      </td>
+                      </td> -->
                       <td class="px-4 py-3 text-sm">
           <form action="">
             <button type="submit" class="text-red-500 hover:text-red-700">

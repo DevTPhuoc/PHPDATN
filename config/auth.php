@@ -45,8 +45,20 @@ return [
             'provider' => 'admins',
         ],
     ],
+  
 
-    /*
+    'providers' => [
+        'users' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\User::class,
+        ],
+        'admins' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Admin::class,
+        ],
+    ],
+
+      /*
     |--------------------------------------------------------------------------
     | User Providers
     |--------------------------------------------------------------------------
@@ -62,19 +74,7 @@ return [
     | Supported: "database", "eloquent"
     |
     */
-
-    'providers' => [
-        'admins' => [
-            'driver' => 'eloquent',
-            'model' => App\Models\Admin::class,
-        ],
-
-        // 'users' => [
-        //     'driver' => 'database',
-        //     'table' => 'users',
-        // ],
-    ],
-
+    
     /*
     |--------------------------------------------------------------------------
     | Resetting Passwords

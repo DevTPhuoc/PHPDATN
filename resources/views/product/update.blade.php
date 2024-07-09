@@ -32,51 +32,73 @@
     </svg>
 </div>
 <h1 style="font-size: 36px; margin-top: 50px;">CẬP NHẬT</h1>
-<form class="row g-3" method="POST" action="{{ route('product.start-update', ['id' => $product->id]) }}">
+<form class="row g-3" method="POST" action="{{ route('product.start-update', ['id' => $product->id]) }}" enctype="multipart/form-data">
     @csrf
-        
     <div class="col-12">
         <div class="col-md-8">
             <label for="name" class="form-label">Tên Sản Phẩm</label>
             <input value="{{ $product->name }}" type="text" name="name" class="form-control" id="name">
         </div>
     </div>
-   
     <div class="row">
         <div class="col-md-8">
             <label for="price" class="form-label">Giá Bán</label>
             <input value="{{ $product->price }}" type="text" name="price" class="form-control" id="price">
         </div>
     </div>
-    
     <div class="row">
         <div class="col-md-8">
             <label for="categories_product_id" class="form-label">Loại sản phẩm</label>
-            <select name="categories_product_id" class="form-select" aria-label="Default select example" id="categories_product_id">
-                @foreach($categories as $loaiSP)
-                <option value="{{ $loaiSP->id }}" {{ $product->categories_product_id == $loaiSP->id ? 'selected' : '' }}>{{ $loaiSP->name }}</option>
+            <select name="categories_product_id" class="form-select" id="categories_product_id">
+                @foreach($categories as $category)
+                    <option value="{{ $category->id }}" {{ $product->categories_product_id == $category->id ? 'selected' : '' }}>{{ $category->name }}</option>
                 @endforeach
             </select>
         </div>
     </div>
-  
     <div class="row">
         <div class="col-md-8">
             <label for="suppliers_id" class="form-label">Nhà cung cấp</label>
-            <select name="suppliers_id" class="form-select" aria-label="Default select example" id="suppliers_id">
-                @foreach($suppliers as $nhaCungCap)
-                <option value="{{ $nhaCungCap->id }}" {{ $product->suppliers_product_id == $nhaCungCap->id ? 'selected' : '' }}>{{ $nhaCungCap->name }}</option>
+            <select name="suppliers_id" class="form-select" id="suppliers_id">
+                @foreach($suppliers as $supplier)
+                    <option value="{{ $supplier->id }}" {{ $product->suppliers_id == $supplier->id ? 'selected' : '' }}>{{ $supplier->name }}</option>
                 @endforeach
             </select>
         </div>
     </div>
-    
+    <div class="row">
+        <div class="col-md-8">
+            <label for="images" class="form-label">Hình ảnh</label>
+            <input type="file" name="images[]" class="form-control" id="images" multiple>
+        </div>
+    </div>
     <div class="row pt-3">
         <div class="col-md-12">
             <button type="submit" class="btn btn-primary">Lưu</button>
         </div>
     </div>
 </form>
+            <script>
+                function previewImages(event) {
+                    var files = event.target.files;
+                    var preview = document.getElementById('image-preview');
+                    preview.innerHTML = '';
+
+                    for (var i = 0; i < files.length; i++) {
+                        var file = files[i];
+                        var reader = new FileReader();
+
+                        reader.onload = function(e) {
+                            var img = document.createElement('img');
+                            img.src = e.target.result;
+                            img.className = 'img-thumbnail';
+                            img.style = 'width: 100px; margin: 5px;';
+                            preview.appendChild(img);
+                        }
+                        reader.readAsDataURL(file);
+                    }
+                }
+            </script>
 
                 </main>
 
@@ -84,17 +106,7 @@
       </div>
     </div>
   
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js" defer=""></script>
-    
-    <script src="http://127.0.0.1:8000/assets/js/charts-lines.js" ></script>
-    <script src="http://127.0.0.1:8000/assets/js/charts-pie.js" ></script>
-    <script src="http://127.0.0.1:8000/assets/js/init-alpine.js" ></script>
-    <script src="http://127.0.0.1:8000/assets/js/charts-bars.js" ></script>
-    <script src="http://127.0.0.1:8000/assets/js/focus-trap.js" ></script>
-    <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer=""></script>
-    
-
-</body></html>
-
+</body>
+</html>
 
 @endsection

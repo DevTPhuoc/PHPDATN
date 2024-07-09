@@ -23,10 +23,11 @@
             <li class="relative px-6 py-3">
           
               <button class="inline-flex items-center justify-between w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200" @click="toggleQLTK" aria-haspopup="true">
-                <span class="inline-flex items-center">
-                  <svg class="w-5 h-5" aria-hidden="true" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
-                    <path d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z"></path>
-                  </svg>
+              <span class="inline-flex items-center">
+        <!-- Thay đổi biểu tượng ở đây -->
+        <svg class="w-5 h-5" aria-hidden="true" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
+            <path d="M12 4a4 4 0 100 8 4 4 0 000-8zM2 20h20a10 10 0 10-20 0z"></path>
+        </svg>
                   <span class="ml-4">Quản Lý Tài Khoản</span>
                 </span>
                 <svg class="w-4 h-4" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20">
@@ -48,10 +49,7 @@
                   
                 </ul>
               </template>
-            
-                
-              
-                
+             
               <li class="relative px-6 py-3">
            
               <button class="inline-flex items-center justify-between w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200" @click="toggleQLSP" aria-haspopup="true">

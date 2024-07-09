@@ -1,12 +1,10 @@
 @extends('master')
 
-
 @section('content')
-
 <main class="h-full overflow-y-auto">
   <div class="container px-6 mx-auto grid">
     <h2 class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200">
-
+      Danh Sách Loại Sản Phẩm
     </h2>
 
     <!-- Cards -->
@@ -31,12 +29,11 @@
           <p class="mb-2 text-sm font-medium text-gray-600 dark:text-gray-400">
             Thêm Mới Loại Sản Phẩm
           </p>
-
         </div>
       </div>
-
     </div>
-    <form action="" method="GET">
+
+    <form action="{{ route('categories.search') }}" method="GET">
       <div class="flex justify-center flex-1 lg:mr-32 mb-10">
         <div class="relative w-full max-w-xl mr-6 focus-within:text-purple-500">
           <div class="absolute inset-y-0 flex items-center pl-2">
@@ -54,6 +51,7 @@
           class="ml-2 px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-md active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple">Search</button>
       </div>
     </form>
+
     <!-- New Table -->
     <div class="w-full overflow-hidden rounded-lg shadow-xs mt-10">
       <div class="w-full overflow-x-auto">
@@ -67,31 +65,26 @@
           </thead>
           <tbody class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800">
             @foreach($dsCategories as $categories)
-        <tr class="text-center text-gray-700 dark:text-gray-400"
-          onclick="window.location.href = '{{ route('categories.detail', ['id' => $categories->id]) }}';">
-          <td class="px-4 py-3 text-sm">
-          {{$categories->id}}
-          </td>
-          <td class="px-4 py-3">
-          <div class=" items-center text-sm">
-            <div>
-            <p class="font-semibold">{{$categories->name}}</p>
-            <p class="text-xs text-gray-600 dark:text-gray-400"></p>
-            </div>
-          </div>
-          </td>
-        </tr>
-      @endforeach      
+            <tr class="text-center text-gray-700 dark:text-gray-400"
+              onclick="window.location.href = '{{ route('categories.detail', ['id' => $categories->id]) }}';">
+              <td class="px-4 py-3 text-sm">
+                {{$categories->id}}
+              </td>
+              <td class="px-4 py-3">
+                <div class=" items-center text-sm">
+                  <div>
+                    <p class="font-semibold">{{$categories->name}}</p>
+                    <p class="text-xs text-gray-600 dark:text-gray-400"></p>
+                  </div>
+                </div>
+              </td>
+            </tr>
+            @endforeach
           </tbody>
         </table>
-        <tbody>
-
-        </tbody>
+        {{ $dsCategories->links() }}
       </div>
-
     </div>
-
-
   </div>
 </main>
 @endsection

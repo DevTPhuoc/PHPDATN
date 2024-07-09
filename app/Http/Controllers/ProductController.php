@@ -11,6 +11,7 @@ use App\Models\Promotion;
 use App\Models\Size;
 use App\Models\Color;
 use App\Models\Image;
+use Illuminate\Support\Facades\File;
 
 class ProductController extends Controller
 {
@@ -18,12 +19,45 @@ class ProductController extends Controller
 
     public function index()
     {
-        $dsProducts = Products::with('suppliers', 'categories', 'promotion', 'productDetails')->paginate(5);
-        $tongProducts = Products::count();
+        $dsProducts = Products::with(['images', 'categories', 'suppliers', 'promotion', 'productDetails'])->paginate(5);
 
-        return view('product.index', compact('tongProducts', 'dsProducts'));
+        return view('product.index', compact('dsProducts'));
     }
+    public function capNhat($id)
+    {
+        $product = Products::findOrFail($id);
+        $categories = Categories::all();
+        $suppliers = Suppliers::all();
+        $promotions = Promotion::all();
+        $sizes = Size::all();
+        $colors = Color::all();
 
+        return view('product.update', compact('product', 'categories', 'suppliers', 'promotions', 'sizes', 'colors'));
+    }
+    public function xuLyCapNhat(Request $request, $id)
+    {
+        $product = Products::findOrFail($id);
+        $product->categories_product_id = $request->categories_product_id;
+        $product->name = $request->name;
+        $product->price = $request->price;
+        $product->suppliers_id = $request->suppliers_id;
+        $product->save();
+    
+        // Xử lý hình ảnh (nếu có)
+        if ($request->hasFile('images')) {
+            foreach ($request->file('images') as $image) {
+                $imageName = $image->getClientOriginalName();
+                $image->storeAs('public/img/add', $imageName); // Lưu hình ảnh vào thư mục storage/app/public/img/add
+    
+                Image::updateOrCreate(
+                    ['product_id' => $product->id, 'name' => $imageName],
+                    ['name' => $imageName]
+                );
+            }
+        }
+    
+        return redirect()->route('product.index')->with(['capNhat' => "Cập nhật sản phẩm thành công"]);
+    }
     public function themMoi()
     {
         $dsLoaiSP = Categories::all();
@@ -32,90 +66,65 @@ class ProductController extends Controller
         $dsSize = Size::all();
         $dsMauSac = Color::all();
         $product = new Products();
-        return view('product.add', compact('dsLoaiSP', 'dsNhaCungCap', 'dsKhuyenMai', 'dsSize', 'dsMauSac', 'product'));
+        $imagePath = public_path('img/add');
+        $images = File::files($imagePath);
+        $imageNames = [];
+        foreach ($images as $image) {
+            $imageNames[] = $image->getFilename();
+        }
+        return view('product.add', compact('dsLoaiSP', 'dsNhaCungCap', 'dsKhuyenMai', 'dsSize', 'dsMauSac', 'product', 'imageNames'));
     }
+
+
 
     public function xuLyThemMoi(Request $request)
     {
-        $request->validate([
-            'selling_price' => 'required|numeric|min:0',
-            // Thêm các validation rule khác cho các trường khác nếu cần
-        ]);
+        // Kiểm tra xem sản phẩm có sẵn không dựa trên size và color
+        $existingProductDetail = ProductDetail::where('size_id', $request->size_id)
+            ->where('color_id', $request->color_id)
+            ->first();
 
-        $product = new Products();
-        $product->categories_product_id = $request->categories_product_id;
-        $product->name = $request->name;
-        $product->price = $request->price;
-        $product->sex_product_id = $request->sex_product_id;
-        $product->image_product_id = $request->image_product_id;
-        $product->color_product_id = $request->color_product_id;
-        $product->size_id = $request->size_id;
-        $product->selling_price = $request->selling_price;
-        $product->description = $request->description;
-        $product->suppliers_product_id = $request->suppliers_id;
-        $product->quantity = $request->quantity;
-        $product->promotion_id = $request->promotion_id;
+        if ($existingProductDetail) {
+            // Nếu chi tiết sản phẩm đã tồn tại, cập nhật số lượng và cập nhật số lượng trong bảng sản phẩm
+            $existingProductDetail->increment('quantity_detail', 1);
 
-        $product->save();
 
-        if ($request->hasFile('images')) {
-            foreach ($request->file('images') as $image) {
-                $imageName = $image->getClientOriginalName();
-                $image->storeAs('public/images', $imageName); // Lưu hình ảnh vào thư mục storage/app/public/images
+        } else {
+            // Nếu chi tiết sản phẩm chưa tồn tại, tạo mới sản phẩm và chi tiết sản phẩm
+            $product = new Products();
+            $product->categories_product_id = $request->categories_product_id;
+            $product->name = $request->name;
+            $product->price = $request->price;
+            $product->selling_price = $request->selling_price;
+            $product->description = $request->description;
+            $product->suppliers_id = $request->suppliers_id;
+            $product->quantity = 1; // Tự động thêm 1 vào quantity khi tạo mới sản phẩm
+            $product->promotions_id = $request->promotions_id;
+            $product->save();
 
-                Image::create([
-                    'product_id' => $product->id,
-                    'name' => $imageName,
-                ]);
+            // Tạo mới chi tiết sản phẩm
+            $productDetail = new ProductDetail();
+            $productDetail->size_id = $request->size_id;
+            $productDetail->color_id = $request->color_id;
+            $productDetail->quantity_detail = 1; // Tự động thêm 1 vào quantity_detail khi tạo mới chi tiết sản phẩm
+            $productDetail->product_id = $product->id;
+            $productDetail->save();
+
+            // Lưu hình ảnh
+            if ($request->hasFile('images')) {
+                foreach ($request->file('images') as $image) {
+                    $imageName = $image->getClientOriginalName();
+                    $image->storeAs('public/img/add', $imageName); // Lưu hình ảnh vào thư mục storage/app/public/img/add
+
+                    $imageRecord = Image::create([
+                        'product_id' => $product->id,
+                        'name' => $imageName,
+                    ]);
+                }
             }
         }
 
         return redirect()->route('product.index')->with(['themMoi' => "Thêm mới sản phẩm thành công"]);
-    }
-
-    public function capNhat($id)
-    {
-        $product = Products::with('categories', 'suppliers', 'promotion')->find($id);
-
-        if (empty($product)) {
-            return redirect()->back()->withErrors(['loiCapNhap' => "Sản phẩm không tồn tại"]);
-        }
-
-        $categories = Categories::all(); // Lấy danh sách loại sản phẩm
-        $suppliers = Suppliers::all(); // Lấy danh sách nhà cung cấp
-
-        return view('product.update', compact('product', 'categories', 'suppliers'));
-    }
-
-    public function xuLyCapNhat(Request $request, $id)
-    {
-        // Validate request data
-        $request->validate([
-            'price' => 'required|numeric|min:0',
-            'categories_product_id' => 'required',
-            'suppliers_id' => 'required',
-        ]);
-
-        // Find the product by ID
-        $product = Products::find($id);
-
-        // If product not found, redirect back with error message
-        if (!$product) {
-            return redirect()->back()->withErrors(['loiCapNhap' => "Sản phẩm không tồn tại"]);
-        }
-
-        // Update product details from request
-        $product->name = $request->name;
-        $product->price = $request->price;
-        $product->categories_product_id = $request->categories_product_id;
-        $product->suppliers_id = $request->suppliers_id;
-        // Update other attributes as needed
-
-        // Save the updated product
-        $product->save();
-
-        // Redirect to the product detail page with success message
-        return redirect()->route('product.detail', ['id' => $product->id])->with(['capNhap' => "Cập nhật sản phẩm thành công"]);
     }
 
 

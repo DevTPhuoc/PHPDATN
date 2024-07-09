@@ -20,4 +20,8 @@ class ProductDetail extends Model
     {
         return $this->belongsTo(Color::class, 'color_id');
     }
+    public function product()
+    {
+        return $this->belongsTo(Products::class, 'product_id', 'id');
+    }
 }

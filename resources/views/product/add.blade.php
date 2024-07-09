@@ -35,113 +35,126 @@
     <h1 class="h2">THÊM SẢN PHẨM MỚI </h1>
 </div>
 
-<form class="row g-3" method="POST" action="{{ route('product.start-add') }}">
+<form class="row g-3" method="POST" action="{{ route('product.start-add') }}" enctype="multipart/form-data">
+    @csrf
     <div class="col-12">
-        @csrf
+        <!-- Tên sản phẩm -->
         <div class="row">
             <div class="col-md-8">
                 <label for="name" class="form-label">Tên sản phẩm</label>
                 <input type="text" name="name" class="form-control" id="name" >
             </div>
         </div>
+
+        <!-- Giá bán sản phẩm -->
         <div class="row">
             <div class="col-md-8">
                 <label for="price" class="form-label">Giá bán sản phẩm</label>
-                <input type="text" name="price" class="form-control" id="price" ">
+                <input type="text" name="price" class="form-control" id="price">
             </div>
         </div>
+        
+        <div class="row">
+            <div class="col-md-8">
+                <label for="selling_price" class="form-label">Giá Nhập Sản Phẩm</label>
+                <input type="text" name="selling_price" class="form-control" id="selling_price">
+            </div>
+        </div>
+
+        <!-- Hình ảnh sản phẩm -->
         <div class="row">
             <div class="btn-toolbar mb-2 mb-md-0">
-                 <div class="btn-group me-2">
-                 <form method="POST" action="" enctype="multipart/form-data">
-                 @csrf
-                 <label for="price" class="form-label">Thêm Hình Ảnh</label>
-                <input type="file" name="images[]" multiple>
-                 <button type="submit">Upload</button>
-            </form>
+                <div class="btn-group me-2">
+                    <label for="images" class="form-label">Thêm Hình Ảnh</label>
+                    <input type="file" name="images[]" multiple>
+                </div>
+            </div>
         </div>
-    </div>
-       
-       
+        <div class="row" id="image-preview" style="margin-top: 20px;"></div>
+        <!-- Loại sản phẩm -->
         <div class="row">
             <div class="col-md-8">
                 <label for="categories_product_id" class="form-label">Loại sản phẩm</label>
                 <select name="categories_product_id" class="form-select" aria-label="Default select example" id="categories_product_id">
                     <option selected>Chọn loại sản phẩm</option>
                     @foreach($dsLoaiSP as $loaiSP)
-                    <option value="{{ $loaiSP->id }}">{{ $loaiSP->name }}</option>
+                        <option value="{{ $loaiSP->id }}">{{ $loaiSP->name }}</option>
                     @endforeach
-                    
                 </select>
             </div>
         </div>
-      
+
+        <!-- Nhà cung cấp -->
         <div class="row">
             <div class="col-md-8">
                 <label for="suppliers_id" class="form-label">Nhà cung cấp</label>
                 <select name="suppliers_id" class="form-select" aria-label="Default select example" id="suppliers_id">
                     <option selected>Chọn nhà cung cấp</option>
                     @foreach($dsNhaCungCap as $nhaCungCap)
-                    <option value="{{ $nhaCungCap->id }}">{{ $nhaCungCap->name }}</option>
+                        <option value="{{ $nhaCungCap->id }}">{{ $nhaCungCap->name }}</option>
                     @endforeach
-                    
                 </select>
             </div>
         </div>
-        <!-- <div class="row">
-            <div class="col-md-8">
-                <label for="size_id" class="form-label">Size sản phẩm</label>
-                 <select name="size_id" class="form-select" aria-label="Default select example" id="size_id">
-                    <option selected>Chọn size sản phẩm</option>
-                     @foreach($dsSize as $size)
-                     <option value="{{ $size->id }}">{{ $size->name }}</option>
-                     @endforeach
-            </select>
-        </div>
+
+        <!-- Size sản phẩm -->
         <div class="row">
             <div class="col-md-8">
-                 <label for="color_id" class="form-label">Màu sản phẩm</label>
-                 <select name="color_id" class="form-select" aria-label="Default select example" id="color_id">
-                <option selected>Chọn màu sản phẩm</option>
-                      @foreach($dsMauSac as $mauSac)
-                     <option value="{{ $mauSac->id }}">{{ $mauSac->name }}</option>
-                  @endforeach
-                 </select>
+                <label for="size_id" class="form-label">Size sản phẩm</label>
+                <select name="size_id" class="form-select" aria-label="Default select example" id="size_id">
+                    <option selected>Chọn size sản phẩm</option>
+                    @foreach($dsSize as $size)
+                        <option value="{{ $size->id }}">{{ $size->name }}</option>
+                    @endforeach
+                </select>
             </div>
-        </div> -->
+        </div>
 
+        <!-- Màu sản phẩm -->
+        <div class="row">
+            <div class="col-md-8">
+                <label for="color_id" class="form-label">Màu sản phẩm</label>
+                <select name="color_id" class="form-select" aria-label="Default select example" id="color_id">
+                    <option selected>Chọn màu sản phẩm</option>
+                    @foreach($dsMauSac as $mauSac)
+                        <option value="{{ $mauSac->id }}">{{ $mauSac->name }}</option>
+                    @endforeach
+                </select>
+            </div>
+        </div>
 
-
-
-
+        <!-- Khuyến mãi -->
         <div class="row">
             <div class="col-md-8">
                 <label for="promotions_id" class="form-label">Khuyến mãi</label>
                 <select name="promotions_id" class="form-select" aria-label="Default select example" id="promotions_id">
                     <option selected value="0">Chọn khuyến mãi</option>
                     @foreach($dsKhuyenMai as $khuyenMai)
-                    <option value="{{ $khuyenMai->id }}">{{ $khuyenMai->code_promotion }}</option>
+                        <option value="{{ $khuyenMai->id }}">{{ $khuyenMai->code_promotion }}</option>
                     @endforeach
-                    
                 </select>
             </div>
         </div>
+
+        <!-- Mô tả sản phẩm -->
         <div class="row">
             <div class="col-md-8">
                 <label for="mo_ta" class="form-label">Mô tả sản phẩm</label>
-                <input type="text" name="mo_ta" class="form-control" id="mo_ta" ">
+                <input type="text" name="mo_ta" class="form-control" id="mo_ta">
             </div>
         </div>
-            
+
+        <!-- Nút Lưu -->
         <div class="row pt-3">
             <div class="col-md-12">
-                <button type="submit" class="btn btn-primary">Lưu</button>
+                <button type="submit" class="btn btn-primary">Thêm Mới</button>
             </div>
         </div>
     </div>
+    
 </form>
-</main>
-             
+
+</main>     
     </div>
     </div>
   
@@ -153,8 +166,6 @@
     <script src="http://127.0.0.1:8000/assets/js/charts-bars.js" ></script>
     <script src="http://127.0.0.1:8000/assets/js/focus-trap.js" ></script>
     <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer=""></script>
-    
-
 </body></html>
 @endsection
 

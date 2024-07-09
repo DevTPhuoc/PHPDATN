@@ -10,7 +10,7 @@ class AdminController extends Controller
 {
     public function index()
     { {
-            $dsAdmin = Admin::all();
+            $dsAdmin = Admin::paginate(10);
             return view("Admin.index", compact('dsAdmin'));
 
         }

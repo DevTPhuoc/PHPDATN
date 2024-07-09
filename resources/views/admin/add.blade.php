@@ -26,7 +26,16 @@
 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
     <h1 class="h2">THÊM MỚI ADMIN</h1>
 </div>
-       
+@if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
+
 <form class="row g-3" method="POST" action="{{ route('Admin.start-add') }}">
     <div class="col-12">
     @csrf
