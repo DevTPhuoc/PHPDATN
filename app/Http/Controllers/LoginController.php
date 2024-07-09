@@ -33,9 +33,9 @@ class LoginController extends Controller
     public function showLoginForm()
     {
 
-        // if (Auth::guard('admins')->check()) {
-        //     return redirect()->route('home');
-        // }
+        if (Auth::guard('admins')->check()) {
+            return redirect()->route('home');
+        }
         return view('login');
     }
 
@@ -43,6 +43,7 @@ class LoginController extends Controller
     {
        
         $credentials = $request->only('email', 'password');
+
         if (Auth::guard('admins')->attempt($credentials)) {
             return redirect()->route('home');
         }
