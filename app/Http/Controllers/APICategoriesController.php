@@ -11,7 +11,8 @@ class APICategoriesController extends Controller
 {
     public function sanPhamTheoLoai(Request $request, $id)
     { 
-        $loaiSP = Products::with('categories')->find($id);
+        $loaiSP = Products::with('categories:id,name')->where('products.categories_product_id', $id)->get();
+        
         if(empty($loaiSP))
         { return response()->json([
             'success'=>false, 
@@ -20,7 +21,7 @@ class APICategoriesController extends Controller
 
          return response()->json([ 
            'success'=>true, 
-           'data'=>$loaiSP 
+           'data'=>$loaiSP
        ]); 
      
         }

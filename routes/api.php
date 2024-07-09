@@ -6,7 +6,7 @@ use App\Http\Controllers\APICategoriesController;
 use App\Http\Controllers\APIProductController;
 use App\Http\Controllers\APIUserController;
 use App\Http\Controllers\APICartsDetailController; 
-
+use App\Http\Controllers\APIOrderController; 
 use Illuminate\Support\Facades\Auth;
 
 
@@ -55,7 +55,14 @@ Route::post('/register', [APIUserController::class, "Register"]);
 //cart
 Route::get('/cart/{id}',[APICartsDetailController::class,'getCartByIdCustomer']);
 Route::post('/Addcarts',[APICartsDetailController::class,'addCart']);
-Route::delete('/delCart',[APICartsDetailController::class,'delCart']);
+Route::delete('/delCart/{id}',[APICartsDetailController::class,'delCart']);
+Route::get('/Get-cart/{id}',[APICartsDetailController::class,'getCart']);
+Route::post('/edit-Cart/{id}',[APICartsDetailController::class,'editCartItem']);
+
+//
+Route::post('/create-order',[APIOrderController::class,'createOrder']); 
+Route::delete('/delete-order',[APIOrderController::class,'deleteCart']);   
+
 
 
 

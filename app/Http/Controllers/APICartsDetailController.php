@@ -20,6 +20,18 @@ class APICartsDetailController extends Controller
             ]);
     
 }
+public function getCart($id)
+    {
+        $carts = CartsDetail::
+        leftJoin('products','products.id','cartsdetail.product_id')->where('user_id', $id)->select('cartsdetail.*','products.name')->get();
+     
+        
+        if ($carts->isEmpty()) {
+            return response()->json(['status' => 'error', 'message' => 'Cart not found.'], 404);
+        }
+         
+        return response()->json(['status' => 'success', 'data' => $carts]);
+    }
 public function addCart(Request $req) 
 {
     
@@ -72,14 +84,30 @@ public function addCart(Request $req)
     }
     
 }
-
-public function delCart(Request $req) {
-
+public function editCartItem(Request $req) {
     $carts = CartsDetail::find($req->id);
-    if(empty($cart)) {
+    if(empty($carts)) {
         return response()->json([
             'success' => false,
-            'msg' => 'khong ton tai'
+            'msg' => 'Không tồn tại'
+        ]); 
+    }
+
+    $carts->quantity = $req->quantity;
+    $carts->save();
+    return response()->json([
+        'success' => true,
+        'msg' => 'Chỉnh sửa thành công'
+    ]); 
+}
+
+public function delCart(Request $req) {
+    $carts = CartsDetail::find($req->id);
+
+    if(empty($carts)) {
+        return response()->json([
+            'success' => false,
+            'msg' => 'Không tồn tại giỏ hàng'
         ]); 
     }
 
@@ -87,8 +115,8 @@ public function delCart(Request $req) {
 
     return response()->json([
         'success' => true,
-        'msg' => 'xoa thanh cong'
+        'msg' => 'Xóa thành công giỏ hàng'
     ]); 
-}
+} 
 
 }
