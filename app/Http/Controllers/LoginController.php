@@ -33,9 +33,9 @@ class LoginController extends Controller
     public function showLoginForm()
     {
 
-        if (Auth::guard('admins')->check()) {
-            return redirect()->route('home');
-        }
+        // if (Auth::guard('admins')->check()) {
+        //     return redirect()->route('home');
+        // }
         return view('login');
     }
 
@@ -45,11 +45,14 @@ class LoginController extends Controller
         $credentials = $request->only('email', 'password');
 
         if (Auth::guard('admins')->attempt($credentials)) {
-            return redirect()->route('home');
+            return redirect()->route('home')->withErrors(['email' => 'Thông tin đăng nhập không hợp lệ']);;
         }
-
         return redirect()->route('login')->withErrors(['email' => 'Thông tin đăng nhập không hợp lệ']);
     }
-
+    public function logout()
+    {
+      
+        return redirect()->route('login');
+    }
 
 }

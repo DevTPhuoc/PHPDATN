@@ -76,7 +76,7 @@
           {{$donHang->order_code}}
           </td>
           <td class="px-4 py-3 text-sm">
-          {{$donHang->fullname}}
+          {{$donHang->user->fullname}}
           </td>
           <td class="px-4 py-3">
           {{$donHang->order_date}}

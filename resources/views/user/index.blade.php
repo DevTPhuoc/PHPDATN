@@ -60,7 +60,7 @@
                             <th class="px-4 py-3">Số Điện Thoại</th>
                             <th class="px-4 py-3">Địa Chỉ</th>
                             <th class="px-4 py-3">Ngày Tạo</th>
-                            <th class="px-4 py-3">Trạng Thái</th>
+                            <!-- <th class="px-4 py-3">Trạng Thái</th> -->
                             <th class="px-4 py-3">Thao Tác</th>
                         </tr>
                     </thead>
@@ -98,12 +98,12 @@
                             <td class="px-4 py-3 text-sm">
                                 {{$user->created_at}}
                             </td>
-                            <td class="px-4 py-3 text-xs">
-                                <span
-                                    class="text-md px-2 py-1 font-semibold {{ $user->role == 1 ? 'leading-tight text-green-700 bg-green-100 rounded-full dark:bg-green-700 dark:text-green-100' : 'leading-tight text-red-700 bg-red-100 rounded-full dark:bg-red-700 dark:text-red-100' }}">
-                                    {{ $user->role == 1 ? 'Hoạt Động' : 'Không Hoạt Động' }}
-                                </span>
-                            </td>
+                                <!-- <td class="px-4 py-3 text-xs">
+                                    <span
+                                        class="text-md px-2 py-1 font-semibold {{ $user->role == 1 ? 'leading-tight text-green-700 bg-green-100 rounded-full dark:bg-green-700 dark:text-green-100' : 'leading-tight text-red-700 bg-red-100 rounded-full dark:bg-red-700 dark:text-red-100' }}">
+                                        {{ $user->role == 1 ? 'Hoạt Động' : 'Không Hoạt Động' }}
+                                    </span>
+                                </td> -->
                             <td class="px-4 py-3 text-sm">
                                 <form action="{{ route('delete-detailu', ['id' => $user->id]) }}">
                                     <button type="submit" class="text-red-500 hover:text-red-700">

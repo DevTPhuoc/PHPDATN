@@ -71,42 +71,43 @@
               <th class="px-4 py-3">Họ Và Tên</th>
               <th class="px-4 py-3">Email</th>
               <th class="px-4 py-3">Số Điện Thoại</th>
-              <th class="px-4 py-3">Địa Chỉ</th>
+              <!-- <th class="px-4 py-3">Địa Chỉ</th> -->
               <th class="px-4 py-3">Ngày Tạo</th>
             </tr>
           </thead>
           <tbody class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800">
             @foreach($dsAdmin as $admin)
-              <tr class="text-gray-700 dark:text-gray-400 cursor-pointer"
-                onclick="window.location.href = '{{ route('Admin.update', ['id' => $admin->id]) }}';">
-                <td class="px-4 py-3">
-                  <div class="flex items-center text-sm">
-                    <div class="relative hidden w-8 h-8 mr-3 rounded-full md:block">
-                      <img class="object-cover w-full h-full rounded-full"
-                        src="https://images.unsplash.com/flagged/photo-1570612861542-284f4c12e75f?ixlib=rb-1.2.1&amp;q=80&amp;fm=jpg&amp;crop=entropy&amp;cs=tinysrgb&amp;w=200&amp;fit=max&amp;ixid=eyJhcHBfaWQiOjE3Nzg0fQ"
-                        alt="" loading="lazy">
-                      <div class="absolute inset-0 rounded-full shadow-inner" aria-hidden="true"></div>
-                    </div>
-                    <div>
-                      <p class="font-semibold">{{ $admin->id }}</p>
-                      <p class="text-xs text-gray-600 dark:text-gray-400"></p>
-                    </div>
-                  </div>
-                </td>
-                <td class="px-4 py-3 text-sm">{{ $admin->fullname }}</td>
-                <td class="px-4 py-3 text-sm">{{ $admin->email }}</td>
-                <td class="px-4 py-3 text-sm">{{ $admin->phone }}</td>
-                <td class="px-4 py-3 text-sm">{{ $admin->address }}</td>
-                <td class="px-4 py-3 text-sm">{{ $admin->created_at }}</td>
-                <td class="px-4 py-3 text-xs">
-                  <form action="{{ route('delete-detaila', ['id' => $admin->id]) }}" method="POST">
-                    @csrf
-                    @method('DELETE')
-                    <button type="submit" class="text-red-500 hover:text-red-700">Delete</button>
-                  </form>
-                </td>
-              </tr>
-            @endforeach
+        <tr class="text-gray-700 dark:text-gray-400 cursor-pointer"
+          onclick="window.location.href = '{{ route('Admin.update', ['id' => $admin->id]) }}';">
+          <td class="px-4 py-3">
+          <div class="flex items-center text-sm">
+            <div class="relative hidden w-8 h-8 mr-3 rounded-full md:block">
+            <img class="object-cover w-full h-full rounded-full"
+              src="https://images.unsplash.com/flagged/photo-1570612861542-284f4c12e75f?ixlib=rb-1.2.1&amp;q=80&amp;fm=jpg&amp;crop=entropy&amp;cs=tinysrgb&amp;w=200&amp;fit=max&amp;ixid=eyJhcHBfaWQiOjE3Nzg0fQ"
+              alt="" loading="lazy">
+            <div class="absolute inset-0 rounded-full shadow-inner" aria-hidden="true"></div>
+            </div>
+            <div>
+            <p class="font-semibold">{{ $admin->id }}</p>
+            <p class="text-xs text-gray-600 dark:text-gray-400"></p>
+            </div>
+          </div>
+          </td>
+          <td class="px-4 py-3 text-sm">{{ $admin->fullname }}</td>
+          <td class="px-4 py-3 text-sm">{{ $admin->email }}</td>
+          <td class="px-4 py-3 text-sm">{{ $admin->phone }}</td>
+          <!-- <td class="px-4 py-3 text-sm">{{ $admin->address }}</td> -->
+          <td class="px-4 py-3 text-sm">{{ $admin->created_at }}</td>
+          <td class="px-4 py-3 text-xs">
+          <form action="{{ route('delete-detaila', ['id' => $admin->id]) }}" method="POST">
+            @csrf
+            @method('DELETE')
+            <button type="submit" class="text-red-500 hover:text-red-700">Delete</button>
+          </form>
+          </td>
+
+        </tr>
+      @endforeach
           </tbody>
         </table>
       </div>

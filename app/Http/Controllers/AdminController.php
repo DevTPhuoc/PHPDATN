@@ -92,14 +92,11 @@ class AdminController extends Controller
     {
         $admin = Admin::find($id);
 
-        $admin = Admin::find($id);
-
         if (!$admin) {
             return redirect()->route('Admin.index')->with(['error' => "Admin không tồn tại"]);
         }
 
         $admin->delete();
-
         return redirect()->route('Admin.index')->with(['xoa' => "Xóa Admin thành công"]);
     }
     public function timKiemad(Request $request)

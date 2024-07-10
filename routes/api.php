@@ -7,6 +7,8 @@ use App\Http\Controllers\APIProductController;
 use App\Http\Controllers\APIUserController;
 use App\Http\Controllers\APICartsDetailController; 
 use App\Http\Controllers\APIOrderController; 
+use App\Http\Controllers\ChatBoxAIController;
+use App\Http\Controllers\APIPaymentController;
 use Illuminate\Support\Facades\Auth;
 
 
@@ -34,13 +36,13 @@ Route::get('/loai-san-pham',[APICategoriesController::class,'dsLoaiSanPham']);
 
 
 
-
-
 Route::get('/san-pham-theo-nha-cung-cap/{id}',[APIProductController::class,'sanPhamTheoNhaCungCap']);
 Route::get('/thong-tin-san-pham/{id}',[APIProductController::class,'thongTinSanPham']);
 Route::get('/san-pham',[APIProductController::class,'dsSanPham']);
 
-
+//LỌC THEO MÀU 
+Route::get('/ds-colors', [APIProductController::class, 'dsColors']);
+Route::get('/san-pham-theo-mau/{id}', [APIProductController::class, 'sanPhamTheoMau']);
 
 Route::post('/Them-moi-gio-hang',[APIProductController::class,'sanPhamTheoNhaCungCap']);
 
@@ -64,6 +66,7 @@ Route::post('/create-order',[APIOrderController::class,'createOrder']);
 Route::delete('/delete-order',[APIOrderController::class,'deleteCart']);   
 
 
+Route::post('/chatbot', [ChatBoxAIController::class, 'sendMessage']);
 
-
-
+Route::get('/payments', [APIPaymentController::class, 'index']);
+Route::get('/paymentmethods', [APIPaymentController::class, 'paymentMethods']);

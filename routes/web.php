@@ -10,6 +10,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\StatisticalController;
+use App\Http\Controllers\OnlineCheckOutController;
 
 use App\Models\Admin;
 use PgSql\Lob;
@@ -26,10 +27,10 @@ use PgSql\Lob;
 */
 
 
-
+$route['online-checkout']['POST']='OnlineCheckOut/online_checou';
 
 Route::get('/', function () {
-    return view('show'); 
+    return view('show');
 })->name('welcome');
 
 Route::get('/register', [LoginController::class, 'showRegisterForm'])->name('register');
@@ -37,14 +38,23 @@ Route::post('/register', [LoginController::class, 'registerHandle'])->name('regi
 
 Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [LoginController::class, 'loginHandle'])->name('loginHandle');
-Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 
+Route::get('/logout', [LoginController::class, 'logout'])->name('logout')->middleware('auth:admins');
+
+// Routes that require authentication
+// Route::middleware(['auth:admins'])->group(function () {
+//     Route::get('/home', [HomeController::class, 'index'])->name('home');
+//     // Add more routes that require authentication here
+// });
+Route::get('/home', [LoginController::class, 'showDashboard'])->name('home')->middleware('auth:admins');
 
 Route::get('/home', function () {
-    return view('master'); 
+    return view('master');
 })->name('home');
 
+Route::get('/payment', [App\Http\Controllers\PaymentController::class, 'vnpayPayment'])->name('vnpay.payment');
 
+Route::get('/vnpay/checkout', [OnlineCheckOutController::class, 'onlinecheckou'])->name('vnpay.checkout');
 Route::get('/statistical', [StatisticalController::class, 'index'])->name('statistical.index');
 
 // QUẢN LÝ ADMIN
@@ -67,7 +77,7 @@ Route::prefix('/admin')->group(function () {
     Route::post('/start-update/{id}', [AdminController::class, 'xuLyCapNhat'])
         ->name('Admin.start-update');
 
-    Route::get('/delete/{id}', [AdminController::class, 'xoa'])
+    Route::delete('/delete/{id}', [AdminController::class, 'xoa'])
         ->name('delete-detaila');
 
     Route::get('/search', [AdminController::class, 'timKiemad'])
