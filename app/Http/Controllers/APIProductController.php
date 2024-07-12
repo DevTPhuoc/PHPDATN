@@ -28,7 +28,9 @@ class APIProductController extends Controller
 
     public function dsSanPham()
     {
-        $dsSanPham = Products::all();
+        $dsSanPham = Products::leftJoin('images', 'products.id', '=', 'images.product_id')->select('products.*', 'images.name as image_name') ->get();
+        // $dsSanPham = Products::with('images')->get();
+
         return response()->json([
             'success' => true,
             'data' => $dsSanPham
@@ -36,26 +38,30 @@ class APIProductController extends Controller
     }
 
     public function thongTinSanPham($id)
-    {
-        $sanPham = Products::with('images')->find($id);
+{
+    // Tìm sản phẩm trước
+    $sanPham = Products::find($id);
 
-        if (empty($sanPham)) {
-            return response()->json([
-                'success' => false,
-                'data' => "Sản phẩm không tồn tại"
-            ]);
-        }
-
-        $imageNames = $sanPham->images->pluck('name');
-
+    // Kiểm tra xem sản phẩm có tồn tại không
+    if (empty($sanPham)) {
         return response()->json([
-            'success' => true,
-            'data' => [
-                'product' => $sanPham,
-                'image_names' => $imageNames,
-            ]
+            'success' => false,
+            'data' => "Loại sản phẩm này không tồn tại"
         ]);
     }
+
+    // Thực hiện truy vấn với leftJoin
+    $sanPham = Products::leftJoin('images', 'products.id', '=', 'images.product_id')
+        ->where('products.id', $id)
+        ->select('products.*', 'images.name as image_name')
+        ->first(); // Sử dụng first() thay vì get() để lấy một bản ghi
+
+    return response()->json([
+        'success' => true,
+        'data' => $sanPham
+    ]);
+}
+
     public function dsColors()
     {
         $colors = \DB::table('colors')->select('id', 'name')->get();

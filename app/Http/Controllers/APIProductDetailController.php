@@ -22,7 +22,10 @@ class APIProductDetailController extends Controller
         ]); 
         }
     public function dsLoaiSanPham(){
-        $dsLoaiSP = ProductDetail::with('products')->get();
+        $dsLoaiSP = ProductDetail::with('products')->leftJoin('images', 'products.id', '=', 'images.product_id')
+        ->where('products.id', $id)
+        ->select('products.*', 'images.name as image_name')
+        ->first()->get();
         
         return response()->json([
             'success' => true,

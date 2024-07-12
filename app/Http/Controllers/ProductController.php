@@ -78,19 +78,30 @@ class ProductController extends Controller
 
 
     public function xuLyThemMoi(Request $request)
-    {
-        // Kiểm tra xem sản phẩm có sẵn không dựa trên size và color
-        $existingProductDetail = ProductDetail::where('size_id', $request->size_id)
-            ->where('color_id', $request->color_id)
-            ->first();
+{{
+    // Kiểm tra xem sản phẩm có sẵn không dựa trên size và color
+    // $existingProductDetail = ProductDetail::where('size_id', $request->size_id)
+    //     ->where('color_id', $request->color_id)
+    //     ->first();
 
-        if ($existingProductDetail) {
-            // Nếu chi tiết sản phẩm đã tồn tại, cập nhật số lượng và cập nhật số lượng trong bảng sản phẩm
-            $existingProductDetail->increment('quantity_detail', 1);
+    // if ($existingProductDetail) {
+    //     // Nếu chi tiết sản phẩm đã tồn tại, cập nhật số lượng chi tiết sản phẩm
+    //     // $existingProductDetail->increment('quantity_detail', 1);
 
+    //     // Kiểm tra và cập nhật số lượng tổng của sản phẩm
+    //     if ($existingProductDetail->product) {
+    //         $existingProductDetail->product->increment('quantity', 1);
+    //     } else {
+    //         // Xử lý khi sản phẩm không tồn tại
+    //         // Ví dụ: throw new Exception('Không tìm thấy sản phẩm');
+    //     }
+    // } else {
+    //     // Nếu chi tiết sản phẩm chưa tồn tại, kiểm tra và tạo mới sản phẩm
+    //     $product = Product::where('name', $request->name)->first();
+    // $product = new Products();
 
-        } else {
-            // Nếu chi tiết sản phẩm chưa tồn tại, tạo mới sản phẩm và chi tiết sản phẩm
+    //     if (!$product) {
+            // Tạo mới sản phẩm nếu chưa tồn tại
             $product = new Products();
             $product->categories_product_id = $request->categories_product_id;
             $product->name = $request->name;
@@ -101,32 +112,32 @@ class ProductController extends Controller
             $product->quantity = 1; // Tự động thêm 1 vào quantity khi tạo mới sản phẩm
             $product->promotions_id = $request->promotions_id;
             $product->save();
+// }
 
-            // Tạo mới chi tiết sản phẩm
-            $productDetail = new ProductDetail();
-            $productDetail->size_id = $request->size_id;
-            $productDetail->color_id = $request->color_id;
-            $productDetail->quantity_detail = 1; // Tự động thêm 1 vào quantity_detail khi tạo mới chi tiết sản phẩm
-            $productDetail->product_id = $product->id;
-            $productDetail->save();
+        // Tạo mới chi tiết sản phẩm
+        $productDetail = new ProductDetail();
+        $productDetail->size_id = $request->size_id;
+        $productDetail->color_id = $request->color_id;
+        $productDetail->quantity_detail = 1; // Tự động thêm 1 vào quantity_detail khi tạo mới chi tiết sản phẩm
+        $productDetail->product_id = $product->id;
+        $productDetail->save();
 
-            // Lưu hình ảnh
-            if ($request->hasFile('images')) {
-                foreach ($request->file('images') as $image) {
-                    $imageName = $image->getClientOriginalName();
-                    $image->storeAs('public/img/add', $imageName); // Lưu hình ảnh vào thư mục storage/app/public/img/add
+        // Lưu hình ảnh
+        if ($request->hasFile('images')) {
+            foreach ($request->file('images') as $image) {
+                $imageName = $image->getClientOriginalName();
+                $image->storeAs('public/img/add', $imageName); // Lưu hình ảnh vào thư mục storage/app/public/img/add
 
-                    $imageRecord = Image::create([
-                        'product_id' => $product->id,
-                        'name' => $imageName,
-                    ]);
-                }
+                $imageRecord = Image::create([
+                    'product_id' => $product->id,
+                    'name' => $imageName,
+                ]);
             }
         }
-
-        return redirect()->route('product.index')->with(['themMoi' => "Thêm mới sản phẩm thành công"]);
     }
 
+    return redirect()->route('product.index')->with(['themMoi' => "Thêm mới sản phẩm thành công"]);
+}
 
 
 
