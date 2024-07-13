@@ -23,17 +23,26 @@ class APICartsDetailController extends Controller
 
     }
     public function getCart($id)
-    {
-        $carts = CartsDetail::
-            leftJoin('products', 'products.id', 'cartsdetail.product_id')->where('user_id', $id)->select('cartsdetail.*', 'products.name')->get();
+{
+    $carts = CartsDetail::leftJoin('products', 'products.id', '=', 'cartsdetail.product_id')
+                        ->leftJoin('images', 'images.product_id', '=', 'products.id')
+                        ->where('cartsdetail.user_id', $id)
+                        ->select('cartsdetail.*', 'products.name as product_name', 'images.name as image_name')
+                        ->get();
 
-
-        if ($carts->isEmpty()) {
-            return response()->json(['status' => 'error', 'message' => 'Cart not found.'], 404);
-        }
-
-        return response()->json(['status' => 'success', 'data' => $carts]);
+    if ($carts->isEmpty()) {
+        return response()->json([
+            'status' => 'error',
+            'message' => 'Không tìm thấy giỏ hàng.',
+        ], 404);
     }
+
+    return response()->json([
+        'status' => 'success',
+        'data' => $carts,
+    ]);
+}
+
     public function addCart(Request $req)
     {
 

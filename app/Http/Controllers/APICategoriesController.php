@@ -11,7 +11,7 @@ class APICategoriesController extends Controller
 {
     public function sanPhamTheoLoai(Request $request, $id)
     { 
-        $loaiSP = Products::with('categories:id,name')->where('products.categories_product_id', $id)->get();
+        $loaiSP = Products::with('categories:id,name')->where('products.categories_product_id', $id)->leftJoin('images', 'products.id', '=', 'images.product_id')->select('products.*', 'images.name as image_name') ->get();;
         
         if(empty($loaiSP))
         { return response()->json([

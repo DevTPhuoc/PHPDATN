@@ -34,8 +34,21 @@ class LoginController extends Controller
         // }
         return view('login');
     }
-
     public function loginHandle(Request $request)
+{
+    $credentials = $request->only('email', 'password');
+
+    if (Auth::guard('web')->attempt($credentials)) {
+        // Authentication passed...
+        return redirect('/home');
+    }
+
+    // Authentication failed...
+    return redirect('/home')->with('error', 'Tên đăng nhập hoặc mật khẩu không đúng.');
+}
+
+
+    public function Login(Request $request)
     {
         $credentials = $request->only('email', 'password');
 
@@ -47,5 +60,8 @@ class LoginController extends Controller
         // dd($credentials, Auth::guard('admins')->attempt($credentials));
 
         return redirect()->route('login')->withErrors(['email' => 'Thông tin đăng nhập không hợp lệ']);
+        if (Auth::guard('web')->attempt(['email' => $request->email,'password' => $request->password])) {
+            return redirect('/home');}
+        return redirect()->route('home')->withErrors(['email' => 'Thông tin đăng nhập không hợp lệ']);
     }
 }
