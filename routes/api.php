@@ -65,7 +65,7 @@ Route::post('/edit-Cart/{id}',[APICartsDetailController::class,'editCartItem']);
 Route::post('/create-order',[APIOrderController::class,'createOrder']); 
 Route::delete('/delete-order',[APIOrderController::class,'deleteCart']);
 Route::get('/get-order/{id}',[APIOrderController::class,'getOrder']);   
-
+Route::post('cancel-order/{id}',[APIOrderController::class,'cancelOrder']);
 
 
 Route::post('/chatbot', [ChatBoxAIController::class, 'sendMessage']);

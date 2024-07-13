@@ -7,6 +7,7 @@ use App\Models\CartsDetail;
 use App\Models\OrderDetail;
 use App\Models\Order;
 use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
 
 
 
@@ -75,7 +76,37 @@ class APIOrderController extends Controller
 
         return response()->json($orders, 200);
     }
+
     
+    public function cancelOrder($id)
+    {
+        // Attempt to find the order by order ID
+        $order = Order::findOrFail($id); // Assuming 'Order' is your Eloquent model for orders
+    
+        // Check if the order is already in delivery
+        if ($order->role === '2') {
+            return response()->json(['status' => 'error', 'message' => 'Order is already in delivery and cannot be cancelled']);
+        }
+    
+        // Calculate the time difference between order creation and current time
+        $createdAt = Carbon::parse($order->created_at);
+        $now = Carbon::now();
+        $minutesDifference = $now->diffInMinutes($createdAt);
+    
+        // Check if more than 30 minutes have passed since the order creation
+        // if ($minutesDifference > 30) {
+        //     return response()->json(['status' => 'error', 'message' => 'Order cannot be cancelled after 30 minutes']);
+        // }
+    
+        // Update order status (role) to '-1' (or another appropriate status)
+        $order->role = '-1';
+        $order->save();
+    
+        // Return success response
+        return response()->json(['status' => 'success', 'message' => 'Order cancelled successfully']);
+    }
+    
+
     public function deleteCart($userId)
     {
         CartsDetail::where('user_id', $userId)->delete();
