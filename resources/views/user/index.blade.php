@@ -6,7 +6,7 @@
         <div class="grid gap-6 mb-8 md:grid-cols-2 xl:grid-cols-4">
         </div>
         
-        <div class="flex items-center p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800"
+        <!-- <div class="flex items-center p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800"
             onclick="window.location.href = '{{ route('user.add') }}';">
             <div class="p-3 mr-4 text-orange-500 rounded-full dark:text-orange-100 dark:bg-orange-500">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14" height="50" width="50">
@@ -26,7 +26,7 @@
                     Thêm Mới User
                 </p>
             </div>
-        </div>
+        </div> -->
         
         <!-- New Table -->
         <form action="{{ route('search.user') }}" method="GET">

@@ -65,7 +65,7 @@
               <th class="px-4 py-3">Email</th>
               <th class="px-4 py-3">Số Điện Thoại</th>
               <th class="px-4 py-3">Địa Chỉ</th>
-              <th class="px-4 py-3">Trạng Thái</th>
+              <!-- <th class="px-4 py-3">Trạng Thái</th> -->
             </tr>
           </thead>
           <tbody class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800">
@@ -103,11 +103,11 @@
           <td class="px-4 py-3 text-sm">
                 {{$suppliers->address}}
           </td>
-          <td class="px-4 py-3 text-sm">
+          <!-- <td class="px-4 py-3 text-sm">
                             <span class="text-md  px-2 py-1 font-semibold{{ $suppliers->status == 1 ? 'leading-tight text-green-700 bg-green-100 rounded-full dark:bg-green-700 dark:text-green-100' : 'leading-tight text-red-700 bg-red-100 rounded-full dark:bg-red-700 dark:text-red-100' }}">
                                 {{ $suppliers->status == 1 ? 'Hoạt Động' : 'Không Hoạt Động' }}
                             </span>
-                        </td>
+                        </td> -->
           
           <td class="px-4 py-3 text-sm">
           

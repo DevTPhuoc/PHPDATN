@@ -157,7 +157,8 @@
             </g>
           </svg>
           <p class="text-lg text-gray-600 dark:text-gray-400">Tình trạng thanh toán:
-            {{ $donHang->pay == 1 ? 'Đã thanh toán' : 'Chưa thanh toán' }}</p>
+            {{ $donHang->pay == 1 ? 'Đã thanh toán' : 'Chưa thanh toán' }}
+          </p>
         </div>
 
       </div>
@@ -196,14 +197,15 @@
           {{ $item->product->name }}
           </td>
           <td class="px-4 py-3">
-          {{ $item->price }}
+          {{ number_format($item->product->selling_price, 0, ',', '.') }} VND
           </td>
+
           <td class="px-4 py-3">
           {{ $item->quantity }}
           </td>
-          <td class="px-4 py-3">
-          {{ $item->price * $item->quantity }}
-          </td>
+            <td class="px-6 py-4 text-sm font-semibold">
+            {{ number_format($item->product->selling_price * $item->quantity, 0, ',', '.') }} VND
+            </td>
         </tr>
       @endforeach
         </table>
@@ -222,13 +224,14 @@
       </button> ||
     @elseif ($donHang->role == 2)
       <button type="button" class="confirm-button">
-      <a href="{{ route('order.confirm-success', ['id' => $donHang->id]) }}" class="nav-link active">Xác nhận đã giao đơn</a>
+      <a href="{{ route('order.confirm-success', ['id' => $donHang->id]) }}" class="nav-link active">Xác nhận đã giao
+        đơn</a>
       </button> ||
     @endif
-    @if  ($donHang->role != -1 && $donHang->role != 2&& $donHang->role !=3)
-        <button type="button" class="delete-button">
-            <a href="{{ route('order.cancel', ['id' => $donHang->id]) }}" class="nav-link active">Hủy Đơn</a>
-        </button>
+      @if  ($donHang->role != -1 && $donHang->role != 2 && $donHang->role != 3)
+      <button type="button" class="delete-button">
+      <a href="{{ route('order.cancel', ['id' => $donHang->id]) }}" class="nav-link active">Hủy Đơn</a>
+      </button>
     @endif
     </div>
 

@@ -42,22 +42,27 @@ class ProductController extends Controller
         $product->price = $request->price;
         $product->suppliers_id = $request->suppliers_id;
         $product->save();
-    
+
         // Xử lý hình ảnh (nếu có)
         if ($request->hasFile('images')) {
+            // Xóa các hình ảnh cũ
+            Image::where('product_id', $product->id)->delete();
+
             foreach ($request->file('images') as $image) {
                 $imageName = $image->getClientOriginalName();
                 $image->storeAs('public/img/add', $imageName); // Lưu hình ảnh vào thư mục storage/app/public/img/add
-    
-                Image::updateOrCreate(
-                    ['product_id' => $product->id, 'name' => $imageName],
-                    ['name' => $imageName]
-                );
+
+                // Tạo mới bản ghi hình ảnh
+                Image::create([
+                    'product_id' => $product->id,
+                    'name' => $imageName,
+                ]);
             }
         }
-    
+
         return redirect()->route('product.index')->with(['capNhat' => "Cập nhật sản phẩm thành công"]);
     }
+
     public function themMoi()
     {
         $dsLoaiSP = Categories::all();
@@ -77,50 +82,39 @@ class ProductController extends Controller
 
 
 
+
     public function xuLyThemMoi(Request $request)
     {
-        // Kiểm tra xem sản phẩm có sẵn không dựa trên size và color
-        $existingProductDetail = ProductDetail::where('size_id', $request->size_id)
-            ->where('color_id', $request->color_id)
-            ->first();
+        // Tạo mới sản phẩm
+        $product = new Products();
+        $product->categories_product_id = $request->categories_product_id;
+        $product->name = $request->name;
+        $product->price = $request->price;
+        $product->selling_price = $request->selling_price;
+        $product->description = $request->description;
+        $product->suppliers_id = $request->suppliers_id;
+        $product->quantity = 1; // Tự động thêm 1 vào quantity khi tạo mới sản phẩm
+        $product->promotions_id = $request->promotions_id;
+        $product->save();
 
-        if ($existingProductDetail) {
-            // Nếu chi tiết sản phẩm đã tồn tại, cập nhật số lượng và cập nhật số lượng trong bảng sản phẩm
-            $existingProductDetail->increment('quantity_detail', 1);
+        // Tạo mới chi tiết sản phẩm
+        $productDetail = new ProductDetail();
+        $productDetail->size_id = $request->size_id;
+        $productDetail->color_id = $request->color_id;
+        $productDetail->quantity_detail = 1; // Tự động thêm 1 vào quantity_detail khi tạo mới chi tiết sản phẩm
+        $productDetail->product_id = $product->id;
+        $productDetail->save();
 
+        // Lưu hình ảnh
+        if ($request->hasFile('images')) {
+            foreach ($request->file('images') as $image) {
+                $imageName = $image->getClientOriginalName();
+                $image->storeAs('public/img/add', $imageName); // Lưu hình ảnh vào thư mục storage/app/public/img/add
 
-        } else {
-            // Nếu chi tiết sản phẩm chưa tồn tại, tạo mới sản phẩm và chi tiết sản phẩm
-            $product = new Products();
-            $product->categories_product_id = $request->categories_product_id;
-            $product->name = $request->name;
-            $product->price = $request->price;
-            $product->selling_price = $request->selling_price;
-            $product->description = $request->description;
-            $product->suppliers_id = $request->suppliers_id;
-            $product->quantity = 1; // Tự động thêm 1 vào quantity khi tạo mới sản phẩm
-            $product->promotions_id = $request->promotions_id;
-            $product->save();
-
-            // Tạo mới chi tiết sản phẩm
-            $productDetail = new ProductDetail();
-            $productDetail->size_id = $request->size_id;
-            $productDetail->color_id = $request->color_id;
-            $productDetail->quantity_detail = 1; // Tự động thêm 1 vào quantity_detail khi tạo mới chi tiết sản phẩm
-            $productDetail->product_id = $product->id;
-            $productDetail->save();
-
-            // Lưu hình ảnh
-            if ($request->hasFile('images')) {
-                foreach ($request->file('images') as $image) {
-                    $imageName = $image->getClientOriginalName();
-                    $image->storeAs('public/img/add', $imageName); // Lưu hình ảnh vào thư mục storage/app/public/img/add
-
-                    $imageRecord = Image::create([
-                        'product_id' => $product->id,
-                        'name' => $imageName,
-                    ]);
-                }
+                $imageRecord = Image::create([
+                    'product_id' => $product->id,
+                    'name' => $imageName,
+                ]);
             }
         }
 

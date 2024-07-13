@@ -69,68 +69,68 @@
           </thead>
           <tbody class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800">
             @foreach ($dsDonHang as $donHang)
-        <tr class="text-center text-gray-700 dark:text-gray-400"
-          onclick="window.location.href = '{{ route('order.detail', ['id' => $donHang->id]) }}';">
+          <tr class="text-center text-gray-700 dark:text-gray-400"
+            onclick="window.location.href = '{{ route('order.detail', ['id' => $donHang->id]) }}';">
 
-          <td class="px-4 py-3 text-sm">
-          {{$donHang->order_code}}
-          </td>
-          <td class="px-4 py-3 text-sm">
-          {{$donHang->user->fullname}}
-          </td>
-          <td class="px-4 py-3">
-          {{$donHang->order_date}}
+            <td class="px-4 py-3 text-sm">
+            {{$donHang->order_code}}
+            </td>
+            <td class="px-4 py-3 text-sm">
+            {{$donHang->user->fullname}}
+            </td>
+            <td class="px-4 py-3">
+            {{$donHang->order_date}}
 
-          </td>
-          <td class="px-4 py-3 text-sm">
-          <span
-            class="text-md  px-2 py-1 font-semibold{{ $donHang->pay == 1 ? 'leading-tight text-green-700 bg-green-100 rounded-full dark:bg-green-700 dark:text-green-100' : 'leading-tight text-red-700 bg-red-100 rounded-full dark:bg-red-700 dark:text-red-100' }}">
-            {{ $donHang->pay == 1 ? 'Đã Thanh Toán' : 'Chưa Thanh Toán' }}
-          </span>
-          </td>
+            </td>
+            <td class="px-4 py-3 text-sm">
+            <span
+              class="text-md  px-2 py-1 font-semibold{{ $donHang->pay == 1 ? 'leading-tight text-green-700 bg-green-100 rounded-full dark:bg-green-700 dark:text-green-100' : 'leading-tight text-red-700 bg-red-100 rounded-full dark:bg-red-700 dark:text-red-100' }}">
+              {{ $donHang->pay == 1 ? 'Đã Thanh Toán' : 'Chưa Thanh Toán' }}
+            </span>
+            </td>
 
-          <td class="px-4 py-3 text-sm">
+            <td class="px-4 py-3 text-sm">
 
-          @if($donHang->role == 0)
+            @if($donHang->role == 0)
         {{-- //Chờ xác nhận --}}
         <span
-        class="px-2 py-1 font-semibold leading-tight text-orange-500 bg-orange-100 rounded-full dark:bg-orange-500 dark:text-orange-100">
-        Chờ Xác Nhận
+          class="px-2 py-1 font-semibold leading-tight text-orange-500 bg-orange-100 rounded-full dark:bg-orange-500 dark:text-orange-100">
+          Chờ Xác Nhận
         </span>
 
       @elseif($donHang->role == 1)
-      {{-- Xác nhận --}}
-      <span
+    {{-- Xác nhận --}}
+    <span
       class="px-2 py-1 font-semibold leading-tight text-purple-600 bg-orange-100 rounded-full dark:bg-teal-500 dark:text-orange-100">
       Đã Xác Nhận
-      </span>
+    </span>
 
-    @elseif($donHang->role == 2)
-      {{-- Đang giao hàng --}}
-      <span
-      class="px-2 py-1 font-semibold leading-tight text-blue-500 bg-blue-300 rounded-full dark:bg-blue-500 dark:text-red-100">
-      Đang Giao Hàng
-      </span>
+  @elseif($donHang->role == 2)
+  {{-- Đang giao hàng --}}
+  <span
+    class="px-2 py-1 font-semibold leading-tight text-blue-500 bg-blue-300 rounded-full dark:bg-blue-500 dark:text-red-100">
+    Đang Giao Hàng
+  </span>
 
-    @elseif($donHang->role == 3)
-      {{-- //Hoàn thành --}}
-      <span
-      class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-full dark:bg-green-700 dark:text-green-100">
-      Đã Giao Hàng
-      </span>
-    @else
-      {{-- //Hủy đơn --}}
-      <span
-      class="px-2 py-1 font-semibold leading-tight text-red-700 bg-red-100 rounded-full dark:bg-red-700 dark:text-red-100">
-      Hủy Đơn
-      </span>
-    @endif  
-          </td>
-          <td class="px-6 py-4 text-sm font-semibold">
-          {{$donHang->totalPrice}}
-          </td>
-        </tr>
-      @endforeach
+@elseif($donHang->role == 3)
+  {{-- //Hoàn thành --}}
+  <span
+    class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-full dark:bg-green-700 dark:text-green-100">
+    Đã Giao Hàng
+  </span>
+@else
+  {{-- //Hủy đơn --}}
+  <span
+    class="px-2 py-1 font-semibold leading-tight text-red-700 bg-red-100 rounded-full dark:bg-red-700 dark:text-red-100">
+    Hủy Đơn
+  </span>
+@endif  
+
+        <td class="px-6 py-4 text-sm font-semibold">
+
+            {{ number_format($donHang->totalPrice, 0, ',', '.') }} VND
+            </td>
+        @endforeach
 
 
           </tbody>

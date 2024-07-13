@@ -6,7 +6,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('assets/css/tailwind.output.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/button.css') }}">
-    
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     
   <style type="text/css">/* Chart.js */
   @keyframes chartjs-render-animation{from{opacity:.99}to{opacity:1}}.chartjs-render-monitor{animation:chartjs-render-animation 1ms}.chartjs-size-monitor,.chartjs-size-monitor-expand,.chartjs-size-monitor-shrink{position:absolute;direction:ltr;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1}.chartjs-size-monitor-expand>div{position:absolute;width:1000000px;height:1000000px;left:0;top:0}.chartjs-size-monitor-shrink>div{position:absolute;width:200%;height:200%;left:0;top:0}
@@ -96,7 +96,7 @@
                 <span class="ml-4">Quản Lý Đơn Hàng</span>
               </a>
             </li>
-            <!-- <li class="relative px-6 py-3">
+            <li class="relative px-6 py-3">
               <a class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200" href="{{route('statistical.index')}}">
                 <svg class="w-5 h-5" aria-hidden="true" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
                   <path d="M11 3.055A9.001 9.001 0 1020.945 13H11V3.055z"></path>
@@ -104,7 +104,7 @@
                 </svg>
                 <span class="ml-4">Thống Kê</span>
               </a>
-            </li> -->
+            </li>
             
           </div>
       </aside>

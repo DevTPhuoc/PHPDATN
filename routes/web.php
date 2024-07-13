@@ -1,5 +1,5 @@
 <?php
-
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\CategoriesController;
 use App\Http\Controllers\ImageController;
 use App\Http\Controllers\OrderController;
@@ -27,7 +27,7 @@ use PgSql\Lob;
 */
 
 
-$route['online-checkout']['POST']='OnlineCheckOut/online_checou';
+// $route['online-checkout']['POST']='OnlineCheckOut/online_checou';
 
 Route::get('/', function () {
     return view('show');
@@ -39,14 +39,20 @@ Route::post('/register', [LoginController::class, 'registerHandle'])->name('regi
 Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [LoginController::class, 'loginHandle'])->name('loginHandle');
 
+
+
 Route::get('/logout', [LoginController::class, 'logout'])->name('logout')->middleware('auth:admins');
 
+// Route::middleware(['admin.auth'])->group(function () {
+//     Route::get('/admin/home', [AdminController::class, 'home'])->name('home');
+//     // Các route khác dành cho admin
+// });
 // Routes that require authentication
 // Route::middleware(['auth:admins'])->group(function () {
 //     Route::get('/home', [HomeController::class, 'index'])->name('home');
 //     // Add more routes that require authentication here
 // });
-Route::get('/home', [LoginController::class, 'showDashboard'])->name('home')->middleware('auth:admins');
+// Route::get('/home', [LoginController::class, 'showDashboard'])->name('home')->middleware('auth:admins');
 
 Route::get('/home', function () {
     return view('master');
@@ -55,7 +61,15 @@ Route::get('/home', function () {
 Route::get('/payment', [App\Http\Controllers\PaymentController::class, 'vnpayPayment'])->name('vnpay.payment');
 
 Route::get('/vnpay/checkout', [OnlineCheckOutController::class, 'onlinecheckou'])->name('vnpay.checkout');
+
+
+
+
+//QUẢN LÝ DOANH THU
+//Doanh thu chọn theo ngày nè
 Route::get('/statistical', [StatisticalController::class, 'index'])->name('statistical.index');
+Route::post('/get-revenue', 'StatisticalController@getRevenueByDate')->name('get-revenue');
+
 
 // QUẢN LÝ ADMIN
 Route::prefix('/admin')->group(function () {

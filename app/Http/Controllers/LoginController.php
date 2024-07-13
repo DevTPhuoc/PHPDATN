@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Admin;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Hash;
 
 class LoginController extends Controller
 {
@@ -15,20 +17,14 @@ class LoginController extends Controller
 
     public function registerHandle(Request $request)
     {
-        $request->validate([
-            'email' => 'required|string|email|max:255|unique:admins',
-            'phone' => 'required|string|max:15',
-            'password' => 'required|string|min:8|confirmed',
-        ]);
+        $admin = new Admin();
+        $admin->email = $request->email;
+        $admin->password = Hash::make($request->password);
+        $admin->save();
 
-        $admin = Admin::create([
-            'email' => $request->email,
-            'phone' => $request->phone,
-            'password' => bcrypt($request->password),
-        ]);
-
-        return redirect()->route('login')->with('success', 'Đăng ký thành công. Vui lòng đăng nhập.');
+        return redirect()->route('login')->withErrors(['email' => 'Đăng ký thành công. vui lòng đăng nhập để sử dụng']);
     }
+
 
     public function showLoginForm()
     {
@@ -41,18 +37,15 @@ class LoginController extends Controller
 
     public function loginHandle(Request $request)
     {
-       
         $credentials = $request->only('email', 'password');
 
         if (Auth::guard('admins')->attempt($credentials)) {
-            return redirect()->route('home')->withErrors(['email' => 'Thông tin đăng nhập không hợp lệ']);;
+            return redirect()->route('home');
         }
+
+        // Debug thông tin đăng nhập
+        // dd($credentials, Auth::guard('admins')->attempt($credentials));
+
         return redirect()->route('login')->withErrors(['email' => 'Thông tin đăng nhập không hợp lệ']);
     }
-    public function logout()
-    {
-      
-        return redirect()->route('login');
-    }
-
 }

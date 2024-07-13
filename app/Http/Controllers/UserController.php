@@ -11,6 +11,7 @@ class UserController extends Controller
     { 
         {
             $dsUser = User::paginate(10);
+            $totalUsers = User::count();
             return view("user.index", compact('dsUser'));
 
 

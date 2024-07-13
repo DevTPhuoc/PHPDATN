@@ -72,7 +72,6 @@ class OrderController extends Controller
         $tongTien = $dsCTDonHang->sum(function ($item) {
             return $item->price * $item->quantity;
         });
-
         return view('order.detail', compact('donHang', 'dsCTDonHang', 'khachHang', 'tongSoLuong', 'tongTien'));
     }
     public function capNhatChiTiet($id)

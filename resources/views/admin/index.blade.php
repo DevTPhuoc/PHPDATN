@@ -20,9 +20,10 @@
   <div class="container px-6 mx-auto grid">
     <div class="grid gap-6 mb-8 md:grid-cols-2 xl:grid-cols-4">
       <!-- Placeholder cho các phần tử khác nếu có -->
+
     </div>
 
-    <div class="flex items-center p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800 cursor-pointer"
+    <!-- <div class="flex items-center p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800 cursor-pointer"
       onclick="window.location.href = '{{ route('Admin.add') }}';">
       <div class="p-3 mr-4 text-orange-500 rounded-full dark:text-orange-100 dark:bg-orange-500">
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14" height="50" width="50">
@@ -40,27 +41,27 @@
       <div>
         <p class="mb-2 text-sm font-medium text-gray-600 dark:text-gray-400">Thêm Tài Khoản Admin</p>
       </div>
-    </div>
+    </div> -->
 
-    <form action="{{ route('admin.search') }}" method="GET" class="flex justify-center lg:mr-32 mb-10 max-w-xl mx-auto">
-      <div class="relative w-full focus-within:text-purple-500">
-        <div class="absolute inset-y-0 left-0 flex items-center pl-2">
-          <svg class="w-4 h-4" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20">
-            <path fill-rule="evenodd"
-              d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
-              clip-rule="evenodd"></path>
-          </svg>
-        </div>
-        <input
-          class="w-full pl-8 pr-2 text-sm text-gray-700 placeholder-gray-600 bg-gray-100 border-0 rounded-md dark:placeholder-gray-500 dark:focus:shadow-outline-gray dark:focus:placeholder-gray-600 dark:bg-gray-700 dark:text-gray-200 focus:placeholder-gray-500 focus:bg-white focus:border-purple-300 focus:outline-none focus:shadow-outline-purple form-input"
-          type="text" placeholder="Tìm Kiếm Theo Email Admin" aria-label="Search" name="keyword">
-      </div>
-      <button type="submit"
-        class="ml-2 px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-md active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple">
-        Search
-      </button>
-    </form>
-
+    <form action="{{ route('admin.search') }}" method="GET">
+            <div class="flex justify-center flex-1 lg:mr-32 mb-10">
+                <div class="relative w-full max-w-xl mr-6 focus-within:text-purple-500">
+                    <div class="absolute inset-y-0 flex items-center pl-2">
+                        <svg class="w-4 h-4" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd"
+                                d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
+                                clip-rule="evenodd"></path>
+                        </svg>
+                    </div>
+                    <input
+                        class="w-full pl-8 pr-2 text-sm text-gray-700 placeholder-gray-600 bg-gray-100 border-0 rounded-md dark:placeholder-gray-500 dark:focus:shadow-outline-gray dark:focus:placeholder-gray-600 dark:bg-gray-700 dark:text-gray-200 focus:placeholder-gray-500 focus:bg-white focus:border-purple-300 focus:outline-none focus:shadow-outline-purple form-input"
+                        type="text" placeholder="Tìm Kiếm Theo Email Admin" aria-label="Search" name="keyword">
+                </div>
+                <button type="submit"
+                    class="ml-2 px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-md active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple">Search</button>
+            </div>
+        </form>
+        
     <div class="w-full overflow-hidden rounded-lg shadow-xs">
       <div class="w-full overflow-x-auto">
         <table class="w-full whitespace-no-wrap">
