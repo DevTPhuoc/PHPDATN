@@ -1,4 +1,4 @@
-@extends('master')
+ @extends('master')
 
 @section('content')
 
@@ -58,7 +58,6 @@
                     <th class="px-5 py-3">Loại sản phẩm</th>
                     <th class="px-5 py-3">Giá Bán </th>
                     <th class="px-5 py-3">Nhà cung cấp </th>
-                    <th class="px-5 py-3">Khuyến mãi </th>
                     <th class="px-5 py-3">Trạng Thái </th>
                 </tr>
             </thead>
@@ -77,9 +76,9 @@
                     </td>
                     <td class="px-4 py-3 text-sm">{{$product->name}}</td>
                     <td class="px-4 py-3 text-sm">{{$product->categories->name}}</td>
-                    <td class="px-4 py-3 text-sm">{{$product->price}} VND</td>
+                    <td class="px-4 py-3 text-sm">{{$product->selling_price}} VND</td>
                     <td class="px-4 py-3 text-sm">{{$product->suppliers->name}}</td>
-                    <td class="px-4 py-3 text-sm">{{$product->promotion->code_promotion}}</td>
+                   
                     <td class="px-4 py-3 text-xs">
                         @if($product->productDetails->sum('quantity_detail') > 0)
                         <span

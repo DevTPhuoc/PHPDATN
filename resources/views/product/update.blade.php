@@ -42,8 +42,8 @@
     </div>
     <div class="row">
         <div class="col-md-8">
-            <label for="price" class="form-label">Giá Bán</label>
-            <input value="{{ $product->price }}" type="text" name="price" class="form-control" id="price">
+            <label for="selling_price" class="form-label">Giá Bán</label>
+            <input value="{{ $product->selling_price }}" type="text" name="selling_price" class="form-control" id="price">
         </div>
     </div>
     <div class="row">
@@ -66,6 +66,8 @@
             </select>
         </div>
     </div>
+    <div class="row">
+</div>
     <div class="row">
         <div class="col-md-8">
             <label for="images" class="form-label">Hình ảnh</label>
@@ -99,13 +101,9 @@
                     }
                 }
             </script>
-
-                </main>
-
-                       
+                </main>                 
       </div>
     </div>
-  
 </body>
 </html>
 

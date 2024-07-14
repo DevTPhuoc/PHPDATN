@@ -176,6 +176,7 @@ class OrderController extends Controller
         $donHang->save();
         return redirect()->action([OrderController::class, 'danhSachTrongThang']);
     }
+    
     public function thanhToan(Request $request, $id)
     {
         $donHang = Order::find($id);
