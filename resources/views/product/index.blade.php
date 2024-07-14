@@ -1,4 +1,4 @@
-@extends('master')
+ @extends('master')
 
 @section('content')
 
@@ -76,8 +76,9 @@
                     </td>
                     <td class="px-4 py-3 text-sm">{{$product->name}}</td>
                     <td class="px-4 py-3 text-sm">{{$product->categories->name}}</td>
-                    <td class="px-4 py-3 text-sm">{{ number_format($product->selling_price, 0, ',', '.') }} VND</td>
-    
+
+                    <td class="px-4 py-3 text-sm">{{$product->selling_price}} VND</td>
+
                     <td class="px-4 py-3 text-sm">{{$product->suppliers->name}}</td>
                    
                     <td class="px-4 py-3 text-xs">

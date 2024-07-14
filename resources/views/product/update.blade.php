@@ -43,7 +43,9 @@
     <div class="row">
         <div class="col-md-8">
             <label for="selling_price" class="form-label">Giá Bán</label>
-            <input value="{{ number_format($product->selling_price, 0, ',', '.') }} "  type="text" name="selling_price" class="form-control" id="price">
+
+         <input value="{{ $product->selling_price }}" type="text" name="selling_price" class="form-control" id="price">
+
         </div>
     </div>
     <div class="row">

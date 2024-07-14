@@ -58,7 +58,7 @@ class StatisticalController extends Controller
         return view(
             'statistical.index',
             compact(
-                'selectedDate', // Mặc định là ngày hôm nay nếu không có ngày được chọn 
+
                 'dailyRevenue',
                 'monthlyRevenue',
                 'cancelledOrders',

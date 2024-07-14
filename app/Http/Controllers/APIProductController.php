@@ -85,6 +85,18 @@ class APIProductController extends Controller
             'data' => $dsSanPham
         ]);
     }
+
+public function newArrivals()
+{
+    $newProducts = Products::leftJoin('images', 'products.id', '=', 'images.product_id')
+                    ->select('products.*', 'images.name as image_name')
+                    ->orderBy('products.created_at', 'desc')
+                    ->take(10)
+                    ->get();
+
+    return response()->json($newProducts);
+}
+
    
 
 }
