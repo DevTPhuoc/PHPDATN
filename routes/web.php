@@ -40,19 +40,10 @@ Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [LoginController::class, 'loginHandle'])->name('loginHandle');
 
 
-
 Route::get('/logout', [LoginController::class, 'logout'])->name('logout')->middleware('auth:admins');
 
-// Route::middleware(['admin.auth'])->group(function () {
-//     Route::get('/admin/home', [AdminController::class, 'home'])->name('home');
-//     // Các route khác dành cho admin
-// });
-// Routes that require authentication
-// Route::middleware(['auth:admins'])->group(function () {
-//     Route::get('/home', [HomeController::class, 'index'])->name('home');
-//     // Add more routes that require authentication here
-// });
-// Route::get('/home', [LoginController::class, 'showDashboard'])->name('home')->middleware('auth:admins');
+
+
 
 Route::get('/home', function () {
     return view('master');

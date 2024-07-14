@@ -21,10 +21,11 @@ class Admin extends Authenticatable
 
     protected $hidden = [
         'password',
+        'remember_token',
     ];
 
-    public function setPasswordAttribute($value)
-    {
-        $this->attributes['password'] = Hash::make($value);
-    }
+    // public function setPasswordAttribute($value)
+    // {
+    //     $this->attributes['password'] = Hash::make($value);
+    // }
 }

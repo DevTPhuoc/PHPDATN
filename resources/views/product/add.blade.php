@@ -124,17 +124,7 @@
         </div>
 
         <!-- Khuyến mãi -->
-        <div class="row">
-            <div class="col-md-8">
-                <label for="promotions_id" class="form-label">Khuyến mãi</label>
-                <select name="promotions_id" class="form-select" aria-label="Default select example" id="promotions_id">
-                    <option selected value="0">Chọn khuyến mãi</option>
-                    @foreach($dsKhuyenMai as $khuyenMai)
-                        <option value="{{ $khuyenMai->id }}">{{ $khuyenMai->code_promotion }}</option>
-                    @endforeach
-                </select>
-            </div>
-        </div>
+       
 
         <!-- Mô tả sản phẩm -->
         <div class="row">

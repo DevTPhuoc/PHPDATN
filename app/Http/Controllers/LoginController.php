@@ -10,6 +10,10 @@ use Illuminate\Support\Facades\Hash;
 
 class LoginController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth:admins')->except(['showLoginForm', 'loginHandle', 'showRegisterForm', 'registerHandle']);
+    }
     public function showRegisterForm()
     {
         return view('register');
@@ -22,46 +26,37 @@ class LoginController extends Controller
         $admin->password = Hash::make($request->password);
         $admin->save();
 
-        return redirect()->route('login')->withErrors(['email' => 'Đăng ký thành công. vui lòng đăng nhập để sử dụng']);
+        return redirect()->route('login')->with('success', 'Đăng ký thành công. Vui lòng đăng nhập để sử dụng.');
     }
-
 
     public function showLoginForm()
     {
-
-        // if (Auth::guard('admins')->check()) {
-        //     return redirect()->route('home');
-        // }
         return view('login');
     }
+
     public function loginHandle(Request $request)
-{
-    $credentials = $request->only('email', 'password');
-
-    if (Auth::guard('web')->attempt($credentials)) {
-        // Authentication passed...
-        return redirect('/home');
-    }
-
-    // Authentication failed...
-    return redirect('/home')->with('error', 'Tên đăng nhập hoặc mật khẩu không đúng.');
-}
-
-
-    public function Login(Request $request)
     {
-        $credentials = $request->only('email', 'password');
+        // Lấy email và mật khẩu từ request
+        $email = $request->email;
+        $password = $request->password;
 
-        if (Auth::guard('admins')->attempt($credentials)) {
-            return redirect()->route('home');
+        // Kiểm tra xem email có tồn tại trong cơ sở dữ liệu không
+        $user = Admin::where('email', $email)->first();
+
+        if (!$user) {
+            // Nếu email không tồn tại, trả về lỗi email
+            return redirect()->route('login')->withErrors(['email' => 'Email không tồn tại.']);
         }
 
-        // Debug thông tin đăng nhập
-        // dd($credentials, Auth::guard('admins')->attempt($credentials));
+        // Nếu email tồn tại, kiểm tra mật khẩu
+        if (!Hash::check($password, $user->password)) {
+            // Nếu mật khẩu không khớp, trả về lỗi mật khẩu
+            return redirect()->route('login')->withErrors(['password' => 'Mật khẩu không đúng.']);
+        }
 
-        return redirect()->route('login')->withErrors(['email' => 'Thông tin đăng nhập không hợp lệ']);
-        if (Auth::guard('web')->attempt(['email' => $request->email,'password' => $request->password])) {
-            return redirect('/home');}
-        return redirect()->route('home')->withErrors(['email' => 'Thông tin đăng nhập không hợp lệ']);
+        // Nếu email và mật khẩu đúng, đăng nhập và chuyển hướng đến trang chủ
+        Auth::guard('web')->login($user);
+        return redirect('/home')->with('success', 'Đăng ký thành công. Vui lòng đăng nhập để sử dụng.');
     }
+
 }

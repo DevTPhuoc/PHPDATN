@@ -43,15 +43,6 @@ class OrderController extends Controller
         // Truyền biến này đến view
         return view('order.index', compact('dsDonHang', 'tongDonHang'));
     }
-    // public function chiTietHD(Request $request,$id){
-
-    //     $sanPham = Products::find($id);
-    //     $dsChiTietSP = OrderDetail::where('order_id',$id)
-    //                                 ->orderBy('quantity')
-    //                                 ->get();
-    //     $tongSoLuong = $dsChiTietSP->sum('quantity');
-    //     return view('order.detail',compact('sanPham','dsChiTietSP','tongSoLuong'));
-    // }
     public function chiTiet(Request $request, $id)
     {
         $donHang = Order::with('orderDetails.product')->find($id);
@@ -122,23 +113,23 @@ class OrderController extends Controller
     public function capNhat($id)
     {
         $donHang = Order::find($id);
-    
+
         if (empty($donHang)) {
             return redirect()->back()->withErrors(['loiCapNhap' => "Đơn hàng không tồn tại"]);
         }
-    
+
         return view('order.update', compact('donHang'));
     }
-    
+
 
     public function xuLyCapNhat(Request $request, $id)
     {
         $donHang = Order::find($id);
-        
+
         if (empty($donHang)) {
             return redirect()->back()->withErrors(['loiCapNhap' => "Đơn hàng không tồn tại"]);
         }
-    
+
         // Lấy thông tin người dùng từ đơn hàng
         $user = $donHang->user;
 
@@ -150,10 +141,10 @@ class OrderController extends Controller
         $user->address = $request->address;
         $user->phone = $request->phone;
         $user->save();
-       
+
         return redirect()->action([OrderController::class, 'chiTiet'], ['id' => $id])->with(['capNhap' => "Cập nhật thành công"]);
     }
-    
+
     public function xacNhan(Request $request, $id)
     {
         $donHang = Order::find($id);

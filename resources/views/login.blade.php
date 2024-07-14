@@ -34,7 +34,7 @@
                                 <input class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
                                     name="email"
                                     type="email"
-                                    required
+                                    
                                 />
                             </label>
                             <label class="block mt-4 text-sm password-toggle">
@@ -42,7 +42,7 @@
                                 <input id="password" class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
                                     name="password"
                                     type="password"
-                                    required
+                                   
                                 />
                                 <svg id="togglePassword" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
                                     class="w-6 h-6 password-toggle-icon text-gray-700 dark:text-gray-400">
