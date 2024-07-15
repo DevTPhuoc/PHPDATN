@@ -93,7 +93,7 @@
 
             <td class="px-4 py-3 text-sm">
 
-            @if($donHang->role == -1)
+            @if($donHang->role == 0)
     <span class="px-2 py-1 font-semibold leading-tight text-orange-500 bg-orange-100 rounded-full dark:bg-orange-500 dark:text-orange-100">
         Chờ Xác Nhận
     </span>
